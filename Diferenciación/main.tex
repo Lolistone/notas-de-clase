@@ -1,0 +1,272 @@
+% Load the kaohandt class (with the default options)
+\documentclass[
+%fontsize=10pt, % Base font size
+%twoside=false, % If true, use different layouts for even and odd pages (in particular, if twoside=true, the margin column will be always on the outside)
+%secnumdepth=2, % How deep to number headings. Defaults to 2 (subsections)
+%abstract=true, % Uncomment to print the title of the abstract
+]{kaohandt}
+
+% Choose the language
+\usepackage[spanish]{babel} % Load characters and hyphenation
+\usepackage[spanish=spanish]{csquotes}	% Spanish quotes
+
+\usepackage{tikz}
+
+% Load packages for testing
+\usepackage{blindtext}
+%\usepackage{showframe} % Uncomment to show boxes around the text area, margin, header and footer
+%\usepackage{showlabels} % Uncomment to output the content of \label commands to the document where they are used
+
+\graphicspath{{images/}{./}} % Paths where images are looked for
+
+% Load mathematical packages for theorems and related environments.
+\usepackage{kaotheorems}
+
+% Load the bibliography package
+\usepackage{kaobiblio}
+\addbibresource{report-template.bib} % Bibliography file
+
+% Load the package for hyperreferences
+\usepackage{kaorefs}
+
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+	
+	%----------------------------------------------------------------------------------------
+	%	REPORT INFORMATION
+	%----------------------------------------------------------------------------------------
+	
+	\title[Diferenciación (de Lebesgue)]{Diferenciación (de Lebesgue)}
+	
+	\author[LM]{Lorenzo Martinelli\thanks{Universidad de Buenos Aires} }
+	
+	\date{\today}
+	
+	%----------------------------------------------------------------------------------------
+	%	TITLE AND ABSTRACT
+	%----------------------------------------------------------------------------------------
+	
+	\maketitle
+	
+	\margintoc
+	
+	\begin{abstract}
+		\noindent
+		Notas de Análisis Real tomadas de las clases de Victoria Paternostro durante el segundo cuatrimestre de 2025. Estas cubren alrededor de 4 clases donde se desarrolló la teoría de diferenciación de Lebesgue.
+	\end{abstract}
+	
+	%{\noindent\textbf{Keywords:} \LaTeX, Kao, handout, article, report}
+	
+	\medskip
+	
+	%----------------------------------------------------------------------------------------
+	%	MAIN BODY
+	%----------------------------------------------------------------------------------------
+	
+	\section{Introducción}
+	
+	El eje de estas notas va a ser extender resultados ya conocidos como el \emph{Teorema Fundamental del Cálculo}\sidenote[][*-2]{\begin{remark}[TFC]
+		Dada $f: [a, b] \rightarrow \mathbb{R}$ entonces $F(x) = \int_{a}^{x} f(t)dt$ es derivable en $x$ si $f$ es continua en $x$ y vale que $F'(x) = f(x).$ 
+		\end{remark}} a una clase de funciones más amplia con la integral de Lebesgue.
+
+	
+	\marginnote[*0]{
+		\begin{center}
+			\includegraphics[width=4cm]{hardy.jpeg}\\
+			\scriptsize G. H Hardy
+		\end{center}
+	}
+	
+	\marginnote[*+7]{
+		\begin{center}
+			\includegraphics[width=4cm]{littlewood.jpeg}\\
+			\scriptsize J. E. Littlewood
+		\end{center}
+	}
+	
+	\section{Maximal de Hardy-Littlewood}
+	
+	\begin{definition}
+		Dada $f \in L^{1}(\mathbb{R}^n)$ definimos la función maximal de H-L como
+		$$Mf(x) = \sup_{Q \ni x} \frac{1}{|Q|} \int_{Q} f(y)dy$$
+		con $Q$ cubo abierto. 
+	\end{definition} \vspace{0.2cm}
+	
+	\marginnote[*6]{
+		\begin{remark} El maximal es sub-lineal, es decir, $M(f+g)(x) \leq Mf(x) + Mg(x)$.
+		\end{remark}
+	}
+	
+	Vamos a comenzar probando algunas propiedades del maximal. 
+	
+	\begin{proposition} Dada $f \in L^{1}(\mathbb{R}^n)$:
+		\begin{enumerate}
+			\item $Mf$ es medible.
+			\item $Mf$ es finita a.e.
+		\end{enumerate}
+	\end{proposition}  
+	
+	\begin{proof}
+	Vamos a hacer un poco de trampa utilizando un resultado que aún no probamos, el lema de Hardy-Littlewood.
+		\begin{enumerate}
+			\item Sea $\alpha \in \mathbb{R}$, definimos $E_\alpha = \{Mf > \alpha\}$. Sea $x \in E_\alpha$ tenemos que existe $Q$ cubo abierto tal que $x \in Q$ y $\frac{1}{|Q|} \int_{Q}f > \alpha$. Luego, para todo $\hat{x} \in Q$ vale que $Mf(\hat{x}) > \alpha$, es decir, $Q \subset E_\alpha$. 
+			\item Queremos ver que $|\{ Mf = +\infty \}| = 0.$ Tenemos que
+			$$ |\{ Mf = +\infty \}| \leq |\{ Mf > \alpha \}| \leq \frac{c }{\alpha} \|f\|_{1}$$ 
+			donde la última desigualdad es el lema mencionado antes.			
+		\end{enumerate}
+	\end{proof}
+	
+	\newpage
+	Notemos que, en general, $Mf$ no está en $L^1$. Consideremos $f = \chi_{[0, 1]}$, $x > 0$ y $Q = (0, x + 1)$. De esta manera
+	$$Mf(x) \geq  \frac{1}{Q} \int_{Q} |f(y)|dy = \frac{1}{x+1} \notin L^{1}(0, +\infty).$$
+	
+	Ahora enunciaremos formalmente el lema de Hardy-Littlewood sin demostración puesto que para esta deberemos probar varios resultados antes.
+	
+	\begin{theorem}[Lema de Hardy-Littlewood]
+		Existe $c>0$ tal que para toda $f \in L^1$
+		$$|\{ Mf > \alpha \}| \leq \frac{c}{\alpha} \|f\|_{1} \quad \forall \alpha > 0.$$	 
+	\end{theorem}
+	
+	El primer resultado que necesitamos es el siguiente lema.
+	
+	\begin{lemma}[Simple de Vitali]
+		Dado $E \subset \mathbb{R}^n$, si $|E|_e < +\infty$ y $K = \{Q_i\}_i$ es una familia de cubos que cubre a $E$ entonces existe $\beta > 0$ (que solo depende de la dimensión) y $Q_1, ..., Q_N \in K$ disjuntos tal que $\sum_{j=1}^{N} |Q_j| \geq \beta |E|_e$.
+	\end{lemma} 
+	
+	\begin{proof} Comencemos con un poco de notación.
+		\begin{itemize}
+			\item $Q = Q(\ell)$ si $\ell$ es la longitud.
+			\item $K_1 = K$
+			\item $\ell^{*}_1 = \sup \{\ell : Q(\ell) \in K\}$ 
+		\end{itemize}
+		
+		Si $\ell^{*}_1 = +\infty$ entonces existe una sucesión de cubos $(Q_k)_k \subset K$ tal que $|Q_k| \rightarrow \infty$. Luego, existe $k$ tal que $|Q_k| \geq \beta|E|_e$ para todo $\beta > 0.$
+		
+		\marginnote[*-20]{		
+		\begin{center}
+			\includegraphics[width=4cm]{vitali.jpg}\\
+			\scriptsize G. Vitali (1875 - 1932)
+		\end{center}
+		}	
+		
+		Si $\ell^{*}_1 < +\infty$, tomemos $Q_1 \in K_1$ tal que $Q_1 = Q_1(\ell_1)$ y $\ell_1 > \frac{1}{2} \ell^{*}_1.$ Separamos la familia original en dos familias disjuntas nuevas, $K_1 = K_2 \cup K'_2$ de la siguiente manera:
+		\begin{itemize}
+			\item $K_2 = \{Q \in K_1 \text{ tal que } Q \cap Q_1 = \emptyset\}$
+			\item $K'_2 = \{Q \in K_1 \text{ tal que } Q \cap Q_1 \neq \emptyset\}$
+		\end{itemize}
+		
+		Sea $Q_1^{*}$ el cubo con mismo centro que $Q_1$ y con lado de longitud $5\ell_1$. \sidenote[][*-6]{
+			\begin{center}
+				\includegraphics[width=4cm]{cubo.png}\\
+				\scriptsize Not drawn to scale
+			\end{center}
+		} Afirmamos que si $Q \in K'_2$ entonces $Q \subset Q*_1$ pues dado $\ell$ tal que $Q = Q(\ell) \in K'_2$ tenemos que $\ell \leq \ell^{*}_1 < 2\ell_1$. ¿Y ahora qué? Repetimos el argumento en $K_2$ teniendo en cuenta que si $\ell^{*}_2 = \sup \{\ell : Q(\ell) \in K_2\}$ entonces $\ell_2^{*} \leq \ell_1^{*}$. Tomemos ahora $Q_2 = Q_2(\ell_2)$ tal que $\ell_2 > \frac{1}{2} \ell_2^{*}$ y separamos, igual que antes, $K_2 = K_{3} \cup K'_3.$ Donde los cubos $Q \in K'_3$ cumple que $Q \subset Q_2^{*}$ donde $Q_2^{*}$ es el cubo con el mismo centro que $Q_2$ y lado $5\ell_2$. 
+		Continuando con esta construcción, en el paso $j$ tenemos:
+		\begin{itemize}
+			\item $Q_1, Q_2, ..., Q_j$ cubos disjuntos,
+			\item $\ell_1^{*} \geq \ell_2^{*} \geq ... \geq \ell_j^{*}$ y
+			\item todo cubo de $K'_{j+1}$ está contenido en el cubo de centro $Q_j$ y lado $5\ell_j$. 
+		\end{itemize}
+		
+		Si en el $N$-ésimo paso (para algún $N$) $K_N$ es vacío ¿Qué ocurre? Veamos que
+		
+		$$K = K'_{N} \cup ... \cup K'_2,$$  
+		
+		entonces $E \subset \bigcup_{j=1}^{N-1} Q^{*}_j$ y, por lo tanto, $|E|_e \leq \sum_{j=1}^{N-1} |Q_j^{*}| = 5^{n} \sum_{j=1}^{N-1}|Q_j|$. \sidenote{$Q_j^{*}$ no tiene porqué estar en $K$.} \\ 
+		\indent ¿Y si $K_N \neq \emptyset$ para todo $n \in N$? Notemos que $(\ell_j^{*})_j$ converge pues es decreciente y $0 < \ell_j^{*} < \infty$. Tenemos dos casos:
+		$$ \lim_{j \rightarrow +\infty} \ell^{*}_j = 0 \text{\quad o } \lim_{j \rightarrow +\infty} \ell^{*}_j = \alpha \neq 0.$$
+		\indent Si $\ell^{*}_j \rightarrow \alpha > 0 $ entonces $ |Q_j| \nrightarrow 0$ pues $\ell_j \geq 1/2\ell^{*}_j$. Luego, $\sum_{j=1}^{\infty} |Q_j| = +\infty$. De esta manera, para cualquier $\beta >0$ existe $N \in \mathbb{N}$ tal que $\sum_{j=1}^{N} |Q_j| > \beta |E|_e$. 
+		
+		¿Y si $\ell^{*}_j \rightarrow 0$? Veamos que en este caso todo cubo de $K_1$ está contenido en $\bigcup_{j \geq 1} Q^{*}_{j}$. Supogamos que existe $Q = Q(\ell)$ en $K_1$ que no está en la unión, entonces $Q \in K_j$ para todo j, luego $\ell \leq \ell^{*}_{j}$ para todo j y, por lo tanto, $\ell = 0$, lo cual es absurdo. 
+		
+		Como consencuencia de lo que probamos recien, $E \subset \bigcup_{j\geq1} Q_j^{*}$ y así $|E|_e \leq \sum_{j\geq1} |Q_j^{*}| = 5^{n} \sum_{j\geq1} |Q_j|$. Ahora, tomando $0 < \beta < 1/5^{n}$ tenemos que existe $N \in \mathbb{N}$ que cumple lo que buscamos.
+		
+	\end{proof}
+	
+	Ahora sí nos encontramos en condiciones de probar el lema de Hardy-Littlewood.
+	
+	\begin{proof}
+		Dado $\alpha > 0$ consideremos $E_\alpha$ definido como antes. \sidenote{\begin{remark} Dado $\alpha > 0$ definimos $E_\alpha = \{x \in \mathbb{R}^{d} : Mf(x) > \alpha\}.$ \end{remark}} Sabemos que si $x \in E_\alpha$ existe $Q_x$ que contiene a $x$ y,
+		$$\frac{1}{|Q_x|} \int_{Q_x} |f(y)| dy > \alpha.$$
+		Notemos que $\{Q_x\}_{x\in E_\alpha}$ es un cubrimiento de $E_\alpha$. ¿Podemos usar el Lema de Vitali? No, pues la medida de $E_\alpha$ no tiene porque ser finita. Consideremos entonces dado $k \in \mathbb{N}$
+		$$E_k = E_\alpha \cap B_{k}(0).$$
+		Ahora, por el lema de vitali, existen $Q_1, ..., Q_N$ cubos disjuntos y $\beta >0$ tal que
+		$$ |E_k| \leq \frac{1}{\beta} \sum_{i}^{N} |Q_i| \leq \frac{1}{\beta} \sum_{i}^{N} \frac{1}{\alpha} \int_{Q_i} |f(y)|dy = \frac{1}{\beta \alpha} \int_{\bigcup Q_i} |f(y)|dy.$$
+		Luego, por continuidad de la medida y considerando $c = \frac{1}{\beta}$ tenemos el resultado
+		$$ |E_\alpha| = \lim_{k \rightarrow +\infty} |E_k| \leq \frac{c}{\alpha} \int_{\bigcup Q_i} |f(y)|dy \leq \frac{c}{\alpha} \|f\|_{1}.$$		
+	\end{proof}
+	
+	\section{El teorema de diferenciación de Lebesgue}
+	
+	Con los resultado previos, estamos en condiciones tanto de enunciar como de demostrar este resultado. 	\marginnote{
+		\begin{center}
+			\includegraphics[width=4cm]{lebesgue.jpeg}\\
+			\scriptsize Henri Léon Lebesegue (1875 - 1941)
+		\end{center}
+	}
+	
+	\begin{theorem}[Teorema de Diferenciación de Lebesgue]
+		Sea $f \in L^1(\mathbb{R}^{d})$ entonces
+		$$\lim_{\substack{|Q| \to 0 \\ Q \ni x}} \frac{1}{|Q|} \int_{Q} f(y)dy = f(x) \quad \text{ a.e. } x \in \mathbb{R}^{d}$$
+	\end{theorem}
+	
+	\begin{proof}
+		Queremos ver que 
+		$$\Big| \frac{1}{|Q|} \int_{Q} f(y) - f(x)dy  \Big| \leq \frac{1}{|Q|} \int_{Q} |f(y) - f(x)|dy$$
+		es chico. Vamos a verlo en primer lugar para continuas de soporte compacto. \sidenote{¿Por qué? Porque son densas en $L^1$.} Tomemos $g \in \mathcal{C}_{c}({\mathbb{R}^d}), x \in \mathbb{R}^d$,
+		$$ \frac{1}{|Q|} \int_{Q} |g(y) - g(x)|dy \leq \sup_{y \in Q} |g(y) - g(x)| \to 0$$
+		donde el último límite vale por continuidad.
+		Ahora, sea $f \in L^1$ y consideremos una sucesión $(g_k)_k \in \mathcal{C}_{c}(\mathbb{R}^{d})$ tal que $\|g_k - f \|_1 \to 0.$ 
+		
+		\[
+		\begin{aligned}
+			\Big| \frac{1}{|Q|} \int_{Q} f(y) - f(x)dy  \Big| &\leq \Big| \frac{1}{|Q|} \int_{Q} f(y) - g_k(y)dy  \Big|\\
+			&+ \Big| \frac{1}{|Q|} \int_{Q} g_k(y) - g_k(x)dy  \Big| \\
+			&+ \Big| \frac{1}{|Q|} \int_{Q} g_k(x) - f(x)dy  \Big| \\
+			&\leq M(f-g_k)(x) \\
+			&+ \Big| \frac{1}{|Q|} \int_{Q} g_k(y) - g_k(x)dy  \Big| \sidenote[2][*]{\text{Tenemos control sobre este termino.}} \\
+			&+ \big| f(x) - g_k(x)\big|.
+		\end{aligned}
+		\]
+		Ahora, tenemos que
+		$$ \limsup_{|Q| \to 0} \Big| \frac{1}{|Q|} \int_{Q} f(y) - f(x)dy  \Big| \leq M(f - g_k)(x) + |f(x) - g_k(x)|.$$
+		Consideremos el conjunto
+		$$E_\varepsilon = \{x \in \mathbb{R}^{d} : \limsup_{|Q| \to 0} \Big| \frac{1}{|Q|} \int_{Q} f(y) - f(x)dy  \Big| > \varepsilon \}$$
+		y notemos que está contenido en
+		$$\{M(f-g_k) > \frac{\varepsilon}{2} \} \cup \{|f(x) - g_k(x)| > \frac{\varepsilon}{2} \}$$
+		Teniendo esto en cuenta y utilizando tanto el lema de H-L como la desigualdad de Tchebychev obtenemos que
+		$$|E_\varepsilon| \leq \frac{2}{\varepsilon}c \| f-g_k\|_1 + \frac{2}{\varepsilon} \|f-g_k\|_1 \to 0,$$
+		con lo cual dado $\varepsilon > 0$ tenemos que $|E_\varepsilon| = 0$ y, en consecuencia 
+		\[
+		\begin{aligned}
+			&\Big| \{x \in \mathbb{R}^{d} : \limsup_{|Q| \to 0} \Big| \frac{1}{|Q|} \int_{Q} f(y) - f(x)dy  \Big| \neq 0 \} \Big| \\
+			&\leq \Big|\bigcup_{n \in \mathbb{N}} E_{\frac{1}{n}}\Big| \leq \sum_{n} |E_{\frac{1}{n} }| = 0.
+		\end{aligned}
+		\]
+	\end{proof}
+	
+	Veamos algunas consecuencias de este resultado a continuación.
+	
+	\begin{corollary}
+		Si $f \in L^1$ entonces $f(x) \leq Mf(x)$ a.e.
+	\end{corollary}
+	\begin{proof} 
+		$$ f(x) \leq |f(x)| = \lim_{|Q| \to 0} \frac{1}{|Q|} \int_{Q} |f(x)| \leq Mf(x).$$
+		Donde la igualdad vale a.e. por el teorema de diferenciación.
+	\end{proof}
+	
+	\marginnote{
+	\begin{center}
+		\includegraphics[width=4cm]{chevy.png}\\
+		\scriptsize Pafnuti Lvóvich Tchebyshev (1821 - 1894)
+	\end{center}
+	}
+	
+	\begin{definition}[Punto de Lebesgue]
+		contenidos...
+	\end{definition}
+
+	
+\end{document}
