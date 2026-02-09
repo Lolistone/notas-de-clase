@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.10.4)  3 FEB 2026 15:52
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.10.4)  9 FEB 2026 19:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2784,11 +2784,39 @@ Missing character: There is no Ÿ in font zpl-Regular-tlf-ot1!
 Package hyperref Info: bookmark level for unknown corollary defaults to 0 on in
 put line 253.
 Missing character: There is no Ÿ in font zpl-Regular-tlf-ot1!
+Package marginnote Info: Margin note 5.1 is on absolute page 5 on input line 26
+5.
+Package marginnote Info: right page because not two side mode on input line 265
+.
+Package marginnote Info: xpos seems to be 70.56247pt on input line 265.
 <chevy.png, id=121, 351.3125pt x 351.3125pt>
 File: chevy.png Graphic file (type png)
 <use chevy.png>
 Package pdftex.def Info: chevy.png  used on input line 265.
 (pdftex.def)             Requested size: 113.81068pt x 113.81068pt.
+Missing character: There is no Ÿ in font zpl-Regular-tlf-ot1!
+LaTeX Font Info:    Font shape `U/BOONDOX-calo/m/n' will be
+(Font)              scaled to size 9.0pt on input line 271.
+LaTeX Font Info:    Font shape `U/BOONDOX-calo/m/n' will be
+(Font)              scaled to size 7.3pt on input line 271.
+LaTeX Font Info:    Font shape `U/BOONDOX-calo/m/n' will be
+(Font)              scaled to size 5.5pt on input line 271.
+Missing character: There is no Ÿ in font zpl-Regular-tlf-ot1!
+Missing character: There is no Ÿ in font zpl-Regular-tlf-ot1!
+Missing character: There is no Ÿ in font zpl-Regular-tlf-ot1!
+
+Overfull \hbox (3.25629pt too wide) in paragraph at lines 281--284
+\T1/zpllf/m/n/10.95 (-20) tomando $\OML/npxmi/m/it/10.95 g[]\LMS/npxsy/m/n/10.9
+5 ¹\OML/npxmi/m/it/10.95 x\LMS/npxsy/m/n/10.95 º \U/npxmia/m/it/10.95 = \LMS/np
+xsy/m/n/10.95 j\OML/npxmi/m/it/10.95 f\LMS/npxsy/m/n/10.95 ¹\OML/npxmi/m/it/10.
+95 x\LMS/npxsy/m/n/10.95 º ^^@ \OML/npxmi/m/it/10.95 r\LMS/npxsy/m/n/10.95 j$\T
+1/zpllf/m/n/10.95 (-20) . Si no-ta-mos $\OML/npxmi/m/it/10.95 E[] \U/npxmia/m/i
+t/10.95 = \LMS/npxsy/m/n/10.95 f[][] [][] \OML/npxmi/m/it/10.95 g[]\LMS/npxsy/m
+/n/10.95 ¹\OML/npxmi/m/it/10.95 y\LMS/npxsy/m/n/10.95 º\OML/npxmi/m/it/10.95 dy
+ \U/npxmia/m/it/10.95 <
+ []
+
+Missing character: There is no Ÿ in font zpl-Regular-tlf-ot1!
 \openout4 = `main.mw'.
 
 [5 <./chevy.png>] (main.mw)
@@ -2856,11 +2884,11 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 65909 strings out of 474486
- 1390848 string characters out of 5743755
- 2628582 words of memory out of 5000000
- 86942 multiletter control sequences out of 15000+600000
- 673015 words of font info for 241 fonts, out of 8000000 for 9000
+ 65937 strings out of 474486
+ 1391616 string characters out of 5743755
+ 2628598 words of memory out of 5000000
+ 86953 multiletter control sequences out of 15000+600000
+ 675031 words of font info for 253 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  122i,18n,159p,11210b,2270s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/loloc/AppData/Local/Programs/MiKTeX/fonts/type1/public/newpx/NewPXM
@@ -2868,16 +2896,17 @@ I.pfb><C:/Users/loloc/AppData/Local/Programs/MiKTeX/fonts/type1/public/newpx/Ne
 wPXMI_gnu.pfb><C:/Users/loloc/AppData/Local/Programs/MiKTeX/fonts/type1/public/
 newpx/pxmiaX.pfb><C:/Users/loloc/AppData/Local/Programs/MiKTeX/fonts/type1/publ
 ic/newpx/pxsys.pfb><C:/Users/loloc/AppData/Local/Programs/MiKTeX/fonts/type1/pu
-blic/newtx/txexs.pfb><C:/Users/loloc/AppData/Local/Programs/MiKTeX/fonts/type1/
-public/newtx/txmiaSTbb.pfb><C:/Users/loloc/AppData/Local/Programs/MiKTeX/fonts/
-type1/public/newtx/txsym.pfb><C:/Users/loloc/AppData/Local/Programs/MiKTeX/font
-s/type1/public/newpx/zplb.pfb><C:/Users/loloc/AppData/Local/Programs/MiKTeX/fon
-ts/type1/public/newpx/zplr.pfb><C:/Users/loloc/AppData/Local/Programs/MiKTeX/fo
-nts/type1/public/newpx/zplri.pfb><C:/Users/loloc/AppData/Local/Programs/MiKTeX/
-fonts/type1/public/boondox/zxxrw8a.pfb>
-Output written on main.pdf (5 pages, 582325 bytes).
+blic/newtx/txexas.pfb><C:/Users/loloc/AppData/Local/Programs/MiKTeX/fonts/type1
+/public/newtx/txexs.pfb><C:/Users/loloc/AppData/Local/Programs/MiKTeX/fonts/typ
+e1/public/newtx/txmiaSTbb.pfb><C:/Users/loloc/AppData/Local/Programs/MiKTeX/fon
+ts/type1/public/newtx/txsym.pfb><C:/Users/loloc/AppData/Local/Programs/MiKTeX/f
+onts/type1/public/newpx/zplb.pfb><C:/Users/loloc/AppData/Local/Programs/MiKTeX/
+fonts/type1/public/newpx/zplr.pfb><C:/Users/loloc/AppData/Local/Programs/MiKTeX
+/fonts/type1/public/newpx/zplri.pfb><C:/Users/loloc/AppData/Local/Programs/MiKT
+eX/fonts/type1/public/boondox/zxxrw8a.pfb>
+Output written on main.pdf (5 pages, 588857 bytes).
 PDF statistics:
- 205 PDF objects out of 1000 (max. 8388607)
- 41 named destinations out of 1000 (max. 500000)
+ 214 PDF objects out of 1000 (max. 8388607)
+ 44 named destinations out of 1000 (max. 500000)
  45787 words of extra memory for PDF output out of 51595 (max. 10000000)
 

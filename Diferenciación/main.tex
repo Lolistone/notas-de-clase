@@ -257,7 +257,7 @@
 		Donde la igualdad vale a.e. por el teorema de diferenciación.
 	\end{proof}
 	
-	\marginnote{
+	\marginnote[*-16]{
 	\begin{center}
 		\includegraphics[width=4cm]{chevy.png}\\
 		\scriptsize Pafnuti Lvóvich Tchebyshev (1821 - 1894)
@@ -265,8 +265,28 @@
 	}
 	
 	\begin{definition}[Punto de Lebesgue]
-		contenidos...
+		Dada $f \in L^{1}_{loc}(\mathbb{R}^{d})$ decimos que $x \in \mathbb{R}^{d}$ es un punto de Lebesgue si 
+		$$\lim_{|Q| \to 0}  \frac{1}{|Q|} \int_{Q} |f(y) - f(x)|dx = 0,$$
+		donde $Q \ni x$ son cubos abiertos. \sidenote{Notemos que si $x$ es de Lebesgue entonces 
+		$$\lim_{|Q| \to 0} \fint_{Q} f(y)dy = f(x).$$}
 	\end{definition}
-
+	
+	\begin{theorem}
+		Si $f \in L^{1}_{loc}(\mathbb{R}^{d})$ entonces casi todo punto es de Lebesgue.
+	\end{theorem}
+	
+	\begin{proof}
+		Dado $r \in \mathbb{Q}$ tenemos que 
+		$$ \lim_{|Q| \to 0} \fint_{Q} |f(y) - r| = |f(x) - r| 
+		\quad a.e. \quad x \in \mathbb{R}^{d},$$
+		tomando $g_r(x) = |f(x) - r|$. Si notamos $E_r = \{
+		\lim_{|Q| \to 0} \fint_{Q} g_r(y)dy \neq g(x)\}$ tenemos que $|E_r| = 0$ y 
+		$$|E| = |\bigcup_{r \in \mathbb{Q}} E_r| \leq \sum_{r} |E_r| = 0.$$
+		Ahora, si $x \notin E$, dado $\varepsilon > 0$ podemos tomar $r \in \mathbb{Q}$ tal que $|f(x) - r| < \varepsilon$ y así, $|f(y) - f(x)| < |f(y) - r| + \varepsilon$. Luego,
+		$$\limsup_{|Q| \to 0} \fint_{Q} |f(y) - f(x)| \leq |f(x) - r| + \varepsilon < 2\varepsilon$$
+		Como $\varepsilon > 0$ es arbitrario tenemos el resultado.
+	\end{proof}
+	
+	Ahora viene vitali 2... la puta que me parío...
 	
 \end{document}
