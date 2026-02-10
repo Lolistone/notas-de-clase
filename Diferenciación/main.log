@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.10.4)  10 FEB 2026 01:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.10.4)  10 FEB 2026 02:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2657,20 +2657,20 @@ Package marginnote Info: Margin note 1.3 is on absolute page 1 on input line 81
 Package marginnote Info: right page because not two side mode on input line 81.
 
 Package marginnote Info: xpos seems to be 70.56247pt on input line 81.
-<hardy.jpeg, id=52, 983.675pt x 655.44875pt>
-File: hardy.jpeg Graphic file (type jpg)
-<use hardy.jpeg>
-Package pdftex.def Info: hardy.jpeg  used on input line 81.
+<.//imagenes/hardy.jpeg, id=52, 983.675pt x 655.44875pt>
+File: .//imagenes/hardy.jpeg Graphic file (type jpg)
+<use .//imagenes/hardy.jpeg>
+Package pdftex.def Info: .//imagenes/hardy.jpeg  used on input line 81.
 (pdftex.def)             Requested size: 113.80318pt x 75.83008pt.
 Package marginnote Info: Margin note 1.4 is on absolute page 1 on input line 88
 .
 Package marginnote Info: right page because not two side mode on input line 88.
 
 Package marginnote Info: xpos seems to be 70.56247pt on input line 88.
-<littlewood.jpeg, id=53, 1230.09563pt x 790.45313pt>
-File: littlewood.jpeg Graphic file (type jpg)
-<use littlewood.jpeg>
-Package pdftex.def Info: littlewood.jpeg  used on input line 88.
+<.//imagenes/littlewood.jpeg, id=53, 1230.09563pt x 790.45313pt>
+File: .//imagenes/littlewood.jpeg Graphic file (type jpg)
+<use .//imagenes/littlewood.jpeg>
+Package pdftex.def Info: .//imagenes/littlewood.jpeg  used on input line 88.
 (pdftex.def)             Requested size: 113.80083pt x 73.12782pt.
 Package hyperref Info: bookmark level for unknown definition defaults to 0 on i
 nput line 93.
@@ -2692,8 +2692,8 @@ LaTeX Font Info:    Font shape `T1/zpllf/m/sl' will be
 {C:/Users/loloc/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/lolo
 c/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/newtx/ntx-ec-lf.enc}{C:/Users/l
 oloc/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}{C:/Us
-ers/loloc/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/newpx/px-lms.enc} <./ha
-rdy.jpeg> <./littlewood.jpeg>] (main.mw)
+ers/loloc/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/newpx/px-lms.enc} <.//i
+magenes/hardy.jpeg> <.//imagenes/littlewood.jpeg>] (main.mw)
 \openout4 = `main.mw'.
 
 Package hyperref Info: bookmark level for unknown theorem defaults to 0 on inpu
@@ -2705,10 +2705,10 @@ Package marginnote Info: Margin note 2.1 is on absolute page 2 on input line 15
 Package marginnote Info: right page because not two side mode on input line 153
 .
 Package marginnote Info: xpos seems to be 70.56247pt on input line 153.
-<vitali.jpg, id=90, 141.52875pt x 180.675pt>
-File: vitali.jpg Graphic file (type jpg)
-<use vitali.jpg>
-Package pdftex.def Info: vitali.jpg  used on input line 153.
+<.//imagenes/vitali.jpg, id=90, 141.52875pt x 180.675pt>
+File: .//imagenes/vitali.jpg Graphic file (type jpg)
+<use .//imagenes/vitali.jpg>
+Package pdftex.def Info: .//imagenes/vitali.jpg  used on input line 153.
 (pdftex.def)             Requested size: 113.81487pt x 145.29556pt.
 LaTeX Font Info:    Font shape `T1/zpllf/m/n' will be
 (Font)              scaled to size 5.917pt on input line 157.
@@ -2717,25 +2717,24 @@ Package marginnote Info: Margin note 2.2 is on absolute page 2 on input line 16
 Package marginnote Info: right page because not two side mode on input line 166
 .
 Package marginnote Info: xpos seems to be 94.4021pt on input line 166.
-<cubo.png, id=91, 398.23781pt x 408.77719pt>
-File: cubo.png Graphic file (type png)
-<use cubo.png>
-Package pdftex.def Info: cubo.png  used on input line 166.
+<.//imagenes/cubo.png, id=91, 398.23781pt x 408.77719pt>
+File: .//imagenes/cubo.png Graphic file (type png)
+<use .//imagenes/cubo.png>
+Package pdftex.def Info: .//imagenes/cubo.png  used on input line 166.
 (pdftex.def)             Requested size: 113.80885pt x 116.82082pt.
 \openout4 = `main.mw'.
 
- [2 <./vitali.jpg> <./cubo.png>]
-(main.mw)
+ [2 <.//imagenes/vitali.jpg> <.//imagenes/cubo.png>] (main.mw)
 \openout4 = `main.mw'.
 
 
 Missing character: There is no Ÿ in font zpl-Regular-tlf-ot1!
 Missing character: There is no Ÿ in font zpl-Regular-tlf-ot1!
 Missing character: There is no Ÿ in font zpl-Regular-tlf-ot1!
-<lebesgue.jpeg, id=103, 375.4025pt x 451.6875pt>
-File: lebesgue.jpeg Graphic file (type jpg)
-<use lebesgue.jpeg>
-Package pdftex.def Info: lebesgue.jpeg  used on input line 209.
+<.//imagenes/lebesgue.jpeg, id=103, 375.4025pt x 451.6875pt>
+File: .//imagenes/lebesgue.jpeg Graphic file (type jpg)
+<use .//imagenes/lebesgue.jpeg>
+Package pdftex.def Info: .//imagenes/lebesgue.jpeg  used on input line 209.
 (pdftex.def)             Requested size: 113.80734pt x 136.93398pt.
 \openout4 = `main.mw'.
 
@@ -2776,7 +2775,7 @@ Missing character: There is no Ÿ in font zpl-Regular-tlf-ot1!
 Missing character: There is no Ÿ in font zpl-Regular-tlf-ot1!
 \openout4 = `main.mw'.
 
-[4 <./lebesgue.jpeg>] (main.mw)
+[4 <.//imagenes/lebesgue.jpeg>] (main.mw)
 \openout4 = `main.mw'.
 
 
@@ -2789,10 +2788,10 @@ Package marginnote Info: Margin note 5.1 is on absolute page 5 on input line 26
 Package marginnote Info: right page because not two side mode on input line 266
 .
 Package marginnote Info: xpos seems to be 70.56247pt on input line 266.
-<chevy.png, id=121, 351.3125pt x 351.3125pt>
-File: chevy.png Graphic file (type png)
-<use chevy.png>
-Package pdftex.def Info: chevy.png  used on input line 266.
+<.//imagenes/chevy.png, id=121, 351.3125pt x 351.3125pt>
+File: .//imagenes/chevy.png Graphic file (type png)
+<use .//imagenes/chevy.png>
+Package pdftex.def Info: .//imagenes/chevy.png  used on input line 266.
 (pdftex.def)             Requested size: 113.81068pt x 113.81068pt.
 Missing character: There is no Ÿ in font zpl-Regular-tlf-ot1!
 LaTeX Font Info:    Font shape `U/BOONDOX-calo/m/n' will be
@@ -2819,7 +2818,7 @@ t/10.95 = \LMS/npxsy/m/n/10.95 f[][] [][] \OML/npxmi/m/it/10.95 g[]\LMS/npxsy/m
 Missing character: There is no Ÿ in font zpl-Regular-tlf-ot1!
 \openout4 = `main.mw'.
 
-[5 <./chevy.png>] (main.mw)
+[5 <.//imagenes/chevy.png>] (main.mw)
 \openout4 = `main.mw'.
 
  (main.aux
@@ -2884,10 +2883,10 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 65938 strings out of 474486
- 1391900 string characters out of 5743755
- 2628597 words of memory out of 5000000
- 86953 multiletter control sequences out of 15000+600000
+ 65950 strings out of 474486
+ 1392726 string characters out of 5743755
+ 2628571 words of memory out of 5000000
+ 86965 multiletter control sequences out of 15000+600000
  675031 words of font info for 253 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  122i,18n,159p,11210b,2270s stack positions out of 10000i,1000n,20000p,200000b,200000s
