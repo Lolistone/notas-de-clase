@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.10.4)  9 FEB 2026 19:31
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.10.4)  10 FEB 2026 01:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -6,7 +6,7 @@ entering extended mode
 (main.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
-(kaohandt.cls
+(C:\Users\loloc\Desktop\apuntes\notas-de-clase\kaobook\kaohandt.cls
 Document Class: kaohandt 2021/08/23 v0.9.8 kaohandt
 
 (C:\Users\loloc\AppData\Local\Programs\MiKTeX\tex/latex/koma-script\scrartcl.cl
@@ -135,7 +135,7 @@ Package tocbasic Info: omitting babel extension for `lot'
 \c@table=\count195
 Class scrartcl Info: Redefining `\numberline' on input line 6592.
 \bibindent=\dimen140
-) (kao.sty
+) (C:\Users\loloc\Desktop\apuntes\notas-de-clase\kaobook\kao.sty
 Package: kao 
 
 (C:\Users\loloc\AppData\Local\Programs\MiKTeX\tex/latex/kvoptions\kvoptions.sty
@@ -1913,7 +1913,7 @@ Package: blindtext 2012/01/06 V2.0 blindtext-Package
 \c@blind@randommax=\count453
 \c@blind@pangramcount=\count454
 \c@blind@pangrammax=\count455
-) (kaotheorems.sty
+) (C:\Users\loloc\Desktop\apuntes\notas-de-clase\kaobook\kaotheorems.sty
 Package: kaotheorems 
 
 (C:\Users\loloc\AppData\Local\Programs\MiKTeX\tex/latex/amscls\amsthm.sty
@@ -1970,7 +1970,7 @@ Package: thm-amsthm 2023/05/04 v0.76
 \c@remark=\count460
 \c@example=\count461
 \c@exercise=\count462
-) (kaobiblio.sty
+) (C:\Users\loloc\Desktop\apuntes\notas-de-clase\kaobook\kaobiblio.sty
 Package: kaobiblio 
 
 (C:\Users\loloc\AppData\Local\Programs\MiKTeX\tex/latex/bigfoot\perpage.sty
@@ -2221,7 +2221,7 @@ Package biblatex Info: ... and expl3
 Package: blx-case-expl3 2023/03/05 v3.19 expl3 case changing code for biblatex
 ))
 Package biblatex Info: Redefining '\fullcite' on input line 412.
-) (kaorefs.sty
+) (C:\Users\loloc\Desktop\apuntes\notas-de-clase\kaobook\kaorefs.sty
 Package: kaorefs 
 
 (C:\Users\loloc\AppData\Local\Programs\MiKTeX\tex/latex/cleveref\cleveref.sty
@@ -2269,7 +2269,7 @@ ceenhanced.sty
 Package: setspaceenhanced 2024-11-12 v1.04 improved setspace package
 ))
 LaTeX Font Info:    Font shape `T1/zpllf/m/n' will be
-(Font)              scaled to size 10.6215pt on input line 35.
+(Font)              scaled to size 10.6215pt on input line 36.
  Replaced itshape by thfamily in theorem style plain.
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
@@ -2281,51 +2281,51 @@ LaTeX Info: Redefining \% on input line 21.
 )
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/npxmi/m/it on input line 35.
+LaTeX Font Info:    Checking defaults for OML/npxmi/m/it on input line 36.
 LaTeX Font Info:    Trying to load font information for OML+npxmi on input line
- 35.
+ 36.
  (C:\Users\loloc\AppData\Local\Programs\MiKTeX\tex/latex/newpx\omlnpxmi.fd
 File: omlnpxmi.fd 2013/03/21 Fontinst v1.933 font definitions for OML/npxmi.
 )
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for U/npxexa/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for U/npxexa/m/n on input line 36.
 LaTeX Font Info:    Trying to load font information for U+npxexa on input line 
-35.
+36.
 
 (C:\Users\loloc\AppData\Local\Programs\MiKTeX\tex/latex/newpx\unpxexa.fd
 File: unpxexa.fd 2013/03/24 Fontinst v1.933 font definitions for U/npxexa.
 )
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for LMS/npxsy/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for LMS/npxsy/m/n on input line 36.
 LaTeX Font Info:    Trying to load font information for LMS+npxsy on input line
- 35.
+ 36.
 
 (C:\Users\loloc\AppData\Local\Programs\MiKTeX\tex/latex/newpx\lmsnpxsy.fd
 File: lmsnpxsy.fd 2016/07/04 Fontinst v1.933 font definitions for LMS/npxsy.
 )
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for LMX/npxexx/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for LMX/npxexx/m/n on input line 36.
 LaTeX Font Info:    Trying to load font information for LMX+npxexx on input lin
-e 35.
+e 36.
 
 (C:\Users\loloc\AppData\Local\Programs\MiKTeX\tex/latex/newpx\lmxnpxexx.fd
 File: lmxnpxexx.fd 2016/07/04 Fontinst v1.933 font definitions for LMX/npxexx.
 )
-LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    ... okay on input line 36.
 
 (C:\Users\loloc\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
 ii
@@ -2418,13 +2418,13 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Info: Redefining \microtypecontext on input line 35.
-Package microtype Info: Applying patch `item' on input line 35.
-Package microtype Info: Applying patch `toc' on input line 35.
-Package microtype Info: Applying patch `eqnum' on input line 35.
-Package microtype Info: Applying patch `footnote' on input line 35.
-Package microtype Info: Applying patch `verbatim' on input line 35.
-LaTeX Info: Redefining \microtypesetup on input line 35.
+LaTeX Info: Redefining \microtypecontext on input line 36.
+Package microtype Info: Applying patch `item' on input line 36.
+Package microtype Info: Applying patch `toc' on input line 36.
+Package microtype Info: Applying patch `eqnum' on input line 36.
+Package microtype Info: Applying patch `footnote' on input line 36.
+Package microtype Info: Applying patch `verbatim' on input line 36.
+LaTeX Info: Redefining \microtypesetup on input line 36.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -2457,7 +2457,7 @@ Package caption Info: rotating package is loaded.
 Package caption Info: supertabular package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \@sidenotes@extrawidth=\skip186
-Package hyperref Info: Link coloring ON on input line 35.
+Package hyperref Info: Link coloring ON on input line 36.
 
 (C:\Users\loloc\AppData\Local\Programs\MiKTeX\tex/latex/floatrow\fr-longtable.s
 ty
@@ -2471,8 +2471,8 @@ Package: fr-longtable 2007/11/28 v0.1b (beta) floatrow: additions for longtable
 \Etoc@tf=\read8
 \c@mv@tabular=\count602
 \c@mv@boldtabular=\count603
-LaTeX Info: Command `\dddot' is already robust on input line 35.
-LaTeX Info: Command `\ddddot' is already robust on input line 35.
+LaTeX Info: Command `\dddot' is already robust on input line 36.
+LaTeX Info: Command `\ddddot' is already robust on input line 36.
 
 (C:\Users\loloc\AppData\Local\Programs\MiKTeX\tex/latex/pdflscape\pdflscape.sty
 Package: pdflscape 2022-10-27 v0.13 Display of landscape pages in PDF
@@ -2494,8 +2494,8 @@ onal on input line 72.
 )
 Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 ))
-LaTeX Info: Redefining \. on input line 35.
-LaTeX Info: Redefining \% on input line 35.
+LaTeX Info: Redefining \. on input line 36.
+LaTeX Info: Redefining \% on input line 36.
 Package biblatex Info: Trying to load language 'spanish'...
 Package biblatex Info: ... file 'spanish.lbx' found.
 
@@ -2515,45 +2515,45 @@ Package biblatex Info: Automatic encoding selection.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'main.bbl' found.
  (main.bbl)
-Package biblatex Info: Reference section=0 on input line 35.
-Package biblatex Info: Reference segment=0 on input line 35.
-LaTeX Font Info:    Trying to load font information for T1+qhv on input line 52
+Package biblatex Info: Reference section=0 on input line 36.
+Package biblatex Info: Reference segment=0 on input line 36.
+LaTeX Font Info:    Trying to load font information for T1+qhv on input line 53
 .
 
 (C:\Users\loloc\AppData\Local\Programs\MiKTeX\tex/latex/tex-gyre\t1qhv.fd
 File: t1qhv.fd 2009/09/25 v1.2 font definition file for T1/qhv
 )
 LaTeX Font Info:    Font shape `T1/qhv/m/n' will be
-(Font)              scaled to size 9.8778pt on input line 52.
+(Font)              scaled to size 9.8778pt on input line 53.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `qhv' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `T1/qhv/b/n' will be
-(Font)              scaled to size 9.8778pt on input line 52.
+(Font)              scaled to size 9.8778pt on input line 53.
 LaTeX Font Info:    Font shape `T1/zpllf/b/n' will be
-(Font)              scaled to size 10.6215pt on input line 52.
+(Font)              scaled to size 10.6215pt on input line 53.
 LaTeX Font Info:    Font shape `T1/zpllf/b/n' will be
-(Font)              scaled to size 20.11783pt on input line 52.
+(Font)              scaled to size 20.11783pt on input line 53.
 LaTeX Font Info:    Font shape `T1/zpllf/m/n' will be
-(Font)              scaled to size 13.968pt on input line 52.
+(Font)              scaled to size 13.968pt on input line 53.
 LaTeX Font Info:    Trying to load font information for OT1+minzpl on input lin
-e 52.
+e 53.
 
 (C:\Users\loloc\AppData\Local\Programs\MiKTeX\tex/latex/newpx\ot1minzpl.fd
 File: ot1minzpl.fd 2021/05/25 v1.0 font definition file for OT1/minzpl/TLF
 )
 LaTeX Font Info:    Font shape `OT1/minzpl/m/n' will be
-(Font)              scaled to size 13.968pt on input line 52.
+(Font)              scaled to size 13.968pt on input line 53.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `minzpl' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `OT1/minzpl/m/n' will be
-(Font)              scaled to size 10.18501pt on input line 52.
+(Font)              scaled to size 10.18501pt on input line 53.
 LaTeX Font Info:    Font shape `OT1/minzpl/m/n' will be
-(Font)              scaled to size 7.663pt on input line 52.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 52.
+(Font)              scaled to size 7.663pt on input line 53.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 53.
 
 
 (C:\Users\loloc\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
@@ -2562,7 +2562,7 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 (C:\Users\loloc\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 52.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 53.
 
 
 (C:\Users\loloc\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
@@ -2572,117 +2572,117 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    Trying to load font information for U+npxmia on input line 
-52.
+53.
 
 (C:\Users\loloc\AppData\Local\Programs\MiKTeX\tex/latex/newpx\unpxmia.fd
 File: unpxmia.fd 2013/03/24 Fontinst v1.933 font definitions for U/npxmia.
 )
 LaTeX Font Info:    Trying to load font information for U+npxsym on input line 
-52.
+53.
 
 (C:\Users\loloc\AppData\Local\Programs\MiKTeX\tex/latex/newpx\unpxsym.fd
 File: unpxsym.fd 2023/08/16 Fontinst v1.933 font definitions for U/npxsym.
 )
 LaTeX Font Info:    Trying to load font information for U+npxsyc on input line 
-52.
+53.
 
 (C:\Users\loloc\AppData\Local\Programs\MiKTeX\tex/latex/newpx\unpxsyc.fd
 File: unpxsyc.fd 2013/03/24 Fontinst v1.933 font definitions for U/npxsyc.
 )
 LaTeX Font Info:    Font shape `T1/zpllf/m/n' will be
-(Font)              scaled to size 10.18501pt on input line 52.
+(Font)              scaled to size 10.18501pt on input line 53.
 LaTeX Font Info:    Font shape `T1/zpllf/m/n' will be
-(Font)              scaled to size 8.73001pt on input line 52.
+(Font)              scaled to size 8.73001pt on input line 53.
 LaTeX Font Info:    Font shape `OT1/minzpl/m/n' will be
-(Font)              scaled to size 8.73001pt on input line 52.
+(Font)              scaled to size 8.73001pt on input line 53.
 LaTeX Font Info:    Font shape `OT1/minzpl/m/n' will be
-(Font)              scaled to size 7.08101pt on input line 52.
+(Font)              scaled to size 7.08101pt on input line 53.
 LaTeX Font Info:    Font shape `OT1/minzpl/m/n' will be
-(Font)              scaled to size 5.335pt on input line 52.
+(Font)              scaled to size 5.335pt on input line 53.
 LaTeX Font Info:    Font shape `T1/zpllf/m/n' will be
-(Font)              scaled to size 7.08101pt on input line 52.
+(Font)              scaled to size 7.08101pt on input line 53.
 \tf@toc=\write130
 \openout4 = `main.toc'.
 
-LaTeX Info: Redefining \sptext on input line 54.
-LaTeX Info: Redefining \. on input line 54.
-LaTeX Info: Redefining \% on input line 54.
+LaTeX Info: Redefining \sptext on input line 55.
+LaTeX Info: Redefining \. on input line 55.
+LaTeX Info: Redefining \% on input line 55.
 LaTeX Font Info:    Font shape `T1/zpllf/b/n' will be
-(Font)              scaled to size 13.968pt on input line 54.
+(Font)              scaled to size 13.968pt on input line 55.
 LaTeX Font Info:    Font shape `T1/zpllf/b/n' will be
-(Font)              scaled to size 9.70001pt on input line 54.
-Package marginnote Info: Margin note 1.1 is on absolute page 1 on input line 54
+(Font)              scaled to size 9.70001pt on input line 55.
+Package marginnote Info: Margin note 1.1 is on absolute page 1 on input line 55
 .
-Package marginnote Info: right page because not two side mode on input line 54.
+Package marginnote Info: right page because not two side mode on input line 55.
 
-Package marginnote Info: xpos seems to be 70.56247pt on input line 54.
-LaTeX Info: Redefining \sptext on input line 54.
-LaTeX Info: Redefining \. on input line 54.
-LaTeX Info: Redefining \% on input line 54.
+Package marginnote Info: xpos seems to be 70.56247pt on input line 55.
+LaTeX Info: Redefining \sptext on input line 55.
+LaTeX Info: Redefining \. on input line 55.
+LaTeX Info: Redefining \% on input line 55.
 
-Underfull \hbox (badness 10000) in paragraph at lines 54--54
+Underfull \hbox (badness 10000) in paragraph at lines 55--55
  [][][][]\T1/zpllf/b/n/10 (+20) Maximal de Hardy- 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 54--54
+Underfull \hbox (badness 10000) in paragraph at lines 55--55
  [][][][]\T1/zpllf/b/n/10 (+20) El teo-re-ma de di-fe-ren-cia- 
  []
 
 LaTeX Font Info:    Font shape `T1/zpllf/m/n' will be
-(Font)              scaled to size 9.70001pt on input line 55.
+(Font)              scaled to size 9.70001pt on input line 56.
 LaTeX Font Info:    Font shape `T1/qhv/b/n' will be
-(Font)              scaled to size 12.99pt on input line 69.
+(Font)              scaled to size 12.99pt on input line 70.
 LaTeX Font Info:    Font shape `T1/zpllf/m/it' will be
-(Font)              scaled to size 10.6215pt on input line 70.
+(Font)              scaled to size 10.6215pt on input line 71.
 LaTeX Font Info:    Font shape `OT1/minzpl/m/n' will be
-(Font)              scaled to size 10.6215pt on input line 72.
+(Font)              scaled to size 10.6215pt on input line 73.
 LaTeX Font Info:    Font shape `OT1/minzpl/m/n' will be
-(Font)              scaled to size 7.76001pt on input line 72.
+(Font)              scaled to size 7.76001pt on input line 73.
 LaTeX Font Info:    Font shape `OT1/minzpl/m/n' will be
-(Font)              scaled to size 5.917pt on input line 72.
+(Font)              scaled to size 5.917pt on input line 73.
 LaTeX Font Info:    Font shape `T1/zpllf/m/n' will be
-(Font)              scaled to size 7.76001pt on input line 72.
-Package marginnote Info: Margin note 1.2 is on absolute page 1 on input line 72
+(Font)              scaled to size 7.76001pt on input line 73.
+Package marginnote Info: Margin note 1.2 is on absolute page 1 on input line 73
 .
-Package marginnote Info: right page because not two side mode on input line 72.
+Package marginnote Info: right page because not two side mode on input line 73.
 
-Package marginnote Info: xpos seems to be 258.56764pt on input line 72.
+Package marginnote Info: xpos seems to be 258.56764pt on input line 73.
 LaTeX Font Info:    Font shape `T1/zpllf/b/n' will be
-(Font)              scaled to size 8.73001pt on input line 72.
+(Font)              scaled to size 8.73001pt on input line 73.
 Package hyperref Info: bookmark level for unknown remark defaults to 0 on input
- line 72.
-Package marginnote Info: Margin note 1.3 is on absolute page 1 on input line 80
+ line 73.
+Package marginnote Info: Margin note 1.3 is on absolute page 1 on input line 81
 .
-Package marginnote Info: right page because not two side mode on input line 80.
+Package marginnote Info: right page because not two side mode on input line 81.
 
-Package marginnote Info: xpos seems to be 70.56247pt on input line 80.
+Package marginnote Info: xpos seems to be 70.56247pt on input line 81.
 <hardy.jpeg, id=52, 983.675pt x 655.44875pt>
 File: hardy.jpeg Graphic file (type jpg)
 <use hardy.jpeg>
-Package pdftex.def Info: hardy.jpeg  used on input line 80.
+Package pdftex.def Info: hardy.jpeg  used on input line 81.
 (pdftex.def)             Requested size: 113.80318pt x 75.83008pt.
-Package marginnote Info: Margin note 1.4 is on absolute page 1 on input line 87
+Package marginnote Info: Margin note 1.4 is on absolute page 1 on input line 88
 .
-Package marginnote Info: right page because not two side mode on input line 87.
+Package marginnote Info: right page because not two side mode on input line 88.
 
-Package marginnote Info: xpos seems to be 70.56247pt on input line 87.
+Package marginnote Info: xpos seems to be 70.56247pt on input line 88.
 <littlewood.jpeg, id=53, 1230.09563pt x 790.45313pt>
 File: littlewood.jpeg Graphic file (type jpg)
 <use littlewood.jpeg>
-Package pdftex.def Info: littlewood.jpeg  used on input line 87.
+Package pdftex.def Info: littlewood.jpeg  used on input line 88.
 (pdftex.def)             Requested size: 113.80083pt x 73.12782pt.
 Package hyperref Info: bookmark level for unknown definition defaults to 0 on i
-nput line 92.
+nput line 93.
 Package marginnote Info: Margin note 1.5 is on absolute page 1 on input line 10
-0.
-Package marginnote Info: right page because not two side mode on input line 100
+1.
+Package marginnote Info: right page because not two side mode on input line 101
 .
-Package marginnote Info: xpos seems to be 70.56247pt on input line 100.
+Package marginnote Info: xpos seems to be 70.56247pt on input line 101.
 Package hyperref Info: bookmark level for unknown proposition defaults to 0 on 
-input line 104.
+input line 105.
 LaTeX Font Info:    Font shape `T1/zpllf/m/sl' will be
-(Font)              scaled to size 10.6215pt on input line 121.
+(Font)              scaled to size 10.6215pt on input line 122.
 \openout4 = `main.mw'.
 
 [1
@@ -2697,30 +2697,30 @@ rdy.jpeg> <./littlewood.jpeg>] (main.mw)
 \openout4 = `main.mw'.
 
 Package hyperref Info: bookmark level for unknown theorem defaults to 0 on inpu
-t line 127.
+t line 128.
 Package hyperref Info: bookmark level for unknown lemma defaults to 0 on input 
-line 134.
+line 135.
 Package marginnote Info: Margin note 2.1 is on absolute page 2 on input line 15
-2.
-Package marginnote Info: right page because not two side mode on input line 152
+3.
+Package marginnote Info: right page because not two side mode on input line 153
 .
-Package marginnote Info: xpos seems to be 70.56247pt on input line 152.
+Package marginnote Info: xpos seems to be 70.56247pt on input line 153.
 <vitali.jpg, id=90, 141.52875pt x 180.675pt>
 File: vitali.jpg Graphic file (type jpg)
 <use vitali.jpg>
-Package pdftex.def Info: vitali.jpg  used on input line 152.
+Package pdftex.def Info: vitali.jpg  used on input line 153.
 (pdftex.def)             Requested size: 113.81487pt x 145.29556pt.
 LaTeX Font Info:    Font shape `T1/zpllf/m/n' will be
-(Font)              scaled to size 5.917pt on input line 156.
+(Font)              scaled to size 5.917pt on input line 157.
 Package marginnote Info: Margin note 2.2 is on absolute page 2 on input line 16
-5.
-Package marginnote Info: right page because not two side mode on input line 165
+6.
+Package marginnote Info: right page because not two side mode on input line 166
 .
-Package marginnote Info: xpos seems to be 94.4021pt on input line 165.
+Package marginnote Info: xpos seems to be 94.4021pt on input line 166.
 <cubo.png, id=91, 398.23781pt x 408.77719pt>
 File: cubo.png Graphic file (type png)
 <use cubo.png>
-Package pdftex.def Info: cubo.png  used on input line 165.
+Package pdftex.def Info: cubo.png  used on input line 166.
 (pdftex.def)             Requested size: 113.80885pt x 116.82082pt.
 \openout4 = `main.mw'.
 
@@ -2735,7 +2735,7 @@ Missing character: There is no Ÿ in font zpl-Regular-tlf-ot1!
 <lebesgue.jpeg, id=103, 375.4025pt x 451.6875pt>
 File: lebesgue.jpeg Graphic file (type jpg)
 <use lebesgue.jpeg>
-Package pdftex.def Info: lebesgue.jpeg  used on input line 208.
+Package pdftex.def Info: lebesgue.jpeg  used on input line 209.
 (pdftex.def)             Requested size: 113.80734pt x 136.93398pt.
 \openout4 = `main.mw'.
 
@@ -2747,28 +2747,28 @@ Package pdftex.def Info: lebesgue.jpeg  used on input line 208.
 LaTeX Warning: Marginpar on page 4 moved.
 
 LaTeX Font Info:    Font shape `T1/zpllf/m/it' will be
-(Font)              scaled to size 7.76001pt on input line 212.
+(Font)              scaled to size 7.76001pt on input line 213.
 LaTeX Font Info:    Font shape `T1/zpllf/m/it' will be
-(Font)              scaled to size 5.917pt on input line 212.
+(Font)              scaled to size 5.917pt on input line 213.
 Missing character: There is no Ÿ in font zpl-Regular-tlf-ot1!
 LaTeX Font Info:    Font shape `U/BOONDOX-calo/m/n' will be
-(Font)              scaled to size 10.95pt on input line 218.
+(Font)              scaled to size 10.95pt on input line 219.
 LaTeX Font Info:    Font shape `U/BOONDOX-calo/m/n' will be
-(Font)              scaled to size 8.0pt on input line 218.
+(Font)              scaled to size 8.0pt on input line 219.
 LaTeX Font Info:    Font shape `U/BOONDOX-calo/m/n' will be
-(Font)              scaled to size 6.1pt on input line 218.
-Package marginnote Info: Margin note 4.1 is on absolute page 4 on input line 22
-9.
-Package marginnote Info: right page because not two side mode on input line 229
+(Font)              scaled to size 6.1pt on input line 219.
+Package marginnote Info: Margin note 4.1 is on absolute page 4 on input line 23
+0.
+Package marginnote Info: right page because not two side mode on input line 230
 .
-Package marginnote Info: xpos seems to be 341.14175pt on input line 229.
+Package marginnote Info: xpos seems to be 341.14175pt on input line 230.
 
-Underfull \hbox (badness 10000) in paragraph at lines 229--229
+Underfull \hbox (badness 10000) in paragraph at lines 230--230
 []|\T1/zpllf/m/n/9 (+20) 2:
  []
 
 
-Overfull \hbox (1.22847pt too wide) in paragraph at lines 229--229
+Overfull \hbox (1.22847pt too wide) in paragraph at lines 230--230
 [] 
  []
 
@@ -2782,30 +2782,30 @@ Missing character: There is no Ÿ in font zpl-Regular-tlf-ot1!
 
 Missing character: There is no Ÿ in font zpl-Regular-tlf-ot1!
 Package hyperref Info: bookmark level for unknown corollary defaults to 0 on in
-put line 253.
+put line 254.
 Missing character: There is no Ÿ in font zpl-Regular-tlf-ot1!
 Package marginnote Info: Margin note 5.1 is on absolute page 5 on input line 26
-5.
-Package marginnote Info: right page because not two side mode on input line 265
+6.
+Package marginnote Info: right page because not two side mode on input line 266
 .
-Package marginnote Info: xpos seems to be 70.56247pt on input line 265.
+Package marginnote Info: xpos seems to be 70.56247pt on input line 266.
 <chevy.png, id=121, 351.3125pt x 351.3125pt>
 File: chevy.png Graphic file (type png)
 <use chevy.png>
-Package pdftex.def Info: chevy.png  used on input line 265.
+Package pdftex.def Info: chevy.png  used on input line 266.
 (pdftex.def)             Requested size: 113.81068pt x 113.81068pt.
 Missing character: There is no Ÿ in font zpl-Regular-tlf-ot1!
 LaTeX Font Info:    Font shape `U/BOONDOX-calo/m/n' will be
-(Font)              scaled to size 9.0pt on input line 271.
+(Font)              scaled to size 9.0pt on input line 272.
 LaTeX Font Info:    Font shape `U/BOONDOX-calo/m/n' will be
-(Font)              scaled to size 7.3pt on input line 271.
+(Font)              scaled to size 7.3pt on input line 272.
 LaTeX Font Info:    Font shape `U/BOONDOX-calo/m/n' will be
-(Font)              scaled to size 5.5pt on input line 271.
+(Font)              scaled to size 5.5pt on input line 272.
 Missing character: There is no Ÿ in font zpl-Regular-tlf-ot1!
 Missing character: There is no Ÿ in font zpl-Regular-tlf-ot1!
 Missing character: There is no Ÿ in font zpl-Regular-tlf-ot1!
 
-Overfull \hbox (3.25629pt too wide) in paragraph at lines 281--284
+Overfull \hbox (3.25629pt too wide) in paragraph at lines 282--285
 \T1/zpllf/m/n/10.95 (-20) tomando $\OML/npxmi/m/it/10.95 g[]\LMS/npxsy/m/n/10.9
 5 ¹\OML/npxmi/m/it/10.95 x\LMS/npxsy/m/n/10.95 º \U/npxmia/m/it/10.95 = \LMS/np
 xsy/m/n/10.95 j\OML/npxmi/m/it/10.95 f\LMS/npxsy/m/n/10.95 ¹\OML/npxmi/m/it/10.
@@ -2884,9 +2884,9 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 65937 strings out of 474486
- 1391616 string characters out of 5743755
- 2628598 words of memory out of 5000000
+ 65938 strings out of 474486
+ 1391900 string characters out of 5743755
+ 2628597 words of memory out of 5000000
  86953 multiletter control sequences out of 15000+600000
  675031 words of font info for 253 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -2904,7 +2904,7 @@ onts/type1/public/newpx/zplb.pfb><C:/Users/loloc/AppData/Local/Programs/MiKTeX/
 fonts/type1/public/newpx/zplr.pfb><C:/Users/loloc/AppData/Local/Programs/MiKTeX
 /fonts/type1/public/newpx/zplri.pfb><C:/Users/loloc/AppData/Local/Programs/MiKT
 eX/fonts/type1/public/boondox/zxxrw8a.pfb>
-Output written on main.pdf (5 pages, 588857 bytes).
+Output written on main.pdf (5 pages, 588860 bytes).
 PDF statistics:
  214 PDF objects out of 1000 (max. 8388607)
  44 named destinations out of 1000 (max. 500000)
