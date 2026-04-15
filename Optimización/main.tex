@@ -1,0 +1,235 @@
+
+\documentclass[11pt]{article}
+
+% ------------------------------------------------
+% Page layout
+% ------------------------------------------------
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{tikz}
+\usetikzlibrary{shapes, arrows.meta}
+
+% ------------------------------------------------
+% Fonts
+% ------------------------------------------------
+\usepackage{libertinus}
+\usepackage{libertinust1math}
+\usepackage{tocloft}
+\usepackage{amsmath, amssymb, amsthm} % Añadido para matemáticas y entornos
+\usepackage[most]{tcolorbox} % Para cajas con color
+
+% ------------------------------------------------
+% Spanish
+% ------------------------------------------------
+\usepackage[spanish]{babel}
+
+% ------------------------------------------------
+% Colors
+% ------------------------------------------------
+\usepackage{xcolor}
+\definecolor{indigo}{RGB}{40,60,120}
+\definecolor{deepindigo}{RGB}{25,45,75}
+
+% ------------------------------------------------
+% Links
+% ------------------------------------------------
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=indigo
+}
+
+% ------------------------------------------------
+% Section formatting
+% ------------------------------------------------
+\usepackage{titlesec}
+
+% SECTION → left aligned
+\titleformat{\section}
+{\Large\bfseries\color{deepindigo}}
+{\thesection.}
+{0.6em}
+{}
+
+% SUBSECTION → centered with §
+\titleformat{\subsection}
+{\centering\Large\bfseries\color{deepindigo}}
+{§\thesubsection.}
+{0.6em}
+{}
+
+% Spacing
+\titlespacing*{\section}{0pt}{2em}{1em}
+\titlespacing*{\subsection}{0pt}{1.5em}{0.8em}
+
+% ------------------------------------------------
+% Definición de entornos (Ejercicio y Solución)
+% ------------------------------------------------
+\definecolor{indigo}{RGB}{40,60,120}
+\definecolor{deepindigo}{RGB}{25,45,75}
+
+% Estilo para el ejercicio
+% ------------------------------------------------
+% Entornos tipo Teorema (Requiere \usepackage{amsthm})
+% ------------------------------------------------
+
+% Definimos el estilo para Ejercicios
+\newtheoremstyle{ejstyle}% nombre del estilo
+{1em}{1em}% espacio arriba y abajo
+{\normalfont}{}% fuente del cuerpo y sangría
+{\bfseries\color{deepindigo}}{.}% fuente del título y puntuación
+{.5em}{}% espacio después del título
+{}% especificación del título
+
+% Definimos el entorno Ejercicio usando el estilo anterior
+\theoremstyle{ejstyle}
+\newtheorem{definicion}{Definición}
+
+\theoremstyle{ejstyle}
+\newtheorem{ej}{Ejemplo}
+
+\theoremstyle{ejstyle}
+\newtheorem{prop}{Proposición}
+
+\theoremstyle{ejstyle}
+\newtheorem{lema}{Lema}
+
+\theoremstyle{ejstyle}
+\newtheorem{coro}{Corolario}
+
+% Definimos el entorno Solución (sin numerar)
+\newenvironment{dem}
+{\begin{proof}[{\bfseries\color{deepindigo} Solución}]}
+	{\end{proof}}
+
+% ------------------------------------------------
+% Table of contents style
+% ------------------------------------------------
+\usepackage{tocloft}
+
+\renewcommand{\contentsname}{Índice}
+
+\renewcommand{\cfttoctitlefont}{\Large\bfseries\color{deepindigo}}
+\renewcommand{\cftsecfont}{\color{indigo}}
+\renewcommand{\cftsecpagefont}{}
+
+% ------------------------------------------------
+% Title information
+% ------------------------------------------------
+\title{\Huge Notas de Optimización}
+\author{Lorenzo Martinelli}
+
+% ------------------------------------------------
+\begin{document}
+	
+	\maketitle
+
+	\abstract{Las presentes notas se basan en el curso de Optimización dictado por Javier Etcheverry en la Facultad de Ciencias Exactas y Naturales de la Universidad de Buenos Aires durante el primer cuatrimestre de 2026.
+	}
+	
+
+	\tableofcontents
+	
+	% ------------------------------------------------
+	% CONTENT
+	% ------------------------------------------------
+	
+	\section{Introducción} 
+	
+	Dada $f : \Omega \longrightarrow \mathbb{R}$ nuestro objetivo será encontrar un $x^{*} \in \Omega$ tal que $f(x^{*}) \leq f(x)$ para todo $x \in \Omega$. Dependiendo de nuestro conocimiento acerca de $f$ y $\Omega$ podremos encarar el problema desde distintas perspectivas. Un ejemplo relevante es la optimización convexa ($\Omega$ y $f$ convexos), la cual es suficientemente general para abarcar problemas reales y a su vez, nos permite caracterizar su mínimos y dar algoritmos para hallarlos. 
+	
+	\subsection{Condiciones de optimalidad}
+	
+	La idea es comenzar estudiando el caso en que no tenemos restricciones sobre $\Omega$ e ir dando condiciones necesarias y suficientes para ser mínimo. Comencemos viendo que significa ser una solución a un problema de \emph{optimización}.
+	
+	\begin{definicion}
+		Dado un conjunto $\Omega$ y $f : \Omega \longrightarrow \mathbb{R}$ decimos que $x^{*} \in \Omega$ es un minimizador de $f$ si $f(x^{*}) \leq f(x)$ para todo $x \in \Omega$.
+	\end{definicion}
+	
+	
+	\begin{definicion}
+		Dado un conjunto $\Omega$ y $f : \Omega \longrightarrow \mathbb{R}$ decimos que $x^{*} \in \Omega$ es un minimizador local de $f$ si existe un entorno $\mathcal{N} \subset \Omega$ de $x^{*}$ tal que $f(x^{*}) \leq f(x)$ para todo $x \in \mathcal{N}$ con $x \neq x^{*}$.
+	\end{definicion}
+	
+	Para obtener las condiciones necesarias de optimalidad una idea básica es pensar en el comportamiento de la función en alguna dirección dada. Sea $d \in \mathbb{R}^{n}$ una dirección decimos que es factible si existe $\lambda \in \mathbb{R}$ tal que $x + td \in \Omega$ para todo $0 \leq t \leq \lambda$. Esto nos permite pensar a nuestra función como una función de una variable en el siguiente sentido:
+	\[
+	\begin{aligned}
+		g : [0, \lambda] \to \mathbb{R}, \\ 
+		t \mapsto f(x + td).		
+	\end{aligned}
+	\]
+	¿Para qué nos puede interesar esto? Para utilizar cálculo en una variable. 
+	
+	\begin{prop}[Condiciones necesarias de primer orden] 
+		Sea $f : \Omega \subset \mathbb{R}^{n} \to \mathbb{R}$ con $f \in C^{1}(\Omega)$. Si $x^{*}$ es un mínimizador local de $f$ en $\Omega$, entonces para cualquier dirección factible $d \in \mathbb{R}^{n}$ tenemos que 
+		$\nabla f(x^{*}) d \geq 0.$
+	\end{prop}
+	
+	\begin{proof}
+		Definiendo $g$ como antes tenemos que tiene un mínimo en $t=0$. Además, sabemos que
+		$$
+		g(t) - g(0) = g'(0)t + o(t)
+		$$
+		donde $o(t)$ es un término que va a cero más rápido que $t$. Luego, cómo 0 es mínimo para $t \in [0, \lambda]$
+		$$
+		0 \leq \frac{g(t) - g(0)}{t} = g'(0) + \frac{o(t)}{t}
+		$$
+		tomando límite con $t \to 0^{+}$ tenemos el resultado.
+	\end{proof}
+	
+	Un caso importante es en el que $x^{*} \in \Omega$ es un punto interior, cómo cuando $\Omega = \mathbb{R}^{n}$. En este, toda dirección es factible. En consecuencia, tenemos que $\nabla f(x^{*}) = 0$ pues dado $d \in \mathbb{R}^{n}$, $d$ y $-d$ son factibles y por lo que acabamos de ver $\nabla f(x^{*}) d \geq 0$ y $- \nabla f(x^{*}) d \geq 0$. 
+	
+	\begin{prop}[Condiciones necesarias de segundo orden]
+		Sea $\Omega \subset \mathbb{R}^{n}$ y $f \in C^{2}(\Omega)$. Si $x^{*}$ es un minimizador local, entonces para cualquier dirección factible $d$ tenemos que: 
+ 		\begin{enumerate}
+ 			\item $\nabla f(x^{*}) d \geq 0$ 
+ 			\item si $\nabla f(x^{*})d = 0$, entonces $d^{T} \nabla^{2}f(x^{*}) d \geq 0$
+ 		\end{enumerate}
+	\end{prop}
+	
+	\begin{proof}
+		La primer condición ya la probamos, concentremonos en 2. Notemos $\gamma(t) = x + td$ y, $g(t) = f(\gamma(t))$. Tenemos así que
+		$$
+		g(t) - g(0) = \frac{1}{2}g''(0) + o(t^{2})
+		$$
+		pues $g'(0) = 0$. Luego, diviendo por $t^{2}$ y escribiendo quién es $g''$ obtenemos para $t$ suficientemente chico
+		$$
+		0 \leq \frac{g(t) - g(0)}{t^2} = d^{T} \nabla^{2}f(x^{*})d + \frac{o(t^2)}{t^2}
+		$$
+		tomando límite en $t \to 0$ tenemos el resultado.
+	\end{proof}
+	
+	Vamos ahora a dar algunas condiciones \emph{suficientes} de optimalidad. Primero para el caso general, es decir, el de optimización sin restricciones.
+	
+	\begin{prop}[Condiciones suficientes de segundo orden - sin restricciones]
+		Sea $f \in C^{2}$ uan función definida en una región donde $x^{*}$ es un punto interior. Supongamos además que
+		\begin{enumerate}
+			\item $\nabla f(x^{*}) = 0$
+			\item $\nabla^{2}f(x^{*})$ es definida positiva.
+		\end{enumerate}
+		Luego, \, $x^{*}$ es un mínimo local estricto de $f$.
+ 	\end{prop}
+ 	
+ 	\begin{proof}
+ 		La prueba consiste en recordar que si una matriz es definida postiva entonces existe una constante positiva $a \in \mathbb{R}$ tal que para todo $d \in \mathbb{R}^{n}$ vale que $d^{T} \nabla^{2} f(x^{*})d \geq a \|d\| ^{2}$. Luego, por Taylor, considerando $g$ como antes
+ 		$$
+ 		f(x^{*} + d) - f(x^{*}) = \frac{1}{2} d^{T} \nabla^{2} f(x^{*}) d \|d\| ^{2} + o(\|d\|^{2}) \geq \frac{a}{2} \| d\|^{2} + o(\|d\|^2)
+ 		$$
+ 		donde para $\| d\|$ suficientemente chico el primer termino de la derecha dormindo al segundo y por lo tanto es postivo.
+	\end{proof} 	
+	
+ 	\subsection{Funciones convexas}
+ 	
+ 	Asumir ciertas hipótesis de convexidad sobre nuestra función a minimizar si bien nos restringe a un problema más chico nos puede dar cierta intuición geométrica de nuestro problema, además de una sólida caracterización de nuestros mínimos.	
+ 	
+	\begin{definicion}
+		Una función $f$ definida sobre un conjunto convexo $\Omega$ se dice convexa si para todo $x, y \in \Omega$ y, para todo $\lambda$ entre $0$ y $1$ vale que
+		$$
+		f(\lambda x + (1- \lambda) y) \leq \lambda f(x) + (1-\lambda) f(y)
+		$$
+		decimos que $f$ es convexa. Además, si para todo $\lambda \in (0, 1)$, $x \neq y$ vale la desigualdad estricta decimos que $f$ es estrictamente convexa.
+	\end{definicion}
+	
+	Geométricamente podemos pensar que una función es convexa si dados dos puntos en su gráfico la linea que los une está por encima de este. Vale la pena mencionar que una función $f$ es cóncava si $-f$ es convexa.
+ 	
+\end{document}
+
