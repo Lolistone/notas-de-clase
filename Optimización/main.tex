@@ -85,6 +85,9 @@
 \newtheorem{definicion}{Definición}
 
 \theoremstyle{ejstyle}
+\newtheorem{obs}{Observación}
+
+\theoremstyle{ejstyle}
 \newtheorem{ej}{Ejemplo}
 
 \theoremstyle{ejstyle}
@@ -217,9 +220,28 @@
  		donde para $\| d\|$ suficientemente chico el primer termino de la derecha dormindo al segundo y por lo tanto es postivo.
 	\end{proof} 	
 	
- 	\subsection{Funciones convexas}
+ 	\subsection{Convexidad y funciones convexas}
  	
- 	Asumir ciertas hipótesis de convexidad sobre nuestra función a minimizar si bien nos restringe a un problema más chico nos puede dar cierta intuición geométrica de nuestro problema, además de una sólida caracterización de nuestros mínimos.	
+ 	Los problemas de optimización convexa son los más generales, desde algún punto de vista, sobre los cuales tenemos gran conocimiento acerca de sus soluciones. Ahora, ¿Qué es la \emph{convexidad}?
+ 	
+ 	\begin{definicion}
+ 		Decimos que un conjunto $\Omega$ es convexo si dados $x, y \in \Omega$ y $\lambda \in [0, 1]$ tenemos que $\lambda x + (1 - \lambda)y \in \Omega$.
+ 	\end{definicion}	
+ 	
+ 	\newpage
+ 	
+ 	\begin{prop} 
+ 		Algunas propiedades básicas de los conjuntos convexos.
+		\begin{enumerate}
+			\item Dado $K$ convexo y $a \geq 0$, $aK$ es convexo.
+			\item Dados $K_1, K_2$ conjuntos convexos, entonces $K_1 + K_2$ es convexo.
+			\item Dada una familia de conjuntos convexos $\{ K_\alpha \}_\alpha$ se tiene que la intersección $\bigcap_{\alpha} K_\alpha$ es convexa.
+		\end{enumerate} 		
+ 	\end{prop}
+ 	
+ 	\begin{proof}
+ 		Trivial.
+ 	\end{proof}
  	
 	\begin{definicion}
 		Una función $f$ definida sobre un conjunto convexo $\Omega$ se dice convexa si para todo $x, y \in \Omega$ y, para todo $\lambda$ entre $0$ y $1$ vale que
@@ -228,6 +250,10 @@
 		$$
 		decimos que $f$ es convexa. Además, si para todo $\lambda \in (0, 1)$, $x \neq y$ vale la desigualdad estricta decimos que $f$ es estrictamente convexa.
 	\end{definicion}
+	
+	\begin{obs}
+		Nótese que solo tiene sentido hablas de funciones convexas si están definidas sobre conjuntos convexos.
+	\end{obs}
 	
 	Geométricamente podemos pensar que una función es convexa si dados dos puntos en su gráfico la linea que los une está por encima de este. Vale la pena mencionar que una función $f$ es cóncava si $-f$ es convexa.
  	

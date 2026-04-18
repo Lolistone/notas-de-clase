@@ -1,4 +1,4 @@
 \babel@toc {spanish}{}\relax 
 \contentsline {section}{\numberline {1}Introducción}{1}{section.1}%
 \contentsline {subsection}{\numberline {1.1}Condiciones de optimalidad}{1}{subsection.1.1}%
-\contentsline {subsection}{\numberline {1.2}Funciones convexas}{2}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.2}Convexidad y funciones convexas}{2}{subsection.1.2}%
