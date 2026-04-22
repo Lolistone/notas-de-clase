@@ -2,7 +2,7 @@
 \contentsline {section}{\numberline {1}Introducción}{1}{section.1}%
 \contentsline {subsection}{\numberline {1.1}Condiciones de optimalidad}{1}{subsection.1.1}%
 \contentsline {subsection}{\numberline {1.2}Convexidad y funciones convexas}{3}{subsection.1.2}%
-\contentsline {subsubsection}{\numberline {1.2.1}Funciones convexas diferenciables.}{4}{subsubsection.1.2.1}%
-\contentsline {section}{\numberline {2}Minimizando funciones.}{6}{section.2}%
+\contentsline {subsubsection}{\numberline {1.2.1}Funciones convexas diferenciables.}{3}{subsubsection.1.2.1}%
+\contentsline {section}{\numberline {2}Minimizando funciones.}{5}{section.2}%
 \contentsline {subsection}{\numberline {2.1}Algoritmos de descenso con busquedas lineales.}{6}{subsection.2.1}%
-\contentsline {subsubsection}{\numberline {2.1.1}Minimización unidimensional.}{7}{subsubsection.2.1.1}%
+\contentsline {subsubsection}{\numberline {2.1.1}Minimización unidimensional.}{6}{subsubsection.2.1.1}%
