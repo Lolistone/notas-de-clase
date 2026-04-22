@@ -57,9 +57,18 @@
 {0.6em}
 {}
 
+% SUBSUBSECTION
+\titleformat{\subsubsection}
+{\centering\large\bfseries\color{deepindigo}}
+{§\thesubsubsection.}
+{0.6em}
+{}
+
+
 % Spacing
 \titlespacing*{\section}{0pt}{2em}{1em}
 \titlespacing*{\subsection}{0pt}{1.5em}{0.8em}
+\titlespacing*{\subsubsection}{0pt}{1.5em}{0.8em}
 
 % ------------------------------------------------
 % Definición de entornos (Ejercicio y Solución)
@@ -233,15 +242,28 @@
  	\begin{prop} 
  		Algunas propiedades básicas de los conjuntos convexos.
 		\begin{enumerate}
-			\item Dado $K$ convexo y $a \geq 0$, $aK$ es convexo.
-			\item Dados $K_1, K_2$ conjuntos convexos, entonces $K_1 + K_2$ es convexo.
-			\item Dada una familia de conjuntos convexos $\{ K_\alpha \}_\alpha$ se tiene que la intersección $\bigcap_{\alpha} K_\alpha$ es convexa.
+			\item Dado $K \subset \mathbb{R}^n$ convexo y $a \geq 0$, $aK$ es convexo.
+			\item Dados $K_1, K_2 \subset \mathbb{R}^n$ conjuntos convexos, entonces $K_1 + K_2$ es convexo.
+			\item Dados $K \subset \mathbb{R}^n$ convexo, $k + v$ es convexo para todo $v \in \mathbb{R}^{n}$. 
+			\item Dada una familia de subconjuntos convexos de $\mathbb{R}^n $, $\{ K_\alpha \}_\alpha$ se tiene que la intersección $\bigcap_{\alpha} K_\alpha$ es convexa.
 		\end{enumerate} 		
  	\end{prop}
  	
  	\begin{proof}
  		Trivial.
  	\end{proof}
+ 		
+ 	\begin{definicion}
+ 		Dado un conjunto $U \subset \mathbb{R}^{n}$ llamamos capsula convexa al conjunto
+ 		$$
+ 		\{\sum_{i}^{m} \lambda_i u_i : \sum_{i}^{m} \lambda_i = 1, \lambda_i \geq 0, u_i \in U \}
+ 		$$
+ 		y lo notamos conv($U$).
+ 	\end{definicion}	
+ 	
+ 	\begin{obs}
+ 		Dado $U \subset \mathbb{R}^{n}$ su cápsula convexa es el menor conjunto convexo que lo contiene. 
+ 	\end{obs}
  	
 	\begin{definicion}
 		Una función $f$ definida sobre un conjunto convexo $\Omega$ se dice convexa si para todo $x, y \in \Omega$ y, para todo $\lambda$ entre $0$ y $1$ vale que
@@ -256,6 +278,203 @@
 	\end{obs}
 	
 	Geométricamente podemos pensar que una función es convexa si dados dos puntos en su gráfico la linea que los une está por encima de este. Vale la pena mencionar que una función $f$ es cóncava si $-f$ es convexa.
+	
+	\begin{prop}
+		Dadas $f_i : U \to \mathbb{R}$ convexas y $a_i \geq 0$ para todo $i$ entonces $f = \sum_{i} a_i f_i$ es convexa.
+ 	\end{prop}
  	
+ 	\begin{proof}
+ 		Hacer la cuenta...
+ 	\end{proof}
+ 	
+ 	\begin{prop}
+ 		Sea $f : U \subset \mathbb{R}^{n} \to \mathbb{R}$ convexa, entonces el conjunto $\Gamma_C = \{x \in U : f(x) \leq C\}$ es convexo para cualquier $C$. 
+ 	\end{prop}
+	
+	\begin{proof}
+		Queremos ver que $\Gamma_C$ es convexo, tomemos entonces $x, y \in \Gamma_C$, $\lambda \in [0, 1]$ y veamos que $z = \lambda x + (1- \lambda)y \in \Gamma_C$ pues $f(z) \leq \lambda f(x) + (1- \lambda) f(y) \leq C.$ 
+	\end{proof}
+	
+	\begin{ej}[La norma es convexa]
+		Dado $V$ un espacio vectorial si $\|\cdot\| : V \to \mathbb{R}$ es una norma, entonces es convexa. ¿Por qué? Por la desigualdad triangular. 
+		Este resultado nos permite ver que la bola en cualquier norma es convexa.
+	\end{ej}
+	
+	\subsubsection{Funciones convexas diferenciables.}
+	
+	\begin{prop}
+		Dada $f : \Omega \to \mathbb{R}$ con $f \in C^{1}(\Omega)$ son equivalentes:
+		\begin{enumerate}
+			\item $f$ es convexa.
+			\item Dados $x, y \in \Omega$ se tiene que $f(x) \geq f(y) + \nabla f(y)^{t} (x - y).$
+		\end{enumerate}
+	\end{prop}
+ 	
+ 	\begin{obs}
+ 		Notemos que los roles de $x$ e $y$ en la segunda condición son intercambiables.
+ 	\end{obs}
+ 	
+ 	\begin{proof}
+ 		Veamos primero que $1.$ implica $2.$ pues dados $x, y \in \Omega$, dado $\lambda \in [0, 1]$ sabemos que
+ 		$$
+ 		f(\lambda x + (1- \lambda) y) \leq \lambda f(x) + (1 - \lambda) f(y) 
+ 		$$ 
+ 		reescribiendo tenemos que esto es
+ 		$$ 
+ 		\frac{f(y + \lambda(x - y)) - f(y)}{\lambda} \leq f(x) - f(y) 
+ 		$$
+ 		consideremos $\phi : [0, 1] \to \mathbb{R}$ tal que $\phi(\lambda) = f(y + \lambda(x - y))$. De esta manera tenemos que la expresión anterior se puede escribir como
+ 		$$
+ 		\frac{\phi(\lambda) - \phi(0)}{\lambda} \leq f(x) - f(y) 
+ 		$$
+ 		tomando límite con $\lambda \to 0$,
+ 		$$
+ 		\nabla f(y)^{t} (x - y) = \phi'(0) \leq f(x) - f(y).
+ 		$$
+ 		Nos queda probar ahora que $2.$ implica $1.$, tomando $z = \lambda x + (1 - \lambda)y$ y utilizando la observación tenemos que
+ 		\[
+ 		\begin{aligned}
+ 		f(x) \geq f(z) + \nabla f(z)^{t} (x - z) \\
+ 		f(y) \geq f(z) + \nabla f(z)^{t} (y - z)	
+ 		\end{aligned}
+ 		\]
+ 		multiplicando por $\lambda$ la primer desigualdad, por $1-\lambda$ la segunda y sumando tenemos
+ 		\[
+ 		\begin{aligned}
+ 			\lambda f(x) + (1- \lambda)f(y) &\geq f(z) + \lambda \nabla f(z)^{t} (x - z) + (1-\lambda) \nabla f(z)^{t} (y - z) \\
+ 			&= f(z) + \nabla f(z)^{t} (\lambda x - \lambda z + (1 - \lambda) y - (1 - \lambda) z) \\
+ 			&= f(z) + \nabla f(z)^{t} (\lambda x + (1 - \lambda) y - z) \\
+ 			&= f(z)
+ 		\end{aligned}
+ 		\] 
+ 		que es lo que queríamos ver.
+ 	\end{proof}
+ 	
+ 	\begin{prop}
+ 		Sea $f \in C^{1}(K)$ convexa, entonces 
+ 		$$
+ 		\nabla f(x_1)^{t}(x_2 - x_1) \leq \nabla f(x_2)^{t} (x_2 - x_1)
+ 		$$
+ 		para todo $x_1, x_2 \in K$.
+ 	\end{prop}
+ 	
+ 	\begin{proof}
+ 		Sabemos, o deberíamos saber, que dados $x_1, x_2 \in K$
+ 		\[
+ 		\begin{aligned}
+ 			f(x_2) &\geq f(x_1) + \nabla f(x_1)^{t} (x_2 - x_1) \text{ y, } \\
+ 			f(x_1) &\geq f(x_2) + \nabla f(x_2)^{t} (x_1 - x_2)
+ 		\end{aligned}
+ 		\]
+ 		de esta manera, 
+ 		\[
+ 		\begin{aligned}
+ 			f(x_2) - f(x_1) &\geq \nabla f(x_1)^{t} (x_2 - x_1) \text{ y, } \\
+ 			f(x_2) - f(x_1) &\leq \nabla f(x_2)^{t} (x_1 - x_2)
+ 		\end{aligned}
+ 		\]
+ 		uniendo ambas desigualdades obtenemos el resultado.
+ 	\end{proof}
+ 	
+ 	\begin{prop}
+ 		Si $K \subset \mathbb{R}^{n}$ es convexo y $f \in C^{2}(K)$. Son equivalentes:
+ 		\begin{enumerate}
+ 			\item $f$ es convexa.
+ 			\item $\forall x_1, x_2 \in K$ tenemos que $d^{t}\nabla^{2}f(x_1)d \geq 0$ donde $d = x_2 - x_1.$
+ 		\end{enumerate}
+ 	\end{prop}
+ 	
+ 	\begin{proof}
+ 		$2. \implies 1.$  Por Taylor sabemos que
+ 		$$
+ 		f(x_2) = f(x_1) + \frac{1}{2} \nabla f(x_1)^{t}d +d^{t}\nabla^2 f(\xi)d 
+ 		$$
+ 		con $\xi$ una combinación convexa de $x_1, x_2$. La idea ahora es notar que $d = t(x_2 - \xi),$ con $t \geq 0.$ De esta manera,
+ 		$$
+ 		d^{t}\nabla^2 f(\xi)d = t^{2} (x_2- \xi)\nabla^2 f(\xi)(x_2 - \xi) \geq 0.
+ 		$$ 
+ 		Luego, $f$ es convexa. \\
+ 		
+ 		$2. \implies 1.$  Fijemos $x_1$ en $K$ y definamos $g(x) = f(x) - \nabla f(x_1)^t x$ y, notemos que $g$ tiene un mínimo en $x_1$. Además,
+ 		\begin{enumerate}
+ 			\item $\nabla g(x_1) = 0$.
+ 			\item $\nabla^{2} g(x_1) = \nabla^{2} f(x_1).$ 
+ 		\end{enumerate}
+ 		Luego, 
+ 		$$
+ 		0 \leq g(x) - g(x_1) = \frac{1}{2} (x - x_1) ^{t}\nabla^2 f(x) (x - x_1) + o(\|x - x_1\|),
+ 		$$
+ 		tomando $x = t(x_2 - x_1) + x_1$, si $t \in (0, 1)$ entonces $x \in K$ y,
+ 		$$
+ 		0 \leq g(x) - g(x_1) = \frac{t^2}{2} (x_2 - x_1) ^{t}\nabla^2 f(x) (x_2 - x_1) + \frac{o(t^2)}{t^2},
+ 		$$
+ 		diviendo por $t^2$ y tomando límite con $t \to 0$ tenemos el resultado.
+ 	\end{proof}
+ 	
+ 	\section{Minimizando funciones.}
+ 	
+ 	El objetivo de este capítulo -- y de esta materia -- es minimizar funciones. Considero relevante comenzar con un ejemplo sencillo que muestre qué tipo de métodos aparecen minimizando funciones. Supongamos entonces que queremos minimizar $q(x) = \frac{1}{2} x^t G x - b^t x + c$. Podemos suponer que $G$ es simétrica, sino basta cambiarla por $\frac{1}{2} (G + G^t).$ ¿Qué sabemos de esta función?
+	\begin{itemize}
+		\item $\nabla q(x) = Gx - b,$
+		\item $\nabla^2 q(x) = G.$ 
+	\end{itemize}
+	Esto nos dice que, en caso de existir, un punto crítico $x^*$ satisface que $Gx^* = b$. Cuando
+	$b\in$ subespacio generado por las columnas de $G$ esto tiene solución y, es única cuando $G$ es inversible. \\
+	\indent Supongamos ahora que $G > 0$, una idea para minimizar es considerar la dirección de máximo descenso en un punto $x_k$ que viene dada por 
+	$$d_k = - \nabla q(x_k) = - g_k,$$
+	y dar un paso de cierta longitud $\alpha_k$ en esa dirección, 
+	$$ 
+	x_{k+1} = x_{k} + \alpha_{k} d_k
+	$$
+	e iterar. A esto lo llamamos \emph{algoritmo de descenso.} En este caso, podemos aprovechar que sabemos que es una función cuadrática, veamos. Si definimos $h(\alpha) = q(x_k + \alpha d_k)$ sabemos que es una parábola que viene dada por,
+	$$
+	h(\alpha) = \frac{1}{2} \alpha^2 d_k^t G d_k + \alpha d_k^t G x_k + \frac{1}{2} x_k^t G x_k - b^t x_k - \alpha b^t x_k + c 
+   	$$
+   	Esta tiene un mínimo en $\alpha^*$ si $h'(\alpha^*) = 0$, esto es 
+   	$$
+   	\alpha^* d_k^t G_k d_k + d_k^t G x_k - b^t d_k = \alpha^* d_k^t G_k d_k + d_k^t(G x_k - b) = \alpha^* d_k^t G_k d_k + d_k^tg_k,
+    $$	
+    Tomando $\alpha_k = \alpha^*$ podemos considerar,
+	\[
+	\left\{
+	\begin{aligned}
+		x_{k+1} &= x_k - \alpha_k g_k \\
+		\alpha_k &= \frac{- g_k^\top g_k}{g_k^\top G \, g_k}
+	\end{aligned}
+	\right.
+	\]
+	tenemos así nuestro algoritmo para minimizar. ¿Es útil? No, pero aporta valor teórico para compremender los métodos de descenso.
+	
+	\subsection{Algoritmos de descenso con busquedas lineales.}
+	
+	Queremos un algoritmo que siempre converja y, en lo posible, a un minimizador local. ¿Cómo? Empiezo en un $x_0$ e itero eligiendo direcciones de descenso y moviendome adecuadamente a lo largo de ellas.
+	
+	\subsubsection{Minimización unidimensional.}
+	
+	Estudiemos el caso de una función $f : [a, b] \to \mathbb{R}$ unimodal, es decir, una función con único minimizador local. Formalmente, $f$ es unimodal si existe $x^* \in [a, b]$ tal que $f$ es decreciente en $[a, x^*]$ y creciente en $[x^*, b]$. 
+	
+	Supongamos que nos dan $N$ valuaciones de $f$, la pregunta que nos hacemos es si existe una manera óptima de elegir donde valuar. Queremos poder decidir en que intervalo está $x^*$ con mínima incerteza. En general, dados $a_k < c_k < d_k < b_k$.
+	
+	\[
+	\left\{
+	\begin{aligned}
+		a_{k+1} &= a_k \text{ y, } b_{k+1} = d_k \quad \text{si }  f(c_k) < f(d_k) \\
+		a_{k+1} &= c_k \text{ y, } b_{k+1} = b_k \quad \text{caso contrario.}
+ 	\end{aligned}
+	\right.
+	\]
+
+	Esta idea está bien, pero ¿Y si en lugar de en cada paso elegir dos nuevos puntos no reutilizamos alguno de los anteriores? El método de fibonacci propone elegir $c_k, d_k$ de la siguiente manera:
+	
+	\[
+	\left\{
+	\begin{aligned}
+		c_k &= b_k - \frac{F_{N-k-1}}{F_{N -k}} (b_k - a_k) \\
+		d_k &= a_k - \frac{F_{N-k-1}}{F_{N -k}} (b_k - a_k)
+	\end{aligned}
+	\right.
+	\]
+
+	Con esta elección obtenemos que $b_{N-1} - a_{N-1} = \frac{1}{F_{N}} (b_0 - a_0)$. Donde $F_N \approx \Phi^N$ y $2\Phi = 1 + \sqrt{5}$ Una versión low cost del algoritmo consiste en reemplazar $\frac{F_{N-k-1}}{F_{N -k}}$  por $\frac{1}{\Phi}.$	 
 \end{document}
 
