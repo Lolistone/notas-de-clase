@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.10.4)  22 APR 2026 17:45
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.10.4)  29 APR 2026 21:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1203,13 +1203,20 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip87
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 39.
+(C:\Users\loloc\AppData\Local\Programs\MiKTeX\tex/latex/natbib\natbib.sty
+Package: natbib 2010/09/13 8.31b (PWD, AO)
+\bibhang=\skip88
+\bibsep=\skip89
+LaTeX Info: Redefining \cite on input line 694.
+\c@NAT@ctr=\count332
+)
+Package hyperref Info: Option `colorlinks' set `true' on input line 40.
 
 (C:\Users\loloc\AppData\Local\Programs\MiKTeX\tex/latex/titlesec\titlesec.sty
 Package: titlesec 2025/01/04 v2.17 Sectioning titles
 \ttl@box=\box99
-\beforetitleunit=\skip88
-\aftertitleunit=\skip89
+\beforetitleunit=\skip90
+\aftertitleunit=\skip91
 \ttl@plus=\dimen283
 \ttl@minus=\dimen284
 \ttl@toksa=\toks51
@@ -1217,14 +1224,15 @@ Package: titlesec 2025/01/04 v2.17 Sectioning titles
 \titlewidthlast=\dimen286
 \titlewidthfirst=\dimen287
 )
-\c@definicion=\count332
-\c@obs=\count333
-\c@ej=\count334
-\c@prop=\count335
-\c@lema=\count336
-\c@coro=\count337
+\c@teo=\count333
+\c@definicion=\count334
+\c@obs=\count335
+\c@ej=\count336
+\c@prop=\count337
+\c@lema=\count338
+\c@coro=\count339
 LaTeX Font Info:    Trying to load font information for OT1+LibertinusSerif-TLF
- on input line 134.
+ on input line 139.
 
 (C:\Users\loloc\AppData\Local\Programs\MiKTeX\tex/latex/libertinus-type1\ot1lib
 ertinusserif-tlf.fd
@@ -1232,12 +1240,12 @@ File: OT1LibertinusSerif-TLF.fd 2024/09/22 (autoinst) Font definitions for OT1/
 LibertinusSerif-TLF.
 )
 LaTeX Font Info:    Font shape `OT1/LibertinusSerif-TLF/m/n' will be
-(Font)              scaled to size 10.95pt on input line 134.
+(Font)              scaled to size 10.95pt on input line 139.
 
 (C:\Users\loloc\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdf
 tex.def
 File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count338
+\l__color_backend_stack_int=\count340
 \l__pdf_internal_box=\box100
 ) (main.aux
 LaTeX Info: Redefining \. on input line 11.
@@ -1245,46 +1253,46 @@ LaTeX Info: Redefining \% on input line 11.
 )
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 134.
-LaTeX Font Info:    ... okay on input line 134.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 134.
-LaTeX Font Info:    ... okay on input line 134.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 134.
-LaTeX Font Info:    ... okay on input line 134.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 134.
-LaTeX Font Info:    ... okay on input line 134.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 134.
-LaTeX Font Info:    ... okay on input line 134.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 134.
-LaTeX Font Info:    ... okay on input line 134.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 134.
-LaTeX Font Info:    ... okay on input line 134.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 139.
+LaTeX Font Info:    ... okay on input line 139.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 139.
+LaTeX Font Info:    ... okay on input line 139.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 139.
+LaTeX Font Info:    ... okay on input line 139.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 139.
+LaTeX Font Info:    ... okay on input line 139.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 139.
+LaTeX Font Info:    ... okay on input line 139.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 139.
+LaTeX Font Info:    ... okay on input line 139.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 139.
+LaTeX Font Info:    ... okay on input line 139.
 LaTeX Font Info:    Checking defaults for LS1/libertinust1math/m/n on input lin
-e 134.
+e 139.
 LaTeX Font Info:    Trying to load font information for LS1+libertinust1math on
- input line 134.
+ input line 139.
 
 (C:\Users\loloc\AppData\Local\Programs\MiKTeX\tex/latex/libertinust1math\ls1lib
 ertinust1math.fd
 File: ls1libertinust1math.fd 2016/03/23 Fontinst v1.933 font definitions for LS
 1/libertinust1math.
 )
-LaTeX Font Info:    ... okay on input line 134.
+LaTeX Font Info:    ... okay on input line 139.
 LaTeX Font Info:    Checking defaults for LS2/libertinust1mathsym/m/n on input 
-line 134.
+line 139.
 LaTeX Font Info:    Trying to load font information for LS2+libertinust1mathsym
- on input line 134.
+ on input line 139.
 
 (C:\Users\loloc\AppData\Local\Programs\MiKTeX\tex/latex/libertinust1math\ls2lib
 ertinust1mathsym.fd
 File: ls2libertinust1mathsym.fd 2015/04/17 v1.1.2-latex LibertinusT1Mathsym LS2
  font definitions
 )
-LaTeX Font Info:    ... okay on input line 134.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 134.
-LaTeX Font Info:    ... okay on input line 134.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 134.
-LaTeX Font Info:    ... okay on input line 134.
+LaTeX Font Info:    ... okay on input line 139.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 139.
+LaTeX Font Info:    ... okay on input line 139.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 139.
+LaTeX Font Info:    ... okay on input line 139.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1324,16 +1332,16 @@ LaTeX Font Info:    ... okay on input line 134.
 (C:\Users\loloc\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
 ii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count339
+\scratchcounter=\count341
 \scratchdimen=\dimen288
 \scratchbox=\box101
-\nofMPsegments=\count340
-\nofMParguments=\count341
+\nofMPsegments=\count342
+\nofMParguments=\count343
 \everyMPshowfont=\toks52
-\MPscratchCnt=\count342
+\MPscratchCnt=\count344
 \MPscratchDim=\dimen289
-\MPnumerator=\count343
-\makeMPintoPDFobject=\count344
+\MPnumerator=\count345
+\makeMPintoPDFobject=\count346
 \everyMPtoPDFconversion=\toks53
 )
 (C:\Users\loloc\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-b
@@ -1346,49 +1354,49 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 fg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-\c@mv@tabular=\count345
-\c@mv@boldtabular=\count346
-LaTeX Info: Command `\dddot' is already robust on input line 134.
-LaTeX Info: Command `\ddddot' is already robust on input line 134.
-\c@lstlisting=\count347
+\c@mv@tabular=\count347
+\c@mv@boldtabular=\count348
+LaTeX Info: Command `\dddot' is already robust on input line 139.
+LaTeX Info: Command `\ddddot' is already robust on input line 139.
+\c@lstlisting=\count349
  (C:\Users\loloc\AppData\Local\Programs\MiKTeX\tex/latex/base\inputenc.sty
 Package: inputenc 2021/02/14 v1.3d Input encoding file
 \inpenc@prehook=\toks54
 \inpenc@posthook=\toks55
 )
-LaTeX Info: Redefining \. on input line 134.
-LaTeX Info: Redefining \% on input line 134.
-Package hyperref Info: Link coloring ON on input line 134.
+LaTeX Info: Redefining \. on input line 139.
+LaTeX Info: Redefining \% on input line 139.
+Package hyperref Info: Link coloring ON on input line 139.
 (main.out) (main.out)
 \@outlinefile=\write4
 \openout4 = `main.out'.
 
 LaTeX Font Info:    Font shape `OT1/LibertinusSerif-TLF/m/n' will be
-(Font)              scaled to size 17.28pt on input line 137.
+(Font)              scaled to size 17.28pt on input line 142.
 LaTeX Font Info:    Font shape `OT1/LibertinusSerif-TLF/m/n' will be
-(Font)              scaled to size 24.88pt on input line 137.
+(Font)              scaled to size 24.88pt on input line 142.
 LaTeX Font Info:    Font shape `OT1/LibertinusSerif-TLF/m/n' will be
-(Font)              scaled to size 12.0pt on input line 137.
+(Font)              scaled to size 12.0pt on input line 142.
 LaTeX Font Info:    Font shape `LS1/libertinust1math/m/n' will be
-(Font)              scaled to size 12.0pt on input line 137.
+(Font)              scaled to size 12.0pt on input line 142.
 LaTeX Font Info:    Font shape `LS1/libertinust1math/m/n' will be
-(Font)              scaled to size 8.0pt on input line 137.
+(Font)              scaled to size 8.0pt on input line 142.
 LaTeX Font Info:    Font shape `LS1/libertinust1math/m/n' will be
-(Font)              scaled to size 6.0pt on input line 137.
+(Font)              scaled to size 6.0pt on input line 142.
 LaTeX Font Info:    Font shape `LS1/libertinust1math/m/it' will be
-(Font)              scaled to size 12.0pt on input line 137.
+(Font)              scaled to size 12.0pt on input line 142.
 LaTeX Font Info:    Font shape `LS1/libertinust1math/m/it' will be
-(Font)              scaled to size 8.0pt on input line 137.
+(Font)              scaled to size 8.0pt on input line 142.
 LaTeX Font Info:    Font shape `LS1/libertinust1math/m/it' will be
-(Font)              scaled to size 6.0pt on input line 137.
+(Font)              scaled to size 6.0pt on input line 142.
 LaTeX Font Info:    Font shape `LS2/libertinust1mathsym/m/n' will be
-(Font)              scaled to size 12.0pt on input line 137.
+(Font)              scaled to size 12.0pt on input line 142.
 LaTeX Font Info:    Font shape `LS2/libertinust1mathsym/m/n' will be
-(Font)              scaled to size 8.0pt on input line 137.
+(Font)              scaled to size 8.0pt on input line 142.
 LaTeX Font Info:    Font shape `LS2/libertinust1mathsym/m/n' will be
-(Font)              scaled to size 6.0pt on input line 137.
+(Font)              scaled to size 6.0pt on input line 142.
 LaTeX Font Info:    Trying to load font information for LS2+libertinust1mathex 
-on input line 137.
+on input line 142.
 
 (C:\Users\loloc\AppData\Local\Programs\MiKTeX\tex/latex/libertinust1math\ls2lib
 ertinust1mathex.fd
@@ -1396,13 +1404,13 @@ File: ls2libertinust1mathex.fd 2016/03/15 v1.0.0-latex LibertinusMath extension
 s LS2 font definitions
 )
 LaTeX Font Info:    Font shape `LS2/libertinust1mathex/m/n' will be
-(Font)              scaled to size 12.0pt on input line 137.
+(Font)              scaled to size 12.0pt on input line 142.
 LaTeX Font Info:    Font shape `LS2/libertinust1mathex/m/n' will be
-(Font)              scaled to size 8.0pt on input line 137.
+(Font)              scaled to size 8.0pt on input line 142.
 LaTeX Font Info:    Font shape `LS2/libertinust1mathex/m/n' will be
-(Font)              scaled to size 6.0pt on input line 137.
+(Font)              scaled to size 6.0pt on input line 142.
 LaTeX Font Info:    Trying to load font information for LS1+libertinust1mathbb 
-on input line 137.
+on input line 142.
 
 (C:\Users\loloc\AppData\Local\Programs\MiKTeX\tex/latex/libertinust1math\ls1lib
 ertinust1mathbb.fd
@@ -1410,43 +1418,43 @@ File: ls1libertinust1mathbb.fd 2016/08/22 latex LibertinusT1Mathbb LS1 font def
 initions
 )
 LaTeX Font Info:    Font shape `LS1/libertinust1mathbb/m/n' will be
-(Font)              scaled to size 12.0pt on input line 137.
+(Font)              scaled to size 12.0pt on input line 142.
 LaTeX Font Info:    Font shape `LS1/libertinust1mathbb/m/n' will be
-(Font)              scaled to size 8.0pt on input line 137.
+(Font)              scaled to size 8.0pt on input line 142.
 LaTeX Font Info:    Font shape `LS1/libertinust1mathbb/m/n' will be
-(Font)              scaled to size 6.0pt on input line 137.
+(Font)              scaled to size 6.0pt on input line 142.
 LaTeX Font Info:    Font shape `LS1/libertinust1math/b/n' will be
-(Font)              scaled to size 12.0pt on input line 137.
+(Font)              scaled to size 12.0pt on input line 142.
 LaTeX Font Info:    Font shape `LS1/libertinust1math/b/n' will be
-(Font)              scaled to size 8.0pt on input line 137.
+(Font)              scaled to size 8.0pt on input line 142.
 LaTeX Font Info:    Font shape `LS1/libertinust1math/b/n' will be
-(Font)              scaled to size 6.0pt on input line 137.
+(Font)              scaled to size 6.0pt on input line 142.
 LaTeX Font Info:    Font shape `LS1/libertinust1math/b/it' will be
-(Font)              scaled to size 12.0pt on input line 137.
+(Font)              scaled to size 12.0pt on input line 142.
 LaTeX Font Info:    Font shape `LS1/libertinust1math/b/it' will be
-(Font)              scaled to size 8.0pt on input line 137.
+(Font)              scaled to size 8.0pt on input line 142.
 LaTeX Font Info:    Font shape `LS1/libertinust1math/b/it' will be
-(Font)              scaled to size 6.0pt on input line 137.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 137
+(Font)              scaled to size 6.0pt on input line 142.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 142
 .
 
 (C:\Users\loloc\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 137
+LaTeX Font Info:    Trying to load font information for U+msb on input line 142
 .
 
 (C:\Users\loloc\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Font shape `OT1/LibertinusSerif-TLF/m/n' will be
-(Font)              scaled to size 10.0pt on input line 138.
+(Font)              scaled to size 10.0pt on input line 143.
 LaTeX Font Info:    Font shape `OT1/LibertinusSerif-TLF/b/n' will be
-(Font)              scaled to size 10.0pt on input line 138.
+(Font)              scaled to size 10.0pt on input line 143.
 LaTeX Font Info:    Font shape `OT1/LibertinusSerif-TLF/m/n' will be
-(Font)              scaled to size 14.4pt on input line 142.
+(Font)              scaled to size 14.4pt on input line 147.
 LaTeX Font Info:    Font shape `OT1/LibertinusSerif-TLF/b/n' will be
-(Font)              scaled to size 14.4pt on input line 142.
+(Font)              scaled to size 14.4pt on input line 147.
 
 (main.toc
 LaTeX Info: Redefining \. on input line 1.
@@ -1498,7 +1506,7 @@ LaTeX Font Info:    Font shape `LS1/libertinust1math/b/it' will be
 \openout5 = `main.toc'.
 
 LaTeX Font Info:    Trying to load font information for TS1+LibertinusSerif-TLF
- on input line 152.
+ on input line 157.
 
 (C:\Users\loloc\AppData\Local\Programs\MiKTeX\tex/latex/libertinus-type1\ts1lib
 ertinusserif-tlf.fd
@@ -1506,9 +1514,9 @@ File: TS1LibertinusSerif-TLF.fd 2024/09/22 (autoinst) Font definitions for TS1/
 LibertinusSerif-TLF.
 )
 LaTeX Font Info:    Font shape `TS1/LibertinusSerif-TLF/b/n' will be
-(Font)              scaled to size 14.4pt on input line 152.
+(Font)              scaled to size 14.4pt on input line 157.
 LaTeX Font Info:    Font shape `OT1/LibertinusSerif-TLF/m/it' will be
-(Font)              scaled to size 10.0pt on input line 154.
+(Font)              scaled to size 10.0pt on input line 159.
  [1
 
 {C:/Users/loloc/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/lolo
@@ -1524,20 +1532,32 @@ enc}{C:/Users/loloc/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/libertinus-ty
 pe1/lbn1_oaaihm.enc}] [2{C:/Users/loloc/AppData/Local/Programs/MiKTeX/fonts/enc
 /dvips/libertinust1math/libusEX.enc}]
 LaTeX Font Info:    Font shape `OT1/LibertinusSerif-TLF/b/n' will be
-(Font)              scaled to size 12.0pt on input line 301.
+(Font)              scaled to size 12.0pt on input line 306.
 LaTeX Font Info:    Font shape `TS1/LibertinusSerif-TLF/b/n' will be
-(Font)              scaled to size 12.0pt on input line 301.
+(Font)              scaled to size 12.0pt on input line 306.
  [3]
 LaTeX Font Info:    Font shape `OT1/LibertinusSerif-TLF/m/n' will be
-(Font)              scaled to size 7.0pt on input line 363.
+(Font)              scaled to size 7.0pt on input line 368.
 LaTeX Font Info:    Font shape `OT1/LibertinusSerif-TLF/m/n' will be
-(Font)              scaled to size 5.0pt on input line 363.
+(Font)              scaled to size 5.0pt on input line 368.
 
-Underfull \hbox (badness 10000) in paragraph at lines 393--395
+Underfull \hbox (badness 10000) in paragraph at lines 398--400
 
  []
 
-[4] [5] [6] (main.aux
+[4] [5] [6]
+Package textcomp Info: Symbol \textrightarrow not provided by
+(textcomp)             font family LibertinusSerif-TLF in TS1 encoding.
+(textcomp)             Default family used instead on input line 526.
+Package textcomp Info: Symbol \textrightarrow not provided by
+(textcomp)             font family LibertinusSerif-TLF in TS1 encoding.
+(textcomp)             Default family used instead on input line 526.
+<composition.png, id=170, 582.67688pt x 366.61969pt>
+File: composition.png Graphic file (type png)
+<use composition.png>
+Package pdftex.def Info: composition.png  used on input line 543.
+(pdftex.def)             Requested size: 226.48395pt x 142.5pt.
+ (main.bbl [7 <./composition.png>]) [8] (main.aux
 LaTeX Info: Redefining \. on input line 11.
 LaTeX Info: Redefining \% on input line 11.
 )
@@ -1546,26 +1566,27 @@ LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 85D33604C3336A9BC8F292372AAE55EC;1434.
+(rerunfilecheck)             Checksum: 14AEAC63481A12A2D9270ACF7E7B9ED0;1858.
  ) 
 Here is how much of TeX's memory you used:
- 33458 strings out of 474486
- 685557 string characters out of 5743755
+ 33848 strings out of 474486
+ 690643 string characters out of 5743755
  1944542 words of memory out of 5000000
- 55125 multiletter control sequences out of 15000+600000
- 600109 words of font info for 110 fonts, out of 8000000 for 9000
+ 55485 multiletter control sequences out of 15000+600000
+ 600444 words of font info for 111 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 102i,10n,107p,543b,676s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/loloc/AppData/Local/Programs/MiKTeX/fonts/type1/public/libertinus-t
-ype1/LibertinusSerif-Bold.pfb><C:/Users/loloc/AppData/Local/Programs/MiKTeX/fon
-ts/type1/public/libertinus-type1/LibertinusSerif-Italic.pfb><C:/Users/loloc/App
-Data/Local/Programs/MiKTeX/fonts/type1/public/libertinus-type1/LibertinusSerif-
-Regular.pfb><C:/Users/loloc/AppData/Local/Programs/MiKTeX/fonts/type1/public/li
-bertinust1math/LibertinusT1Math.pfb><C:/Users/loloc/AppData/Local/Programs/MiKT
-eX/fonts/type1/public/stix/stix-mathcal.pfb>
-Output written on main.pdf (6 pages, 545281 bytes).
+ 102i,9n,107p,577b,618s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\loloc\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm
+1000.pk><C:/Users/loloc/AppData/Local/Programs/MiKTeX/fonts/type1/public/libert
+inus-type1/LibertinusSerif-Bold.pfb><C:/Users/loloc/AppData/Local/Programs/MiKT
+eX/fonts/type1/public/libertinus-type1/LibertinusSerif-Italic.pfb><C:/Users/lol
+oc/AppData/Local/Programs/MiKTeX/fonts/type1/public/libertinus-type1/Libertinus
+Serif-Regular.pfb><C:/Users/loloc/AppData/Local/Programs/MiKTeX/fonts/type1/pub
+lic/libertinust1math/LibertinusT1Math.pfb><C:/Users/loloc/AppData/Local/Program
+s/MiKTeX/fonts/type1/public/stix/stix-mathcal.pfb>
+Output written on main.pdf (8 pages, 654808 bytes).
 PDF statistics:
- 197 PDF objects out of 1000 (max. 8388607)
- 46 named destinations out of 1000 (max. 500000)
- 213 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 253 PDF objects out of 1000 (max. 8388607)
+ 68 named destinations out of 1000 (max. 500000)
+ 242 words of extra memory for PDF output out of 10000 (max. 10000000)
 

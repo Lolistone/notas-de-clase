@@ -3,6 +3,9 @@
 \contentsline {subsection}{\numberline {1.1}Condiciones de optimalidad}{1}{subsection.1.1}%
 \contentsline {subsection}{\numberline {1.2}Convexidad y funciones convexas}{3}{subsection.1.2}%
 \contentsline {subsubsection}{\numberline {1.2.1}Funciones convexas diferenciables.}{3}{subsubsection.1.2.1}%
-\contentsline {section}{\numberline {2}Minimizando funciones.}{5}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Algoritmos de descenso con busquedas lineales.}{6}{subsection.2.1}%
-\contentsline {subsubsection}{\numberline {2.1.1}Minimización unidimensional.}{6}{subsubsection.2.1.1}%
+\contentsline {section}{\numberline {2}Algoritmos de descenso.}{5}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Convergencia global de algoritmos de descenso.}{6}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Algoritmos iterativos.}{6}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Descenso.}{6}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Mapas cerrados.}{6}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Teorema de convergencia global.}{7}{subsection.2.5}%

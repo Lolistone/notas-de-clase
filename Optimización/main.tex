@@ -33,6 +33,7 @@
 % Links
 % ------------------------------------------------
 \usepackage{hyperref}
+\usepackage[numbers]{natbib}
 \hypersetup{
 	colorlinks=true,
 	linkcolor=indigo
@@ -90,6 +91,10 @@
 {}% especificación del título
 
 % Definimos el entorno Ejercicio usando el estilo anterior
+\theoremstyle{ejstyle}
+\newtheorem{teo}{Teorema}
+
+
 \theoremstyle{ejstyle}
 \newtheorem{definicion}{Definición}
 
@@ -409,7 +414,7 @@
  		diviendo por $t^2$ y tomando límite con $t \to 0$ tenemos el resultado.
  	\end{proof}
  	
- 	\section{Minimizando funciones.}
+ 	\section{Algoritmos de descenso.}
  	
  	El objetivo de este capítulo -- y de esta materia -- es minimizar funciones. Considero relevante comenzar con un ejemplo sencillo que muestre qué tipo de métodos aparecen minimizando funciones. Supongamos entonces que queremos minimizar $q(x) = \frac{1}{2} x^t G x - b^t x + c$. Podemos suponer que $G$ es simétrica, sino basta cambiarla por $\frac{1}{2} (G + G^t).$ ¿Qué sabemos de esta función?
 	\begin{itemize}
@@ -441,38 +446,137 @@
 	\end{aligned}
 	\right.
 	\]
-	tenemos así nuestro algoritmo para minimizar. ¿Es útil? No, pero aporta valor teórico para compremender los métodos de descenso.
+	tenemos así nuestro algoritmo para minimizar. ¿Es útil? No, pero aporta valor teórico para comprender los métodos de descenso.
 	
-	\subsection{Algoritmos de descenso con busquedas lineales.}
+	\subsection{Convergencia global de algoritmos de descenso.}
 	
-	Queremos un algoritmo que siempre converja y, en lo posible, a un minimizador local. ¿Cómo? Empiezo en un $x_0$ e itero eligiendo direcciones de descenso y moviendome adecuadamente a lo largo de ellas.
+	A lo largo del curso, será de interés estudiar diversos algoritmos y, en particular, su convergencia. En general, estudiaremos algoritmos iterativos y daremos un marco teórico que permita estudiarlos sin preocuparnos por implementaciones particulares. Para este capítulo, vamos a basarnos en \cite{luenberger2008nonlinear}.
 	
-	\subsubsection{Minimización unidimensional.}
+	\subsection{Algoritmos iterativos.}
 	
-	Estudiemos el caso de una función $f : [a, b] \to \mathbb{R}$ unimodal, es decir, una función con único minimizador local. Formalmente, $f$ es unimodal si existe $x^* \in [a, b]$ tal que $f$ es decreciente en $[a, x^*]$ y creciente en $[x^*, b]$. 
+	Vamos a pensar a los algoritmos como mapeos. Dado un punt $x$ en un cierto espacio $X$ 
+	la salida de un algoritmo aplicado a $x$ es un punto. Aplicando el algoritmo a este nuevo 
+	punto iterativamente concstruimos una sucesión de puntos. Esta definición preeliminar está bien, pero
+	queremos más flexibilidad en nuestra definción. Esto da lugar a la siguiente definición.
 	
-	Supongamos que nos dan $N$ valuaciones de $f$, la pregunta que nos hacemos es si existe una manera óptima de elegir donde valuar. Queremos poder decidir en que intervalo está $x^*$ con mínima incerteza. En general, dados $a_k < c_k < d_k < b_k$.
+	\begin{definicion}
+		Un algoritmo $A$ es un mapa definido en un espacio $X$ que asigna a cada punto $x \in X$
+		un subconjunto de $X.$
+	\end{definicion}
 	
-	\[
-	\left\{
-	\begin{aligned}
-		a_{k+1} &= a_k \text{ y, } b_{k+1} = d_k \quad \text{si }  f(c_k) < f(d_k) \\
-		a_{k+1} &= c_k \text{ y, } b_{k+1} = b_k \quad \text{caso contrario.}
- 	\end{aligned}
-	\right.
-	\]
+	El termino espacio puede ser interpretado vagamente, usualmente este será un espacio vectorial
+	pero puede ser solo un subconjunto o inclusive ser un espacio métrico.
+	
+	¿No es un poco ambigua esta definición? En la práctica un algoritmo es un mapa de punto a punto, cuál
+	es el sentido de definirlo así. La utilidad de esta definición es la de poder analizar, en un solo 
+	paso una familia infinita de alogritmos similares.
+	
+	\subsection{Descenso.}
+	
+	Queremos describir que es un algortimo de descenso, para eso necesitamos algunas definiciones previas.
+	
+	\begin{definicion}
+		Sea $\Gamma \subset X$ un conjunto solución y sea $A$ un algoritmo en $X$. Una función continua de $X \to \mathbb{R}$ es una \emph{función de descenso} para $(\Gamma, A)$ si:
+		
+		\begin{enumerate}
+			\item si $x \notin \Gamma$ e $y \in A(x)$, entonces $Z(y) < Z(x),$
+			\item si $x \in \Gamma$ e $y \in A(x)$, entonces $Z(y) \leq Z(x).$
+		\end{enumerate}
+		
+	\end{definicion}
+	
+	\subsection{Mapas cerrados.}
+	
+	Necesitamos, en nuestro estudio de convergencia de algoritmos, una noción
+	de compacidad.
+	
+	\begin{definicion}
+		Un mapa de punto a conjunto $A$ de $X$ en $Y$ se dice cerrado en $x \in X$ si
+		\begin{enumerate}
+			\item $x_k \to x$ con $x_k \in X$,
+			\item $y_k \to y$ con $y_k \in Ax_k$ 
+		\end{enumerate}
+		implican que $y \in Ax$.
+	\end{definicion}
 
-	Esta idea está bien, pero ¿Y si en lugar de en cada paso elegir dos nuevos puntos no reutilizamos alguno de los anteriores? El método de fibonacci propone elegir $c_k, d_k$ de la siguiente manera:
+	Los algoritmos que estudiemos van a ser, en general, composición de algoritmos. ¿Qué significa 
+	componer con nuestra definición? Lo que uno se imagina.
 	
-	\[
-	\left\{
-	\begin{aligned}
-		c_k &= b_k - \frac{F_{N-k-1}}{F_{N -k}} (b_k - a_k) \\
-		d_k &= a_k - \frac{F_{N-k-1}}{F_{N -k}} (b_k - a_k)
-	\end{aligned}
-	\right.
-	\]
+	\begin{definicion}
+		Sean $A : X \to Y$, $B: Y \to Z$ mapas de punto a conjunto. Definimos el mapa de punto a conjunto
+		composición como $BA : X \to Z$ como
+		$$
+		BA(x) = \bigcup_{y \in A(x)} B(y)
+		$$
+	\end{definicion}
+	
+	
+	\begin{prop}
+		Sean $A: X \to Y$, $B : Y \to Z$ mapas de punto a conjunto. Supongamos que $A$ es cerrado en $x$ 
+		y que $B$ es cerrado en $A(x)$. Supongamos además que si $x_k \to x$ e $y_k \in A(x_k)$ entonces existen $y$, una subsucesión $\{ y_{k_j}\}$ tal que $y_{k_j} \to y$. Luego el mapa $BA$ es cerrado en $x$.  
+	\end{prop}
+	
+	\begin{proof}
+		Sea $x_k \to x$ y $z_k \to z$ con $z_k \in BA(x_k)$. Queremos ver que $z \in BA(x)$.
+		Sea $y_k \in A(x_k)$ tal que $z_k \in BA(x_k)$, por hipótesis tenemos $y$, $\{y_{k_j}\}$
+		tal que $y_{k_j} \to y$. Como $A$ es cerrado en $x$ entonces $y \in A(x)$. De la misma manera, 
+		como $B$ es cerrado en $y$ pues lo es en $A(x)$ entonces $z \in B(y) \subset BA(x).$
+	\end{proof}
+	
+	Corollary 2. Let A : X → Y be a point-to-point mapping and B : Y → Z a point-to
+	set mapping. If A is continuous at x and B is closed at A(x), then the composite mapping
+	C=BAisclosed at x.
+	
+	
+	\begin{coro}
+		Sean $A: X \to Y$, $B : Y \to Z$ mapas de punto a conjunto. Si $A$ es cerrado en $x$, $B$ es
+		cerrado en $A(x)$ e $Y$ es compacto, luego la composición es compacta en $x.$
+	\end{coro}
+	
+	\begin{coro}
+			Sean $A: X \to Y$ un mapa de punto a punto, $B : Y \to Z$ un mapa de punto a conjunto. Si
+			$A$ es continua en $x$ y $B$ es cerrado en $A(x),$ luego la composición es cerrada en $x.$  
+	\end{coro}
+	
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width = 0.5\textwidth]{composition.png}
+		\caption{Composición de mapas, extraída de \cite{luenberger2008nonlinear}.}
+		\label{fig:ejemplocomp}
+	\end{figure}
+	
+	\subsection{Teorema de convergencia global.}
+	
+	\begin{teo}[Convergencia global.]
+		Sea $A$ un algoritmos en $X$, y supongamos que, dado $x_0$ la sucesión
+		$\{x_k\}_{k \geq 0}$ satisface que $x_{k+1} \in A(x_k)$. Sea $\Gamma \subset X$ un conjunto solución
+		y supongamos que
+		\begin{enumerate}
+			\item todos los $x_k$ están contenidos en un compacto $S \subset X,$
+			\item existe una función continua $Z$ en $X$ tal que
+			\begin{itemize}
+				\item si $x \notin \Gamma$, luego $Z(y) < Z(x)$ para todo $y \in A(x),$
+				\item si $x \in \Gamma,$ entonces $Z(y) \leq Z(x)$ para todo $y \in A(x)$
+			\end{itemize} 
+			\item el mapa $A$ es cerrado para los puntos en $X \setminus \Gamma.$ 
+		\end{enumerate}
+		Luego, el limite de cualquier subsucesión convergente $x_k$ es una solución.
+	\end{teo}
+	
+	\begin{proof}
+		Sea $\{x_k\}_{k \in \mathcal{K}}$ una subsucesión que converge a un límite $x$. Como $Z$ es continua,
+		tenemos que para $k \in \mathcal{K}$, $Z(x_k) \to Z(x).$ Como $Z$ es monótona decreciente, tenemos que 
+		$Z(x_k) - Z(x) \geq 0$ para todo $k.$ Dado $\varepsilon > 0$, existe $K \in \mathcal{K}$ tal que $Z(x_k) - Z(x) < \varepsilon$ para todo $k \geq K, k \in \mathcal{K}.$ Luego, para todo $k > K$
+		$$
+		Z(x_k) - Z(x) =  Z(x_k) - Z(x_K) + Z(x_K) - Z(x) < \varepsilon
+		$$
+		así, $Z(x_k) \to Z(x)$ para todo $k$. Resta ver que $x$ es una solución. Supongamos que no lo es,
+		y consideremos $\{x_{k+1}\}_{k \in \mathcal{K}}$ como está contenida en un compacto, entonces existe $\hat{\mathcal{K}} \subset \mathcal{K}$ tal que $\{x_{k+1}\}_{k \in \hat{\mathcal{K}}}$ converge a un límite $\hat{x}.$ Tenemos así, $x_{k} \to x$ con $k \in \hat{\mathcal{K}}$ y $x_{k+1} \in A(x_k)$ con $x_{k+1} \to \hat{x},$ con $k \in \hat{\mathcal{K}}.$ Cómo $A$ es cerrado en $x$ tenemos que $\hat{x} \in A(x)$. Pero, por lo que vimos antes, $Z(x) = Z(\hat{x}),$ lo cual contradice el hecho de que $Z$ sea una función de descenso.
+		
+	\end{proof}
+	
+	\bibliographystyle{plainnat}
+	\bibliography{referencias}
 
-	Con esta elección obtenemos que $b_{N-1} - a_{N-1} = \frac{1}{F_{N}} (b_0 - a_0)$. Donde $F_N \approx \Phi^N$ y $2\Phi = 1 + \sqrt{5}$ Una versión low cost del algoritmo consiste en reemplazar $\frac{F_{N-k-1}}{F_{N -k}}$  por $\frac{1}{\Phi}.$	 
 \end{document}
 
