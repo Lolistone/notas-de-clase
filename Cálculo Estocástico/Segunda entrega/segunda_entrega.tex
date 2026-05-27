@@ -1,0 +1,301 @@
+\documentclass[11pt]{article}
+
+% ------------------------------------------------
+% Paquetes básicos
+% ------------------------------------------------
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{libertinus}
+\usepackage{libertinust1math}
+\usepackage[spanish]{babel}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{tocloft}
+\usepackage{amsmath, amssymb, amsthm} % Añadido para matemáticas y entornos
+\usepackage[most]{tcolorbox} % Para cajas con color alrededor de los ejercicios
+
+% ------------------------------------------------
+% Definición de entornos (Ejercicio y Solución)
+% ------------------------------------------------
+\definecolor{indigo}{RGB}{40,60,120}
+\definecolor{deepindigo}{RGB}{25,45,75}
+
+% Estilo para el ejercicio
+% ------------------------------------------------
+% Entornos tipo Teorema (Requiere \usepackage{amsthm})
+% ------------------------------------------------
+
+% Definimos el estilo para Ejercicios
+\newtheoremstyle{ejstyle}% nombre del estilo
+{1em}{1em}% espacio arriba y abajo
+{\normalfont}{}% fuente del cuerpo y sangría
+{\bfseries\color{deepindigo}}{.}% fuente del título y puntuación
+{.5em}{}% espacio después del título
+{}% especificación del título
+
+% Definimos el entorno Ejercicio usando el estilo anterior
+\theoremstyle{ejstyle}
+\newtheorem{ejercicio}{Ejercicio}
+
+% Definimos el entorno Solución (sin numerar)
+\newenvironment{solucion}
+{\begin{proof}[{\bfseries\color{deepindigo} Solución}]}
+	{\end{proof}}
+
+% ------------------------------------------------
+% (El resto de tus configuraciones de diseño se mantienen igual...)
+% ------------------------------------------------
+
+\title{\Huge Entrega 2: Martingalas}
+\author{Lorenzo Martinelli}
+
+\begin{document}
+	
+	\maketitle
+	
+	\abstract{Segunda entrega de Cálculo Estocástico. Ejercicios 5, 6, 9, 13 y 16.}
+	
+	\begin{ejercicio}
+		Supongamos $X_1, X_2, ...$ son variables aleatorias independientes con
+		$$
+		\mathbb{P}(X_j = 1) = \mathbb{P}(X_j = - 1) = \frac{1}{2}. 
+		$$
+		Sea $S_n = X_1 + ... + X_n$, hallar
+		$$
+		\mathbb{E}[\sin{S_n} \mid S_n^2]
+		$$
+	\end{ejercicio}
+	
+	\begin{solucion}
+		Sea $k \in \mathbb{N}$, notemos que si $S_n^2 = k$ entonces $S_n = \sqrt{k}$ o $S_n = - \sqrt{k}$. Además,
+		por simetría $\mathbb{P}(S_n = \sqrt{k} \mid S_n^2 = k) = \mathbb{P}(S_n = - \sqrt{k} \mid S_n^2 = k) = \frac{1}{2}$. Luego,
+		$$
+		\mathbb{E}[\sin{S_n} \mid S_n^2 = k] = \frac{1}{2} \sin{\sqrt{k}} + \frac{1}{2} \sin{-\sqrt{k}} = 0
+		$$
+		para todo $k$, en consecuencia $\mathbb{E}[\sin{S_n} \mid S_n^2] = 0.$ Notemos que el seno no juega ningún rol particular más que ser una función impar. 
+	\end{solucion}
+	
+	\begin{ejercicio}
+		En este ejercicio consideramos un paseo aleatorio simple no simétrico. Supongamos
+		$1/2 < q < 1$ y que $X_1, X_2, \ldots$ son variables aleatorias independientes con
+		
+		$$
+		\mathbb{P}\{X_j = 1\} = 1 - \mathbb{P}\{X_j = -1\} = q.
+		$$
+		
+		Sea $S_0 = 0$ y $S_n = X_1 + \cdots + X_n$. Sea $\mathcal{F}_n$ la información contenida en $X_1, \ldots, X_n$.
+		
+		\begin{enumerate}
+			\item ¿Cuál de estas es $S_n$: martingala, submartingala, supermartingala (más de una respuesta es posible)?
+			
+			\item ¿Para qué valores de $r$ es $M_n = S_n - rn$ una martingala?
+			
+			\item Sea $\theta = (1-q)/q$ y sea
+			$$
+			M_n = \theta^{S_n}.
+			$$
+			Mostrar que $M_n$ es una martingala.
+			
+			\item Sean $a, b$ enteros positivos, y
+			$$
+			T_{a,b} = \min\{j : S_j = b \text{ o } S_j = -a\}.
+			$$
+			Usar el teorema de muestreo opcional para determinar
+			$$
+			\mathbb{P}\{S_{T_{a,b}} = b\}.
+			$$
+			
+			\item Sea $T_a = T_{a,\infty}$. Hallar
+			
+			$$
+			\mathbb{P}\{T_a < \infty\}.
+			$$
+		\end{enumerate}
+	\end{ejercicio}
+	
+	\newpage
+	\begin{solucion} \, \newline
+		\begin{enumerate}
+			\item $S_n$ es una submartingala pues si $n>m$, $\mathcal{F}_m$ es la información contenida en $X_1, X_2, ..., X_m$ tenemos que $\mathbb{E[S_n \mid F_m]} = S_m + (n-m)\mathbb{E}[X_1]$ y como la esperanza de estas variables aleatorias es mayor que 0, esto es mayor que $X_m.$
+			\item Por lo que vimos recién, debemos tomar $r = \mathbb{E}[X_1]$ de manera que estas variables tengan esperanza $0$.
+			\item Para ver que es una martingala basta ver que dado $n$ tenemos que $\mathbb{E}[\theta^{S_{n+1}} | \mathcal{F}_n] = \theta^{S_n}$. Esto vale pues,
+			$$
+				\mathbb{E}[\theta^{S_{n+1}} | \mathcal{F}_n] = \mathbb{E}[\theta^{S_{n}} \theta^{X_{n+1}} | \mathcal{F}_n] = \theta^{S_n} \mathbb{E}[\theta^{X_{n+1}} | \mathcal{F}_n] = \theta^{S_n} \mathbb{E}[\theta^{X_{n+1}}] = \theta^{S_n}(q \theta + (1-q) \theta^{-1} ) = \theta^{S_n}.
+			$$
+			
+			\item Queremos ver que ocurre con $ \mathbb{P}\{S_{T_{a,b}} = b\}$ utilizando el teorema de muestreo, chequeemos las hipótesis. Por un lado, tenemos que $\theta{-a} \leq M_{T_{a,b}} \leq \theta^b$  y, por lo tanto $\mathbb{E}[|M_{T}|] < \infty$, más aún $\mathbb{E}[|M_{n \land T}|^2] < \infty.$ Nos queda entonces probar que $\mathbb{P}\{T_{a,b} < \infty\} = 1.$ Comencemos notando que la probabilidad de que $T = \infty$ siempre es menor o igual a la probabilidad de que $T > k$ con $k \in \mathbb{N}$, esto es
+			$$
+			\mathbb{P}\{ T = \infty \} \leq \mathbb{P}\{ T > k\}.  
+			$$  
+			Por otro lado, moverse $a + b$ veces hacia la derecha es una manera de salir por lo que,  
+			$$
+			\mathbb{P}\{ T < a + b \} \geq \mathbb{P}\{ X_1 = 1, X_2 = 1, ..., X_{a+b} = 1\} = q^{a + b}, \quad q > 0.
+			$$
+			Notemos ahora que,
+			$$
+			\mathbb{P}\{ T > k(a + b)\} = \mathbb{P}\{ T > k(a + b), T > (k-1)(a+b)\}
+			$$
+			esto es
+			$$
+			\mathbb{P}\{ T > k(a + b) \mid (k - 1)(a+b)\} \mathbb{P}\{ T > (k-1)(a+b)\}
+			$$
+			y, si no salí de $(-a, b)$ en $(k-1)(a+ b)$ pasos y quiero ver la probabilidad de salir en $k(a+b)$ esto es lo mismo que ver la probabilidad de salir en $a + b$ pasos, luego
+			$$
+			\mathbb{P}\{ T > k(a + b)\} \leq (1 - q^{a+b}) \mathbb{P}\{ T > (k-1)(a+b)\}.
+			$$
+			Ahora, razonando inductivamente tenemos que para todo $k$,
+			$$
+			\mathbb{P}\{ T = \infty \} \leq \mathbb{P}\{ T > k(a + b)\} \leq (1 - q^{a+b})^{k} 
+			$$
+			tomando límite con $k \to \infty$ llegamos a que $T$ es un tiempo de parada finito casi seguramente. 
+			Ya tenemos las hipótesis de Doob, aplicandolo tenemos que
+			$$
+			\theta^{b} \mathbb{P}\{S_T = b\} + \theta^{-a} \mathbb{P}\{S_T = -a\}= \mathbb{E}[M_{T}] = \mathbb{E}[M_0] = 1
+			$$ 
+			así, usando que $\mathbb{P}\{S_T= b\} = 1 - \mathbb{P}\{S_T = -a\}$ obtenemos
+			$$
+			\mathbb{P}\{S_{T_{a, b}} = b\} = \frac{1 - \theta^{-a}}{\theta^{-a} - \theta^{b} }. 
+			$$ 
+			
+			\item Ahora nos piden estudiar $\mathbb{P}\{T_{a,\infty} < \infty\}$, notamos $T_a = T_{a, \infty}$. Sabemos que,
+			$$
+			\mathbb{P}\{S_{T_{a, b}} = b\} = \frac{1 - \theta^{-a}}{\theta^{b} - \theta^{-a} }
+			$$
+			y que
+			$$
+				\mathbb{P}\{T_{a,\infty} = \infty\}	= \mathbb{P} \bigcap_{b \geq 0}  \{ S_{T_{a, b}} \geq b\}
+			$$
+			por continuidad de la medida y, $\{ S_{T_{a, b}} \geq b\} = \{ S_{T_{a, b}} = b\}$ tenemos 
+			$$
+				\mathbb{P}\{T_{a,\infty} = \infty\} = \lim\limits_{b \to \infty} \mathbb{P}\{S_{T_{a, b}} = b\} =  \frac{1 - \theta^{-a}}{\theta^{-a}} = 1 - \theta^{a}.
+			$$
+		\end{enumerate}
+		 
+	\end{solucion}
+	
+	\begin{ejercicio}
+			Sea $X_1, X_2, \ldots$ variables aleatorias independientes idénticamente distribuidas con
+			$$\mathbb{P}\{X_j = 2\} = \frac{1}{3}, \quad \mathbb{P}\left\{X_j = \frac{1}{2}\right\} = \frac{2}{3}.$$
+			Sea $M_0 = 1$ y para $n \geq 1$, $M_n = X_1 X_2 \ldots X_n$.
+			\begin{enumerate}
+				\item Mostrar que $M_n$ es una martingala.
+				\item Explicar por qué $M_n$ satisface las condiciones del teorema de convergencia de martingalas.
+				\item Sea $M_\infty = \lim_{n \to \infty} M_n$. Explicar por qué $M_\infty = 0$. (Sugerencia: hay al menos dos formas de mostrar esto. Una es considerar $\log M_n$ y usar la ley de los grandes números. Otra es notar que con probabilidad uno $M_{n+1}/M_n$ no converge.)
+				\item Usa el teorema de muestreo opcional para determinar la probabilidad de que $M_n$ alguna vez alcance un valor tan grande como $64$.
+				\item ¿Existe un $C < \infty$ tal que $\mathbb{E}[M_n^2] \leq C$ para todo $n$?
+			\end{enumerate}
+	\end{ejercicio}
+	
+	\begin{solucion} \, 
+		
+		\begin{enumerate}
+			\item Sin considereamos $\mathcal{F}_n$ la información de $X_1, ..., X_n$ tenemos que $M_n$ es $F_n$ medible, además como $X_j \leq 0$ tenemos que $\mathbb{E}|M_n| = \mathbb{E}M_n = \mathbb{E}X_1...\mathbb{E}X_n = 1$. Nos resta ver $\mathbb{E}[M_{n+1}|\mathcal{F}_n] = M_n$ y esto vale pues
+			\[
+			\begin{aligned}
+				\mathbb{E}[X_1...X_{n+1} \mid \mathcal{F}_n] = M_n \mathbb{E}[X_{n+1} \mid F_n] = M_n.
+			\end{aligned}
+			\]
+			donde la última igualdad vale pues la esperanza de $X_j$ es 1.
+			
+			\item $M_n$ satisface las condiciones pues vimos que $E|M_n| \leq 1$ y esta constante no depende de $n$.
+			
+			\item Si miramos $\log{M_n} = \sum_i^{n} \log{x_i}$. Donde $\log{X_i}$ es independiente de $\log{X_j}$ para todo $j \neq i$. Luego, por la ley fuerte de los grandes números,
+			$$
+			\lim_{n \to \infty} \frac{\log{M_n}}{n} = \mathbb{\log(X_j)} = - c \log{2} 
+			$$
+			con $c = \frac{1}{3}.$ En consecuencia, $\log{M_n} = -\infty$ y $M_n \to 0.$
+			
+			\item Comencemos notando que $M_j$ toma valores en $\{2^{K} : k \in \mathbb{Z}\}$ y consideremos $T_{a, b} = \min \{j : M_j = 2^{b} \text{ o, } M_j = 2^{-a}\}$, con $a, b \in \mathbb{N}.$ Utilizando que para salir de $(2^{-a}, 2^{b})$ podemos hacerlo moviendonos $a+b$ veces en una dirección y que esto tiene probabilidad estrictamente positiva, con el argumento del ejercicio anterior, tenemos que $\mathbb{P}\{T_{a, b} \infty \} = 1$. Luego,
+			$$
+			\mathbb{P}\{M_T = 2^{b}\} 2^{b} + (1 - \mathbb{P}\{M_T = 2^{b}\}) 2^{-a} = \mathbb{E}[M_{T_{a,b}}] = 1
+			$$
+			en consecuencia,
+			$$
+			\mathbb{P}\{M_{T_{a, b}} = 2^{b}\} =\frac{ 1 - 2^{-a}}{2^b - 2^{-a}}
+			$$
+			Ahora, si $T = \min \{ j : M_j = 2^{b} \}$ tenemos que
+			$$
+			\mathbb{P}\{M_{T} = 2^{b}\} = \mathbb{P} \bigcap_{a \geq 1} \{M_{T_{a, b}} = 2^{b}\} = \lim_{a \to \infty} \mathbb{P}\{M_{T_{a, b}} = 2^{b}\} =\frac{1}{2^b}.
+			$$
+			En el caso particular del ejercicio tenemos que la probabilidad es $2^{-6}.$
+			
+			\item Calculemos $\mathbb{E}[M_n^2]$ directamente. Como los $X_j$ son independientes
+			$$\mathbb{E}[M_n^2] = \mathbb{E}[X_1^2 X_2^2 \cdots X_n^2] = \prod_{k=1}^n \mathbb{E}[X_k^2].$$
+			y,
+			$$\mathbb{E}[X_j^2] = 4 \cdot \frac{1}{3} + \frac{1}{4} \cdot \frac{2}{3} = \frac{4}{3} + \frac{1}{6} = \frac{3}{2}.$$
+			
+			\newpage
+			
+			Luego, como
+			$$\mathbb{E}[M_n^2] = \left(\frac{3}{2}\right)^n \to \infty.$$
+			no existe constante $C$ que cumpla lo pedido.
+			
+		\end{enumerate} 
+		
+	\end{solucion}
+	
+	\begin{ejercicio}
+		Supongamos que $S_n = X_1 + \cdots + X_n$ es un paseo aleatorio simple que comienza en $0$. 
+		Para cualquier $K$, sea
+		$$T = \min\{n : |S_n| = K\}.$$
+		Explicar por qué para todo $j$
+		$$\mathbb{P}\{T \leq j + K \mid T > j\} \geq 2^{-K}.$$
+		Mostrar que existen $c < \infty$, $\alpha > 0$ tales que para todo $j$
+		$$\mathbb{P}\{T > j\} \leq c e^{-\alpha j}.$$
+		Concluir que $\mathbb{E}[T^r] < \infty$ para todo $r > 0$.
+		
+		Sea $M_n = S_n^2 - n$. Mostrar que existe $C < \infty$ tal que para todo $n$
+		$$\mathbb{E}\left[M_{n \wedge T}^2\right] \leq C.$$
+	\end{ejercicio}
+	
+	\begin{solucion}
+		Comencemos viendo por qué
+		$$\mathbb{P}\{T \leq j + K \mid T > j\} \geq 2^{-K}.$$
+		Notemos que si $T > j$ esta probabilidad es
+		$$\mathbb{P}\{T \leq K \}$$
+		ahora, si nos encontramos entre $-K$ y $K$ basta dar $K$ pasos en una dirección para salir, luego
+		$$\mathbb{P}\{T \leq K \} \geq 2^{-K}.$$ 
+		Ahora, para $m \geq 1$
+		$$\mathbb{P}\{T > j\} \leq \mathbb{P}\{T > mK\} \leq (1 - 2^{-K})^{m},$$
+		donde $K$ es parte entera de $j/m$. Osea,
+		$$\mathbb{P}\{T > j\} \leq (1 - 2^{-j/m})^{m},$$
+		tomando límite en $m$ tenemos el resultado. Veamos que esto implica que
+		$$\mathbb{E}[T^r] = \sum_{j=1}^\infty j^r \mathbb{P}\{T = j\} \leq \sum_{j=1}^\infty j^r \mathbb{P}\{T \geq j\} \leq \sum_{j=1}^\infty j^r c e^{-\alpha j} < \infty.$$
+		Por último, como $M_n$ martingala, entonces $M_{n\wedge T}$ es martingala y, como los incrementos son ortogonales,
+		$$\mathbb{E}[M_{n\wedge T}^2] = \mathbb{E}[M_0^2] + \sum_{k=1}^n \mathbb{E}[\Delta_k^2 \mathbf{1}_{T \geq k}]$$
+		donde $\Delta_k = M_k - M_{k-1} = S_k^2 - S_{k-1}^2 - 1$. Por otro lado,
+		$$\Delta_k = (S_{k-1} + X_k)^2 - S_{k-1}^2 - 1 = 2S_{k-1}X_k + X_k^2 - 1 = 2S_{k-1}X_k$$
+		ya que $X_k^2 = 1$ siempre (paseo simple). Entonces $\Delta_k^2 = 4S_{k-1}^2 X_k^2 = 4S_{k-1}^2$, y:
+		$$\mathbb{E}[M_{n\wedge T}^2] = \sum_{k=1}^n \mathbb{E}[4S_{k-1}^2 \mathbf{1}_{T \geq k}].$$
+		En el evento $\{T \geq k\}$ se tiene $|S_{k-1}| < K$, entonces $S_{k-1}^2 \leq K^2$, luego:
+		$$\mathbb{E}[M_{n\wedge T}^2] \leq \sum_{k=1}^n 4K^2 \mathbb{P}\{T \geq k\} \leq 4K^2 \sum_{k=1}^\infty ce^{-\alpha k} < \infty.$$
+		Tomando $C$ como el resultado de la sumatoria estamos.
+		
+		
+	\end{solucion}
+
+	\begin{ejercicio}
+			Sean $(X_n, \mathcal{F}_n)_{n \geq 1}$ una martingala e $\{Y_n\}_{n \geq 1}$ un proceso tal que 
+			$|Y_n| \leq C_n$, $Y_n$ es $\mathcal{F}_{n-1}$-medible. Sea $X_0 = 0$ y consideremos
+			$$M_n = \sum_{k=1}^n Y_k(X_k - X_{k-1}).$$
+			Probar que $(M_n, \mathcal{F}_n)$ es una martingala.
+	\end{ejercicio}
+	
+	\begin{solucion}
+		Por hipótesis, $M_{n+1}$ es $\mathcal{F}_n$ medible y es integrables pues
+		\[
+		\begin{aligned}
+		\mathbb{E}[|M_n|] \leq \sum_j \mathbb{E}[|Y_j| |X_j - X_{j-1}|] \leq \sum_j C_j \mathbb{E}[|X_j - X_{j-1}|] \leq \sum_j C_j (\mathbb{E}|X_j| + \mathbb{E}|X_{j-1}|) < \infty.
+		\end{aligned}	
+		\]  
+		Resta ver que $\mathbb{E}[M_{n+1}|\mathcal{F}_n] = M_n.$ 
+		\[
+		\begin{aligned}
+			\mathbb{E}[M_{n+1}] = \sum_j \mathbb{E}[Y_j (X_j - X_{j-1}) \mid F_n] &= \sum_j Y_j (X_j - X_{j-1}) + \mathbb{E}[Y_{n+1}(X_{n+1} - X_n) \mid F_n] \\
+			&= M_n + Y_{n+1} \mathbb{E}[X_{n+1} - X_n \mid \mathcal{F}_n] \\ 
+			&= M_n.
+		\end{aligned}
+		\]
+	\end{solucion}
+	
+\end{document}
