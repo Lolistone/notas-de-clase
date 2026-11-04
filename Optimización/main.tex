@@ -129,6 +129,13 @@
 \renewcommand{\cftsecfont}{\color{indigo}}
 \renewcommand{\cftsecpagefont}{}
 
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+
 % ------------------------------------------------
 % Title information
 % ------------------------------------------------
@@ -414,7 +421,7 @@
  		diviendo por $t^2$ y tomando límite con $t \to 0$ tenemos el resultado.
  	\end{proof}
  	
- 	\section{Algoritmos de descenso.}
+ 	\section{Algoritmos y convergencia.}
  	
  	El objetivo de este capítulo -- y de esta materia -- es minimizar funciones. Considero relevante comenzar con un ejemplo sencillo que muestre qué tipo de métodos aparecen minimizando funciones. Supongamos entonces que queremos minimizar $q(x) = \frac{1}{2} x^t G x - b^t x + c$. Podemos suponer que $G$ es simétrica, sino basta cambiarla por $\frac{1}{2} (G + G^t).$ ¿Qué sabemos de esta función?
 	\begin{itemize}
@@ -574,6 +581,316 @@
 		y consideremos $\{x_{k+1}\}_{k \in \mathcal{K}}$ como está contenida en un compacto, entonces existe $\hat{\mathcal{K}} \subset \mathcal{K}$ tal que $\{x_{k+1}\}_{k \in \hat{\mathcal{K}}}$ converge a un límite $\hat{x}.$ Tenemos así, $x_{k} \to x$ con $k \in \hat{\mathcal{K}}$ y $x_{k+1} \in A(x_k)$ con $x_{k+1} \to \hat{x},$ con $k \in \hat{\mathcal{K}}.$ Cómo $A$ es cerrado en $x$ tenemos que $\hat{x} \in A(x)$. Pero, por lo que vimos antes, $Z(x) = Z(\hat{x}),$ lo cual contradice el hecho de que $Z$ sea una función de descenso.
 		
 	\end{proof}
+	
+	\subsection{Velocidad de convergencia.}
+	
+	En esta sección vamos a introducir conceptos relativos a la velocidad de convergencia que nos van a permitir predecir con cierta confianza la efectividad de una amplia clase de algoritmos.
+	
+	\subsection{Orden de convergencia}
+		
+	\begin{definicion}
+		Sea $\{r_k\}_k$ una sucesiín que converge a $r^{*}.$ El orden de convergencia de esta sucesión se define como el supremo de los $p \geq 0$ que satisfacen
+		$$
+		\limsup_{k\to \infty} \frac{|r_{k+1} - r^{*}|}{|r_k - r^{*}|^{p}} 
+		$$ 
+	\end{definicion}
+		
+	Podemos decir que el orden de convergencia es una medida de que tan buena es la peor parte de la cola de la serie. Valores grandes de $p$ nos hablan de una convergencia más rapida. Es decir, si la sucesión tiene orden $p$ tenemos que asintoticamente
+	$$
+	|r_{k+1} - r^*| = \beta|r_k - r^*|^{p} 
+	$$
+	donde $\beta$ es el límite del cociente que teniamos arriba.
+	
+	\subsection{Convergencia lineal}
+	
+	\begin{definicion}
+		Si la sucesión $\{r_k\}_k$ converge a $r^*$ de manera que
+		$$
+		\lim_{k\to \infty} \frac{|r_{k+1} - r^{*}|}{|r_k - r^{*}|} = \beta 
+		$$
+		decimos que la sucesión converge linealmente con orden $\beta$.
+	\end{definicion}
+	
+	Además, si $\beta$ es 0, decimos que la convergencia es \emph{superlineal}. Notemos que si $p > 1$ entonces la convergencia es superlineal. Este marco nos permite comparar algoritmos mirando el ratio de convergencia. Existen otros tipos de convergencia, como la aritmética pero no vamos a adentrarnos en estos.
+	
+	\section{Algoritmos básicos de descenso.}
+	
+	En este capítulo vamos a describir algunas técnicas básicas para resolver iterativamente problemas de minimización sin restricciones. Estas técnicas son importantes por su simpleza y por sentar bases para proximos métodos.
+	
+	Los algoritmos de descenso que vamos a estudiar comparten estructura. Arrancamos en un punto, determinamos de acuerdo a alguna regla una dirección 
+	de movimiento y luego nos movemos en esa dirección hacia algún mínimo relativo en esa dirección. A partir de ese nuevo punto, repetimos el proceso.
+	La principal diferencia entre algoritmos es esta regla de elección de direcciones. El proceso de determinar un mínimo en una recta dada (una variable) se llama búsqueda lineal y usualmente se realiza de alguna manera inteligente, buscando quizás una solución inexacta.
+	
+	\subsection{Algortimos de busqueda lineal.}
+	
+	Estos se clasifican según el orden de información que requieren de nuestra función a minimizar.
+	
+	\subsubsection{Orden 0: Fibonacci y fitteo de curvas.}
+	
+	Un método muy utilizado para resolver el problema de búsqueda lineal es el \emph{método de búsqueda de Fibonacci}. Aunque posee cierta elegancia teórica, existen otros procedimientos que, en la mayoría de los casos, resultan superiores.
+	
+	El método determina el mínimo de una función $f$ sobre un intervalo cerrado $[c_1, c_2]$. La única propiedad que se asume sobre $f$ es que es \emph{unimodal}, es decir, posee un único mínimo relativo.
+	
+	
+	La idea central es reducir progresivamente el intervalo de búsqueda evaluando $f$ en puntos estratégicamente elegidos. En cada iteración se seleccionan dos puntos interiores $x_a$ y $x_b$ con $c_1 < x_a < x_b < c_2$, y se comparan sus valores:
+	
+	\begin{itemize}
+		\item Si $f(x_a) < f(x_b)$, el mínimo se encuentra en $[c_1, x_b]$, descartando el subintervalo derecho.
+		\item Si $f(x_a) > f(x_b)$, el mínimo se encuentra en $[x_a, c_2]$, descartando el subintervalo izquierdo.
+	\end{itemize}
+	
+	
+	Sea $L_k$ la longitud del intervalo activo en la iteración $k$, y sean $F_1, F_2, \ldots, F_N$ los números de Fibonacci definidos por:
+	\[
+	F_1 = F_2 = 1, \qquad F_k = F_{k-1} + F_{k-2}, \quad k \geq 3.
+	\]
+	
+	Supóngase que se dispone de un total de $N$ evaluaciones de $f$. En la iteración $k$ (con $k = 1, 2, \ldots, N-1$), los dos puntos de evaluación sobre el intervalo activo $[a_k, b_k]$ de longitud $L_k = b_k - a_k$ se ubican en:
+	\[
+	x_a^{(k)} = a_k + \frac{F_{N-k-1}}{F_{N-k+1}}\, L_k, \qquad
+	x_b^{(k)} = a_k + \frac{F_{N-k}}{F_{N-k+1}}\, L_k.
+	\]
+	
+	La propiedad clave de esta elección es que uno de los dos puntos evaluados en la iteración $k$ coincide con un punto ya evaluado en la iteración $k-1$, de modo que solo se requiere una nueva evaluación por iteración (salvo en la primera). Esto hace que con $N$ evaluaciones en total se obtenga una reducción del intervalo de incertidumbre en la proporción:
+	\[
+	\frac{L_N}{L_1} = \frac{1}{F_N}.
+	\]
+	
+	Este cociente es el mejor posible para cualquier método que evalúe $f$ en $N$ puntos sin conocimiento previo de su forma, lo que confiere al método de Fibonacci su carácter óptimo en este sentido.
+	
+	El esquema más útil en la búsqueda lineal consiste en ajustar una parábola a través de tres puntos dados. Esto tiene la ventaja de no requerir información sobre derivadas. Dados $x_1, x_2, x_3$ y los valores correspondientes $f(x_1) = f_1$, $f(x_2) = f_2$, $f(x_3) = f_3$, se construye el polinomio cuadrático que pasa por estos puntos:
+	
+	\begin{equation}
+		q(x) = \sum_{i=1}^{3} f_i \prod_{j \neq i} \frac{x - x_j}{x_i - x_j},
+		\label{eq:8.7}
+	\end{equation}
+	
+	y se determina un nuevo punto $x_4$ como aquel donde se anula la derivada de $q$:
+	
+	\begin{equation}
+		x_4 = \frac{1}{2} \cdot \frac{b_{23}f_1 + b_{31}f_2 + b_{12}f_3}{a_{23}f_1 + a_{31}f_2 + a_{12}f_3},
+		\label{eq:8.8}
+	\end{equation}
+	
+	donde $a_{ij} = x_i - x_j$ y $b_{ij} = x_i^2 - x_j^2$.
+	
+	Se definen los errores $\varepsilon_i = x^* - x_i$, para $i = 1, 2, 3, 4$, donde $x^*$ es el mínimo de $f$. La expresión para $\varepsilon_4$ debe ser un polinomio en $\varepsilon_1, \varepsilon_2, \varepsilon_3$ que satisfaga las siguientes propiedades:
+	
+	\begin{itemize}
+		\item Es de segundo orden, pues proviene de un ajuste cuadrático.
+		\item Se anula si cualquiera de los dos errores $\varepsilon_1, \varepsilon_2, \varepsilon_3$ es cero.
+		\item Es simétrico, ya que el orden de los puntos es relevante.
+	\end{itemize}
+	
+	De estas propiedades se concluye que, cerca del mínimo $x^*$, los errores se relacionan aproximadamente por:
+	
+	\begin{equation}
+		\varepsilon_4 = M(\varepsilon_1\varepsilon_2 + \varepsilon_2\varepsilon_3 + \varepsilon_1\varepsilon_3),
+		\label{eq:8.9}
+	\end{equation}
+	
+	donde $M$ depende de los valores de las derivadas segunda y tercera de $f$ en $x^*$.
+	
+	Suponiendo que $\varepsilon_k \to 0$ con un orden mayor que la unidad, para $k$ grande el error se rige aproximadamente por:
+	\[
+	\varepsilon_{k+2} = M\,\varepsilon_k\,\varepsilon_{k-1}.
+	\]
+	
+	Definiendo $y_k = \log(M\varepsilon_k)$, esta relación se transforma en:
+	\[
+	y_{k+2} = y_k + y_{k-1},
+	\]
+	
+	cuya ecuación característica es:
+	\begin{equation}
+		\lambda^3 - \lambda - 1 = 0.
+	\end{equation}
+	
+	La raíz más grande de esta ecuación es $\lambda \approx 1.3$, lo cual determina la tasa de crecimiento de $y_k$ y constituye el orden de convergencia del método de ajuste cuadrático.
+	
+	No vamos a ahondar en los métodos de primer orden, por lo que resulta conveniente pasar directamente a los métodos de orden 2.
+	
+	\subsubsection{Orden 2: Método de Newton.}
+	
+	Supóngase que se desea minimizar una función $f$ de una sola variable $x$, y que en un punto $x_k$ es posible evaluar los tres valores $f(x_k)$, $f'(x_k)$ y $f''(x_k)$. Con esta información se construye una función cuadrática $q$ que coincide con $f$ en $x_k$ hasta las derivadas de segundo orden:
+	
+	\begin{equation}
+		q(x) = f(x_k) + f'(x_k)(x - x_k) + \frac{1}{2}\,f''(x_k)(x - x_k)^2.
+		\label{eq:8.20}
+	\end{equation}
+	
+	El estimado $x_{k+1}$ del punto mínimo de $f$ se obtiene hallando el punto donde se anula la derivada de $q$. Imponiendo la condición
+	
+	\begin{equation}
+		0 = q'(x_{k+1}) = f'(x_k) + f''(x_k)(x_{k+1} - x_k),
+	\end{equation}
+	
+	se obtiene la iteración de Newton
+	
+	\begin{equation}
+		x_{k+1} = x_k - \frac{f'(x_k)}{f''(x_k)}.
+		\label{eq:newton}
+	\end{equation}
+	
+	Este método requiere el cálculo de la primera y segunda derivada de $f$ en cada iteración, pero a cambio ofrece convergencia cuadrática cerca del mínimo, lo que lo hace significativamente más rápido que los métodos de orden cero cuando la evaluación de derivadas es factible.
+	
+	Para aplicar el método de Newton a la minimización de $f$, se observa que los puntos críticos satisfacen $g(x) = 0$ donde $g(x) = f'(x)$. La iteración de Newton es
+	\[
+	x_{k+1} = x_k - \frac{g(x_k)}{g'(x_k)} = x_k - \frac{f'(x_k)}{f''(x_k)},
+	\]
+	que coincide con \eqref{eq:newton}. La siguiente proposición establece la convergencia del método.
+	
+	\begin{prop}
+		Sea $g = f'$ una función con segunda derivada continua, y sea $x^*$ tal que $g(x^*) = 0$ y $g'(x^*) \neq 0$. Entonces, si $x_0$ es suficientemente cercano a $x^*$, la sucesión $\{x_k\}_{k=0}^{\infty}$ generada por el método de Newton converge a $x^*$ con un orden de convergencia de al menos dos.
+	\end{prop}
+	
+	\begin{proof}
+		En una región cercana a $x^*$ existen constantes $k_1$ y $k_2$ tales que:
+		\[
+		|g''(\xi)| < k_1 \qquad \text{y} \qquad |g'(\xi)| > k_2 > 0
+		\]
+		para todo $\xi$ en dicha región. Dado que $g(x^*) = 0$, se puede escribir:
+		\[
+		x_{k+1} - x^* = x_k - x^* - \frac{g(x_k) - g(x^*)}{g'(x_k)}
+		= -\frac{g(x_k) - g(x^*) + g'(x_k)(x^* - x_k)}{g'(x_k)}.
+		\]
+		
+		El término en el numerador es, por el teorema de Taylor, de orden superior al primero. Aplicando el resto de la expansión de Taylor alrededor de $x_k$, se obtiene:
+		\[
+		x_{k+1} - x^* = \frac{1}{2}\,\frac{g''(\xi)}{g'(x_k)}\,(x_k - x^*)^2,
+		\]
+		para algún $\xi$ entre $x^*$ y $x_k$. Por lo tanto, en la región cercana a $x^*$:
+		\begin{equation}
+			|x_{k+1} - x^*| \leq \frac{k_1}{2k_2}\,|x_k - x^*|^2.
+			\label{eq:newton_conv}
+		\end{equation}
+		
+		Si $|x_k - x^*|\cdot k_1/2k_2 < 1$, entonces $|x_{k+1} - x^*| < |x_k - x^*|$, y se concluye que, partiendo suficientemente cerca de la solución, el método converge a $x^*$ con un orden de convergencia de al menos dos.
+	\end{proof}
+	
+	\subsection{Clausura de algoritmos de busqueda lineal.}
+	
+	\begin{definicion}
+		El mapeo $S : \R^{2n} \to \R^n$ se define como:
+		\begin{equation}
+			S(x, d) = \left\{ y : y = x + \alpha d \ \text{para algún} \ \alpha \geq 0, \
+			f(y) = \min_{0 \leq \alpha < \infty} f(x + \alpha d) \right\}.
+			\label{eq:8.23}
+		\end{equation}
+	\end{definicion}
+	
+	En algunos casos puede haber múltiples vectores $y$ que alcancen el mínimo, por lo que $S$ es un mapeo multivaluado. Es necesario verificar que $S$ es cerrado.
+	
+	\begin{teo}
+		Sea $f$ continua en $\R^n$. Entonces el mapeo definido por \eqref{eq:8.23} es cerrado en $(x, d)$ si $d \neq 0$.
+	\end{teo}
+	
+	\begin{proof}
+		Sean $\{x_k\}$ y $\{d_k\}$ sucesiones tales que $x_k \to x$ y $d_k \to d \neq 0$. Supongamos además que $y_k \in S(x_k, d_k)$ e $y_k \to y$. Queremos ver que $y \in S(x, d)$.
+		
+		Para cada $k$, existe $\alpha_k \geq 0$ tal que $y_k = x_k + \alpha_k d_k$, de donde:
+		\[
+		\alpha_k = \frac{|y_k - x_k|}{|d_k|}.
+		\]
+		Tomando el límite del lado derecho, se obtiene:
+		\[
+		\alpha_k \to \alpha \equiv \frac{|y - x|}{|d|},
+		\]
+		y en consecuencia $y = x + \alpha d$.
+		
+		Resta demostrar que $y \in S(x, d)$. Para cada $k$ y cada $\alpha \geq 0$:
+		\[
+		f(y_k) \leq f(x_k + \alpha d_k).
+		\]
+		Tomando el límite $k \to \infty$ y usando la continuidad de $f$:
+		\[
+		f(y) \leq f(x + \alpha d).
+		\]
+		Como esto vale para todo $\alpha \geq 0$, se concluye:
+		\[
+		f(y) \leq \min_{0 \leq \alpha < \infty} f(x + \alpha d),
+		\]
+		y por lo tanto $y \in S(x, d)$.
+	\end{proof}
+	
+	La condición $d \neq 0$ es natural tanto teórica como prácticamente. Desde el punto de vista práctico, implica que al construir algoritmos la elección $d = 0$ debe ocurrir únicamente en el conjunto solución, pues si $d = 0$ no se realiza ninguna búsqueda. Teóricamente, el mapeo $S$ puede no ser cerrado en $d = 0$.
+	
+	\subsection{Busqueda inexacta.}
+	
+	En la práctica sabemos que no es posible encontrar mínimos fácilmente en cada busqueda lineal, por lo que introducimos el concepto de busqueda inexacta. En esta, terminamos de iterar antes de obtener el mínimo basandonos en reglas que nos aseguren ciertas propiedades sobre el paso.
+	
+	\subsubsection{Armijo.}
+	
+	Un criterio práctico y popular para terminar una búsqueda lineal es la regla de Armijo. La idea esencial es garantizar que el paso $\alpha$ seleccionado no sea ni demasiado grande ni demasiado pequeño. Se define
+	\[
+	\varphi(\alpha) = f(x_k + \alpha d_k).
+	\]
+	
+	La regla se implementa considerando recta
+	\[
+	\varphi(0) + \varepsilon\,\varphi'(0)\,\alpha, \qquad \varepsilon \in (0, 1) \ \text{fijo}.
+	\]
+	Un valor de $\alpha$ se considera no demasiado grande si el valor de la función cae por debajo de dicha recta, es decir, si
+	
+	\begin{equation}
+		\varphi(\alpha) \leq \varphi(0) + \varepsilon\,\varphi'(0)\,\alpha.
+		\label{eq:armijo}
+	\end{equation}
+	
+	Para garantizar que $\alpha$ no sea demasiado pequeño, se selecciona un valor $\eta > 1$ y se considera que $\alpha$ es no demasiado pequeño si:
+	\[
+	\varphi(\eta\alpha) > \varphi(0) + \varepsilon\,\varphi'(0)\,\eta\alpha.
+	\]
+	
+	En la práctica, la regla de Armijo se utiliza para definir una búsqueda lineal simplificada sin ajuste de curvas. El procedimiento es el siguiente, con valores típicos $\eta = 2$ o $\eta = 10$ y $\varepsilon = 0.2$:
+	
+	\begin{enumerate}
+		\item Se parte de un $\alpha$ arbitrario.
+		\item Si $\alpha$ satisface \eqref{eq:armijo}, se lo incrementa repetidamente por $\eta$ hasta que \eqref{eq:armijo} deje de cumplirse; luego se selecciona el penúltimo valor de $\alpha$.
+		\item Si $\alpha$ no satisface \eqref{eq:armijo}, se lo divide repetidamente por $\eta$ hasta que sí lo satisfaga.
+	\end{enumerate}
+	
+	\subsubsection{Condiciones de Wolfe}
+	
+	Las condiciones de Wolfe combinan la regla de Armijo con una condición adicional sobre la derivada, logrando un control más preciso sobre el tamaño del paso. Dado $\varepsilon \in (0, 1)$ y $\sigma \in (\varepsilon, 1)$, las condiciones son
+	
+	\begin{equation}
+		\varphi(\alpha) \leq \varphi(0) + \varepsilon\,\varphi'(0)\,\alpha,
+		\label{eq:wolfe1}
+	\end{equation}
+	\begin{equation}
+		\varphi'(\alpha) \geq \sigma\,\varphi'(0).
+		\label{eq:wolfe2}
+	\end{equation}
+	
+	La condición \eqref{eq:wolfe2} exige que la pendiente de $\varphi$ en $\alpha$ no sea demasiado negativa, lo que impide que el paso sea demasiado corto.
+	
+	
+	\subsubsection{Condiciones de Goldstein}
+	
+	Una alternativa a las condiciones de Wolfe es la regla de Goldstein, que controla simultáneamente que el paso $\alpha$ no sea ni demasiado grande ni demasiado pequeño mediante dos desigualdades simétricas. Dado $\varepsilon \in (0, \tfrac{1}{2})$, las condiciones de Goldstein son
+	
+	\begin{equation}
+		\varphi(0) + (1-\varepsilon)\,\varphi'(0)\,\alpha 
+		\leq \varphi(\alpha) \leq 
+		\varphi(0) + \varepsilon\,\varphi'(0)\,\alpha.
+		\label{eq:goldstein}
+	\end{equation}
+	
+	La desigualdad derecha coincide con la condición de Armijo \eqref{eq:armijo} y garantiza un descenso suficiente, evitando que $\alpha$ sea demasiado grande. La desigualdad izquierda, en cambio, impone una cota inferior sobre el decrecimiento de $\varphi$, evitando que $\alpha$ sea demasiado pequeño.
+	
+	\subsection{Método del descenso por gradiente.}
+	
+	One of the oldest and most widely known methods for minimizing a function
+	of several variables is the method of steepest descent (often referred to as the
+	gradient method). The method is extremely important from a theoretical view
+	point, since it is one of the simplest for which a satisfactory analysis exists. More
+	advanced algorithms are often motivated by an attempt to modify the basic steep
+	est descent technique in such a way that the new algorithm will have superior
+	convergenceproperties. The method of steepest descent remains, therefore, not only
+	the technique most often first tried on a new problem but also the standard of ref
+	erence against which other techniques are measured. The principles used for its
+	analysis will be used throughout this book
 	
 	\bibliographystyle{plainnat}
 	\bibliography{referencias}

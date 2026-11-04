@@ -1,0 +1,667 @@
+\documentclass[11pt,a4paper]{article}
+
+%  Idioma, codificación y página
+\usepackage[spanish]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[a4paper,margin=3.2cm,headheight=14pt,headsep=1cm]{geometry}
+
+%  Matemática y utilidades
+\usepackage{amssymb,amsmath,amsthm,amsfonts}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tikz-cd}
+\usepackage[shortlabels,inline]{enumitem}
+
+%  Tipografía: texto y matemática en Times (como Lyons--Peres)
+\IfFileExists{newtxtext.sty}{%
+  \usepackage{newtxtext}%
+  \usepackage{newtxmath}%
+}{%
+  \usepackage{mathptmx}%
+}
+\usepackage{esint}
+\usepackage{microtype}
+
+% Colores: gris para los números, verde oscuro para los enlaces
+\definecolor{LPgray}{gray}{0.55}
+\definecolor{LPgreen}{RGB}{6,92,10}
+
+% Fuente de los títulos: Times negrita, condensada horizontalmente
+\newcommand{\LPscale}{0.8}
+\newlength{\LPw}
+% ancho para las cajas condensadas = (5/4)(argumento), solo con enteros
+\newcommand{\LPsetwidth}[1]{\setlength{\LPw}{\dimexpr 5\dimexpr #1\relax/4\relax}}
+\newcommand{\LPhead}{\normalfont\bfseries}
+
+%  Atajos: conjuntos 
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\ds}{\displaystyle}
+
+%  Atajos: proba
+\newcommand{\Prob}{\textbf{P}}          
+\newcommand{\E}{\textbf{E}}             
+\newcommand{\ind}[1]{\mathbf{1}_{#1}}   
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Corr}{Corr}
+\newcommand{\dto}{\xrightarrow{\;d\;}}        % convergencia en distribución
+\newcommand{\pto}{\xrightarrow{\;\Prob\;}}    % convergencia en probabilidad
+\newcommand{\asto}{\xrightarrow{\;\mathrm{c.s.}\;}}  % casi segura
+\newcommand{\iid}{\text{i.i.d.}}
+
+%  Más
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\newcommand{\dd}{\,\mathrm{d}}                          % \int f \dd x
+\newcommand{\deriv}[2]{\frac{\mathrm{d}#1}{\mathrm{d}#2}}
+\newcommand{\pderiv}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\defeq}{\coloneqq}                           % :=
+\newcommand{\inv}{^{-1}}
+\newcommand{\cl}[1]{\overline{#1}}                       % clausura
+
+% Delimitadores que se ajustan solos (con asterisco crecen: \abs*{...})
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\set}{\lbrace}{\rbrace}
+\newcommand{\inner}[2]{\left\langle #1,\, #2\right\rangle}
+
+% Nota para uno mismo, bien visible
+\newcommand{\todo}[1]{{\color{red}[\textbf{TODO:} #1]}}
+
+% Término que se define: negrita cursiva, como en el libro
+\newcommand{\defn}[1]{\textbf{\emph{#1}}}
+
+%  Secciones: centradas, con el número en gris
+\usepackage{titlesec}
+\titleformat{\section}[block]{\centering\large\bfseries}%
+  {\textcolor{LPgray}{\thesection}\hspace{0.6em}}{0pt}{}
+\titleformat{name=\section,numberless}[block]{\centering\large\bfseries}{}{0pt}{}
+\titlespacing*{\section}{0pt}{3.2ex plus 1ex minus .5ex}{1.8ex plus .3ex}
+
+\titleformat{\subsection}[block]{\bfseries}%
+  {\textcolor{LPgray}{\thesubsection}\hspace{0.6em}}{0pt}{}
+\titlespacing*{\subsection}{0pt}{2.6ex plus 1ex minus .5ex}{1.2ex plus .2ex}
+
+\titleformat{\paragraph}[runin]{\bfseries\itshape}{}{0pt}{}[.]
+\titlespacing*{\paragraph}{0pt}{1.5ex plus .5ex}{0.6em}
+
+%  Encabezados y pies de página
+\usepackage{fancyhdr}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\hspace{0.6em}#1}}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[L]{\small\textit{\rightmark}}
+\fancyhead[R]{\small\textbf{\thepage}}
+\fancypagestyle{plain}{%
+  \fancyhf{}%
+  \renewcommand{\headrulewidth}{0pt}%
+  \fancyhead[R]{\small\textbf{\thepage}}%
+}
+
+%  Enlaces en verde y referencias cruzadas
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=LPgreen,citecolor=LPgreen,
+  urlcolor=LPgreen}
+% cleveref: \cref{etiqueta} escribe "Teorema 3.1", "Definición 2.1", etc.,
+% aunque los entornos compartan contador. Plural automático con varias etiquetas.
+\usepackage[nameinlink]{cleveref}
+\crefname{teo}{Teorema}{Teoremas}
+\crefname{lem}{Lema}{Lemas}
+\crefname{prop}{Proposición}{Proposiciones}
+\crefname{coro}{Corolario}{Corolarios}
+\crefname{conj}{Conjetura}{Conjeturas}
+\crefname{defi}{Definición}{Definiciones}
+\crefname{obs}{Observación}{Observaciones}
+\crefname{ejemplo}{Ejemplo}{Ejemplos}
+\crefname{notacion}{Notación}{Notaciones}
+\crefname{ej}{Ejercicio}{Ejercicios}
+\crefname{section}{Sección}{Secciones}
+\crefname{subsection}{Subsección}{Subsecciones}
+\crefname{equation}{ecuación}{ecuaciones}
+\crefname{figure}{Figura}{Figuras}
+\crefname{table}{Tabla}{Tablas}
+\Crefname{equation}{Ecuación}{Ecuaciones}
+
+%  Teoremas: nombre en negrita, enunciado en cursiva, fin de prueba ◀
+\newtheoremstyle{LPplain}%
+  {9pt}{9pt}{\itshape}{0pt}{\bfseries}{.}{0.5em}%
+  {\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}
+\newtheoremstyle{LPdef}%
+  {9pt}{9pt}{\normalfont}{0pt}{\bfseries}{.}{0.5em}%
+  {\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}
+\newtheoremstyle{LPrem}%
+  {9pt}{9pt}{\normalfont}{0pt}{\itshape}{.}{0.5em}%
+  {\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}
+
+\numberwithin{equation}{section}
+
+\theoremstyle{LPplain}
+\newtheorem{teo}{Teorema}[section]
+\newtheorem{lem}[teo]{Lema}
+\newtheorem{prop}[teo]{Proposición}
+\newtheorem{coro}[teo]{Corolario}
+\newtheorem{conj}[teo]{Conjetura}
+\newtheorem*{teo*}{Teorema}
+
+\theoremstyle{LPdef}
+\newtheorem{defi}[teo]{Definición}
+\newtheorem{ej}{Ejercicio}[section]
+\newtheorem*{ej*}{Ejercicio}
+
+\theoremstyle{LPrem}
+\newtheorem{obs}[teo]{Observación}
+\newtheorem{ejemplo}[teo]{Ejemplo}
+\newtheorem{notacion}[teo]{Notación}
+
+\renewcommand{\qedsymbol}{$\blacktriangleleft$}
+\renewcommand{\proofname}{Demostración}
+
+%  Título y resumen
+\makeatletter
+\renewcommand{\maketitle}{%
+  \thispagestyle{plain}%
+  \begin{center}
+    \textcolor{LPgray}{\rule{\textwidth}{0.4pt}}\par
+    \vspace{1.2em}
+    \LPsetwidth{\textwidth}%
+    \scalebox{\LPscale}[1]{\parbox[t]{\LPw}{\centering
+      \LPhead\fontsize{28}{31}\selectfont \@title\par}}\par
+    \vspace{1em}
+    {\large \@author\par}
+    \vspace{0.3em}
+    {\normalsize \@date\par}
+    \vspace{1em}
+    \textcolor{LPgray}{\rule{\textwidth}{0.4pt}}\par
+  \end{center}
+  \vspace{1em}}
+
+\renewenvironment{abstract}{%
+  \begin{center}\begin{minipage}{0.86\textwidth}
+  \small\noindent\textbf{\abstractname.}\ }{%
+  \end{minipage}\end{center}\vspace{0.5em}}
+\makeatother
+
+%  Datos del documento
+\title{Paseos al azar y redes eléctricas}
+\author{Lolistone
+}
+\date{\today}
+
+%  Documento
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+    Veremos que puede pensarse a las cadenas de Markov reversibles como
+    redes eléctricas. Probaremos resultados clásicos de la teoría de Markov
+    apoyandonos en la intuición física ganada.
+\end{abstract}
+
+% \tableofcontents   % descomentar si el texto es largo
+
+\section{¿Redes eléctricas, cadenas reversibles?}
+
+  Informalmente, una red eléctrica es un circuito de toda la vida, con
+  sus leyes y propiedades. Mientras que una cadena reversible es una que 
+  podemos mirar tanto de adelante hacia atrás como de atrás hacia adelante,
+  de ahí el \emph{reversible}. Sin haberlos definido formalmente, a simple 
+  vista no se ve ninguna conexión muy clara, sin embargo existe y nos será
+  muy útil para probar resultados acerca de estas cadenas. 
+
+\section{Preliminares}
+
+\begin{defi}[Cadena reversible]
+  Una cadena \defn{reversible} es una cadena de Markov que cumple 
+  \defn{balance detallado}, es decir, existe $\pi$ una medida tal que
+  \begin{equation}\label{eq:bd}
+   \pi(x)\Prob(x,y) = \pi(y)\Prob(y,x), \quad \forall x,y \in \mathcal{X}.
+  \end{equation}
+   donde $\Prob$ es la matriz de transición de la cadena y $\mathcal{X}$ el espacio
+  de estados.
+\end{defi}
+
+\begin{obs}
+  ¿Donde está lo de reversible? Bueno, notemos que la condición de balance detallado
+  nos dice que si $X_0 \sim \pi$,
+  $$\Prob(X_0 = x, X_1 = y) = \Prob(X_0 = y, X_1 = x), \quad \forall x,y \in \mathcal{X}.$$
+  Más aún, via inducción uno puede probar que 
+  $$(X_0, X_1, \dots, X_k) \sim (X_k, \cdots, X_1, X_0), \quad \forall k \in \N.$$
+  Esto nos dice que ver la película al derecho o al revés es lo mismo.
+\end{obs}
+
+\begin{obs}
+  \textbf{Ojo}, en ~\ref{eq:bd} $\pi$ puede no ser una distribución. 
+\end{obs}
+
+\begin{defi}[Red]\label{def:red}
+  Una \defn{red} es un grafo $G=(V,E)$ no orientado junto con
+  $ \{ C(e) \}_{e\in E}$ con $c \geq 0$ llamada \defn{conductancia}. Llamamos
+  \defn{resistencia} y notamos $\{r(e)\}_{e\in E}$ a su inversa, $r(e) = \frac{1}{c(e)}$.
+\end{defi}
+
+\begin{notacion}
+  Escribimos $(G, \{C(e)\}_{e\in E})$ para una red.
+\end{notacion}
+
+\begin{obs}
+  Si bien sobre $G$ no imponemos ninguna condición, los primeros resultados
+  que probemos sobre redes van asumir que este es finito.
+\end{obs}
+
+Ahora que ya sabemos que es cada cosa veamos que dada una cadena podemos 
+obtener una red y viceversa. Comencemos tomando una red $(G, \{C(e)\}_{e\in E})$
+y consideremos la matriz de transición $\Prob$ dada por 
+$$ \Prob(x, y) = \frac{c(x,y)}{c(x)}, \quad c(x) = \sum_{y \colon y \sim x} c(x, y)$$
+donde $y \sim x$ si $y$ es vecino de $x$. A este proceso también lo vamos a llamar
+\defn{paseo al azar pesado}. Consideremos ahora
+$$ \pi(x) = \frac{c(x)}{c_G}, \quad c_G = \sum_{x \in V} c(x).$$
+Es fácil chequear que esta condición cumple \emph{balance detallado} y por lo tanto
+tenemos una cadena reversible. Supongamos ahora que tenemos un cadena reversible en un
+espacio de estados finito, veamos que podemos representarla como un paseo pesado sobre 
+una red, definimos $G$ un grafo con vertices en $\mathcal{X}$, $x \sim y$ si $P(x, y) > 0$
+y 
+$$c(x, y) = \pi(x)\Prob(x, y), \quad \forall x,y \in \mathcal{X}.$$
+Con esta elección de pesos tenemos que $c(x) = \pi(x)$ y la matriz asociada es $P$.
+
+\begin{obs}
+  $\pi$ no necesariamente es distribución. Por ejemplo, en un paseo al azar simple podemos
+  tomar $\pi(x) = deg(x)$. En este caso, $c(x, y) = 1.$
+\end{obs}
+
+\section{Funciones armónicas y tiempos de llegada}
+
+Dados $A, Z$ subconjunto disjuntos del espacio de estados, es de nuestro interés por ejemplo
+ver la probabilidad llegar primero a $A$ que a $Z$ dado que comenzamos en un estado cualquiera $x$.
+Es decir, nos interesa estudiar
+$$F(x) = \Prob_x[\tau_A < \tau_Z].$$
+donde $\tau_A = \min\{t \geq 0 \colon X_t \in A\}$. También vamos a considerar 
+$\tau_{A}^{+} = \min\{t > 0 \colon X_t \in A\}$ que difiere con el primer tiempo de parada cuando
+el proceso comienza en $A$. Veamos que tenemos,
+\begin{align*}
+  F(x) &= \sum_{y \sim x} \Prob_x[\text{el primer paso es } y]\,
+          \Prob_x[\tau_A < \tau_Z \mid \text{el primer paso es } y] \\
+       &= \sum_{y \sim x} P(x,y)\, \Prob_y[\tau_A < \tau_Z] \\
+       &= \sum_{y \sim x} P(x,y)\, F(y).
+\end{align*}
+Si la cadena es reversible esto es 
+$$ \frac{1}{\pi(x)} \sum_{y \sim x} c(x, y) F(y),$$
+y si consideramos un paseo al azar simple obtenemos
+$$ \frac{1}{d(x)} \sum_{y \sim x} F(y).$$
+Esta última expresión parece una versión discreta de nuestra noción 
+de función armónica de toda la vida, esto motiva la siguiente definición.
+
+\begin{defi}[Armónica]
+Una función $h \colon \mathcal{X} \to \R$ es \defn{armónica} en $x$ si
+$$  h(x) = \sum_{y} P(x,y)\,h(y). $$
+\end{defi}
+
+Al igual que con la noción usual vale un \defn{principio del máximo}.
+
+\begin{prop}[Principio del máximo]
+  Sea $W$ un conjunto de estados contable de un espacio de estados $\mathcal{X}$.
+  Si $h : \mathcal{X} \to \R$ es armónica y su supremo sobre $\mathcal{X}$ se alcanza en algún
+  $x_0 \in W$, entonces es constante en todos los estados accesibles desde $W$.
+\end{prop}
+
+\begin{proof}
+  Sea $K \defeq \{x \in \mathcal{X} \colon h(x) = \sup_{\mathcal{X}}{h} \}$. 
+  Tomemos $x \in K \cap W$ si $P(x, y) > 0$ tenemos que $y \in K$ pues si $h(y) < h(x)$ 
+  \begin{align*}
+    h(x) &= \sum_{z \in \mathcal{X}} P(x, z) h(z) \\ 
+         &= h(y) P(x,y) + \sum_{z \in \mathcal{X} \setminus \{y\}} P(x, z) h(z) \\
+         &< h(x) P(x,y) + \sum_{z \in \mathcal{X} \setminus \{y\}} P(x, z) h(x) = h(x).
+  \end{align*}
+  Lo cual es absurdo. Notemos que en el último paso usamos $h(z) \leq h(x)$ y la suposición. 
+\end{proof}
+
+\begin{prop}[Principio de unicidad]
+  Sea $W$ un subconjunto finito de estado de $\mathcal{X}$ un espacio contable. Supongamos
+  que se puede llegar a todo elemento de $\mathcal{X}$ desde $W$. Si $h, g : \mathcal{X} \to \R$
+  son armónicas en $W$ y coinciden entonces son iguales.
+\end{prop}
+
+\begin{proof} Consideremos $f = h - g$. Cómo $W$ es finito y fuera de este vale $0$
+$f$ alcanza máximo en $\mathcal{X}$, si $x \notin W$ entonces $f \leq 0$, y si $x \in W$
+por el principio del máximo $f = 0$ en todos lados. Luego, $f \leq 0$. Por simetría, 
+mirando $-f$ tenemos que $f \geq 0$ y por lo tanto es identicamente nula. 
+\end{proof}
+
+Ahora probemos un resultado que nos va a ser muy útil a futuro.
+
+\begin{prop}[Principio de existencia]\label{prop:extension}
+  Sea $(X_t)_t$ una cadena de Markov irreducible, $W \subset \mathcal{X}$ con $\mathcal{X}$ contable 
+  y $\mathcal{X} \setminus W$ finito y $h_{W} \colon W \to \R$. La función $h(x) = \E_x h_W(X_{\tau_W})$ es la única
+  extensión armónica de $h_W$ a $\mathcal{X}\setminus W$.  
+\end{prop}
+
+\begin{proof}
+  Por el principio del máximo y el de unicidad basta ver que $h$ es armónica. Es fácil chequear 
+  que coinciden en $B$ veamos que ocurre en el complemento. Sea $x \notin B$,
+  \begin{align*}
+    \E_x h_B(X_{\tau_B}) &= \sum_{y \in X} P(x, y) \E_x[h_B(X_{\tau_B}) \mid X_1 = y] \\
+                         &= \sum_{y \in X} P(x, y) \E_y h_B(X_{\tau_B}). 
+  \end{align*}
+  Luego, $h$ es armónica.
+\end{proof}
+
+\section{Circuitos}
+
+De ahora en adelante vamos a distinguir dos conjuntos de nodos disjuntos que notaremos 
+$A, Z$ y llamaremos \defn{entrada} y \defn{salida} respectivamente. Usualmente ambos serán solo un punto.
+
+\begin{defi}[Voltaje]
+  Dados $A, Z \subset \mathcal{X}$ disjuntos llamamos \defn{voltaje} a (la única) función de los vertices
+  armónica en $(A \cup Z)^{c}$.
+\end{defi}
+
+\begin{obs}
+  Es única dado que sabemos cuanto vale en $A, Z$.
+\end{obs}
+
+\begin{defi}[Corriente]
+  Dado un voltaje $v$, definimos la $\defn{corriente}$ i
+  como
+  $$ i(x, y) = (v(x) - v(y))c(x, y).$$
+\end{defi}
+
+\begin{obs}
+Notemos que la corriente es antisimétrica, es decir, $i(x, y) = -i(y, x)$
+y, si $x \notin A\cup Z$
+\begin{align*}
+  \sum_{y \sim x} i(x, y) &= v(x) \sum_{y\sim x} c(x, y) + \sum_{y \sim x} v(y) c(x, y) \\
+                          &= v(x) c(x) + c(x) \sum_{y \sim x} v(y) p(x, y) \\
+                          &= 0. 
+\end{align*}
+Donde la ultima igualdad vale por ser $v$ armónica. Esto nos dice que el "flujo" neto 
+en un punto es $0$, en analogía con el cálculo tradicional esta suma se suele notar 
+como $\text{div }\theta(x).$
+\end{obs}
+
+\begin{defi}[Intesidad]
+  Dado $a$ un punto de entrada o fuente, llamamos \defn{intensidad de corriente} 
+  a la corriente que sale desde $a$, es decir,
+  a la magnitud $\sum_{x \sim a} i(a, x)$  
+\end{defi}
+
+\begin{defi}[Flujo]
+  Dados $A, Z$ conjuntos llamamos \defn{flujo} entre $A$ y $Z$ a una función $\theta : \mathcal{X} \times \mathcal{X} \to \R$ 
+  tal que $\theta(x,y) = -\theta(y, x)$ para todo $x, y \in \mathcal{X}$ y 
+  $\sum_{y \sim x} \theta(x , y) = 0$ para todo $x \notin A\cup Z$.
+\end{defi}
+
+A esta definiciones y las propiedades que vamos a mencionar a continuación se las 
+llaman leyes en el contexto de la física.
+
+\paragraph{Ley de Ohm} Si $x \sim y$ entonces 
+$$i(x, y) r(x, y) = v(x) - v(y).$$
+
+\paragraph{Ley de nodos de Kirchoff} La corriente $i$ es un flujo entre 
+$A$ y $Z$.
+
+\paragraph{Ley de ciclos de Kirchoff} Si $x_1 \sim x_2 \sim \dots \sim x_n = x_1$ entonces 
+$$\sum_{k=0}^{n-1} i(x_k, x_{k+1})r(x_k, x_{k+1}) = 0.$$
+
+\section{Probabilidad de escape y resistencia}
+
+Volvamos a pensar en probabilidades, supongamos que tenemos $a, z \in \mathcal{X}$ un espacio
+de estados con $a \neq 0$, pdoríamos preguntarnos cual es la probabilidad dado que comenzamos
+en $a$ de llegar a $z$ antes de volver, esto es $\Prob_a[\tau_z < \tau_{a}^{+}]$. Comencemos 
+pensando el problema partiendo de un estado $x$ cualquiera, vale que 
+$$\E_x 1_{\{z\}}(X_{\tau_{\{a,z\}}}) = \Prob_x[\tau_z < \tau_{a}]$$
+por el principio de existencia tenemos que esta es la única extensión armónica de 
+$\ind{{\{a,z\}}}$. Cómo la función
+$$ x \mapsto \frac{v(a) - v(x)}{v(a) - v(z)} $$
+es armónica y vale lo mismo en los bordes tenemos que
+$$ \Prob_x[\tau_z < \tau_{a}] = \frac{v(a) - v(x)}{v(a) - v(z)}.$$
+Luego,
+$$ 
+\Prob_a[\tau_z < \tau_{a}^{+}] = \sum_{x \in V} P(a, x) \Prob_x[\tau_z < \tau_{a}] = 
+\sum_{x \sim a} \frac{c(a, x)}{c(x)} \frac{v(a) - v(x)}{v(a) - v(z)} = \frac{\sum_{x \sim a} i(x, a)}{c(x) (v(a) - v(z))}.
+$$
+Donde la última igualdad vale por ley de Ohm. Este desarrollo que no parece tener un fin
+claro motiva la siguiente definición.
+
+\begin{defi}[Resistencia y conductancia efectiva]
+  Definimos la \defn{resistencia efectiva} entre $a$ y $z$ como
+  $$ \mathscr{R}(a \leftrightarrow z) = \frac{v(a) - v(z)}{\sum_{x \sim a} i(x, a)}.$$
+  Además, definimos la \defn{conductancia efectiva} cómo su inverso multiplicativo y notamos
+  $\mathscr{C}(a \leftrightarrow z).$
+\end{defi}
+
+\begin{obs}
+  ¿De donde viene el nombre resistencia efectiva? Dada una red, si la reemplazamos
+  por una con solo dos vertices, $a$ y $z$, unidos por una arista con resistencia 
+  $\mathscr{R}(a \leftrightarrow z)$ si ahora aplicamos el mismo voltaje que a la original
+  en estos dos puntos la intensidad de corriente va a ser la misma.
+\end{obs}
+
+\begin{defi}[Green]
+  Dado un tiempo de parada $\tau$ definimos la \defn{función de Green} para un paseo
+  al azar como
+  $$G_\tau(a, x) = \E_a[\text{número de visitas antes de } \tau] = \E_a[\sum_{t\geq0} \ind{X_t = x, \tau > t}]$$
+\end{defi}
+
+\begin{obs}
+  $G_z(a, a) = c(a) \mathscr{R}(a \leftrightarrow z)$ pues el número de visitas
+  a $a$ partiendo desde $a$ antes de llegar a $z$ es una geométrica de 
+  parámetro $\Prob_a[\tau_z < \tau_{a}^{+}].$ 
+\end{obs}
+
+\section{Simplificando redes}
+
+\paragraph{Resistencias en serie} Dos aristas con resistencias $r_1, r_2$
+en serie son equivalente a una única con resistencia $r_1 + r_2$. Más precisamente,
+si $w \in V \setminus {A \cup Z}$ es un nodo de grado dos con vecinos $u_1, u_2$ y 
+reemplazamos las aristas $(u_1, w), (w, u_2)$ por $(u_1, u_2)$ con resistencia
+$r(u_1, w) + r(w, u_2)$, entonces los potenciales y corriente en $G\setminus\{w\}$
+permanecen iguales y la corriente entre $u_1$ y $u_2$ es $i(u_1, w)$. 
+
+\begin{figure}[ht]
+  \centering
+  \begin{tikzpicture}[
+      line width=0.3pt,                      % trazo fino
+      every node/.style={font=\small},
+      pt/.style={circle,fill,inner sep=1.1pt}]
+    % serruchito de resistencia: 3 picos y 3 valles (ancho total 1.2)
+    \def\zz{-- ++(0.1,0.15) -- ++(0.2,-0.3) -- ++(0.2,0.3) -- ++(0.2,-0.3)
+            -- ++(0.2,0.3) -- ++(0.2,-0.3) -- ++(0.1,0.15)}
+
+    % --- Red original: u1 --- w --- u2 ---
+    \node[pt,label=above:{$u_1$}] (u1) at (0,0) {};
+    \node[pt,label=above:{$w$}]   (w)  at (2.82,0) {};
+    \node[pt,label=above:{$u_2$}] (u2) at (5.64,0) {};
+    \draw (u1) -- ++(0.81,0) \zz -- (w);
+    \draw (w)  -- ++(0.81,0) \zz -- (u2);
+    \node at (1.41,-0.5) {$r(u_1,w)$};
+    \node at (4.23,-0.5) {$r(w,u_2)$};
+    % el resto de la red sale de u1 y de u2
+    \draw (u1) -- ++(-0.5,0.3);  \draw (u1) -- ++(-0.5,-0.3);
+    \draw (u2) -- ++(0.5,0.3);   \draw (u2) -- ++(0.5,-0.3);
+  \end{tikzpicture}
+  \label{fig:serie}
+\end{figure}
+
+\begin{proof}
+  La demostración consiste en ver que en la nueva red  $G \setminus \{w\}$ la corriente 
+  y el voltaje siguen siendo igualess, esto lo hacemos chequeando la ley de Ohm y Kirchoff.
+\end{proof}
+
+\paragraph{Resistencias en paralelo} Dos aristas con conductancia $c_1, c_2$ que unen los mismos
+vertices son equivalentes a una única con conductancia $c_1 + c_2$. Luego, 
+todos los voltajes y corrientes se mantienen igual en $G \setminus \{e_1, e_2\}$
+y la corriente $i(e) = i(e_1) + i(e_2)$. Esto vale para infinitas aristas en paralelo.
+
+\begin{figure}[ht]
+  \centering
+  \begin{tikzpicture}[
+      line width=0.3pt,                      % trazo fino
+      every node/.style={font=\small},
+      pt/.style={circle,fill,inner sep=1.1pt}]
+    % serruchito de resistencia: 3 picos y 3 valles (ancho total 1.2)
+    \def\zz{-- ++(0.1,0.15) -- ++(0.2,-0.3) -- ++(0.2,0.3) -- ++(0.2,-0.3)
+            -- ++(0.2,0.3) -- ++(0.2,-0.3) -- ++(0.1,0.15)}
+
+    % --- Red original: dos aristas en paralelo ---
+    \node[pt,label={[xshift=-0.45cm]left:{$w_1$}}]  (w1) at (0,0) {};
+    \node[pt,label={[xshift=0.45cm]right:{$w_2$}}] (w2) at (5,0) {};
+    \draw (w1) to[out=90,in=180] (0.9,0.9) -- (1.9,0.9) \zz -- (4.1,0.9)
+          to[out=0,in=90] (w2);
+    \draw (w1) to[out=-90,in=180] (0.9,-0.9) -- (1.9,-0.9) \zz -- (4.1,-0.9)
+          to[out=0,in=-90] (w2);
+    \node at (2.5,1.3)  {$e_1$};
+    \node at (2.5,-1.3) {$e_2$};
+    % el resto de la red sale de w1 y de w2
+    \draw (w1) -- ++(-0.5,0.3);  \draw (w1) -- ++(-0.5,-0.3);
+    \draw (w2) -- ++(0.5,0.3);   \draw (w2) -- ++(0.5,-0.3);
+  \end{tikzpicture}
+  \label{fig:paralelo}
+\end{figure}
+
+\begin{proof}
+  Chequear Ohm y Kirchoff.
+\end{proof}
+
+Veamos que efectivamente nos ayuda a resolver problemas con un ejemplo.
+
+\begin{ejemplo}\label{ej:arbol-simetrico}
+  Sea $\Gamma$ un árbol con raíz $\rho$ y sea $\Gamma_n$ su \defn{nivel $n$},
+  es decir, el conjunto de vértices a distancia $n$ de $\rho$. Pedimos dos
+  simetrías:
+  \begin{enumerate}[(i)]
+    \item todos los vértices de un mismo nivel tienen el mismo grado
+          (\defn{árbol esféricamente simétrico});
+    \item todas las aristas que unen el nivel $i-1$ con el nivel $i$ tienen la
+          misma resistencia, que llamamos $r_i$, para $i \ge 1$.
+  \end{enumerate}
+  Por simetría, el voltaje es constante en cada nivel, así que pegar en un solo
+  vértice todos los vértices de un nivel no altera las corrientes ni la
+  resistencia efectiva. Después de pegar, entre el nivel $i-1$ y el nivel $i$
+  quedan $\lvert\Gamma_i\rvert$ aristas en paralelo (una por cada vértice del
+  nivel $i$), todas de resistencia $r_i$; en conjunto equivalen a una
+  resistencia $r_i/\lvert\Gamma_i\rvert$. Estos tramos quedan en serie, y las
+  resistencias en serie se suman:
+  \begin{equation}\label{eq:reff-arbol}
+    \mathscr{R}(\rho \leftrightarrow \Gamma_M)
+      = \sum_{i=1}^{M} \frac{r_i}{\lvert\Gamma_i\rvert}.
+  \end{equation}
+  Como la conductancia total en $\rho$ es $c(\rho) = \lvert\Gamma_1\rvert / r_1$,
+  la fórmula de la probabilidad de escape, $\Prob_\rho\{\tau_{\Gamma_M} < \tau_\rho^+\}
+  = 1/\bigl(c(\rho)\,\mathscr{R}(\rho \leftrightarrow \Gamma_M)\bigr)$, da
+  \begin{equation}\label{eq:escape-arbol}
+    \Prob_\rho\{\tau_{\Gamma_M} < \tau_\rho^+\}
+      = \frac{r_1/\lvert\Gamma_1\rvert}{\displaystyle\sum_{i=1}^{M} r_i/\lvert\Gamma_i\rvert}.
+  \end{equation}
+  Haciendo $M \to \infty$, el límite es positivo si y solo si la serie del
+  denominador converge:
+  \[
+    \lim_{M\to\infty} \Prob_\rho\{\tau_{\Gamma_M} < \tau_\rho^+\} > 0
+    \iff \sum_{i=1}^{\infty} \frac{r_i}{\lvert\Gamma_i\rvert} < \infty.
+  \]
+  En otras palabras, la caminata es transitoria exactamente cuando esa serie
+  converge.
+\end{ejemplo}
+
+\section{Energía}
+
+\begin{defi}[Energía]
+  Definimos la \defn{energía} de un flujo $\theta$ como
+  $$\mathcal{E}(\theta) = \sum_e \theta^{2}(e)r(e).$$
+\end{defi}
+
+\begin{teo}[Principio de Thomson]
+  Dado un grafo finito y conexo,
+  $$\mathcal{E}(\theta) = \inf \{ \mathcal{\theta} \colon \theta \text{ es un flujo unitario de } a \text{ a } z \}$$
+  donde flujo unitario hace referencia a intensidad de corriente igual a uno.
+\end{teo}
+
+\section{Resultado principal} 
+
+\begin{teo}[Criterio de Nash-Williams]\label{teo:principal}
+  Si $\langle \Pi_n\rangle$ es una sucesión de cortes disjuntos que separan
+  $a$ de $\infty$, entonces
+  \[
+    \mathscr{R}(a\leftrightarrow\infty) \;\ge\; \sum_n
+    \Bigl(\sum_{e\in\Pi_n} c(e)\Bigr)^{-1}.
+  \]
+\end{teo}
+
+\begin{proof}
+  Por el principio de Thomson, $\mathscr{R}$ es el mínimo de la energía de
+  un flujo unitario. Aplicando Cauchy--Schwarz en cada corte,
+  \[
+    1 \le \Bigl(\sum_{e\in\Pi_n}\abs{\theta(e)}\Bigr)^2
+    \le \Bigl(\sum_{e\in\Pi_n} r(e)\,\theta(e)^2\Bigr)
+        \Bigl(\sum_{e\in\Pi_n} c(e)\Bigr).
+  \]
+  Sumando sobre $n$ se obtiene la desigualdad.
+\end{proof}
+
+\begin{coro}
+  Si la serie diverge, la caminata es recurrente.
+\end{coro}
+
+\begin{lem}\label{lem:aux}
+  Sea $(X_n)$ una sucesión de variables $\iid$ con $\E\abs{X_1}<\infty$.
+  Entonces $\frac1n\sum_{k\le n}X_k \asto \E[X_1]$.
+\end{lem}
+
+\begin{prop}
+  Si $X_n \pto X$, entonces $X_n \dto X$.
+\end{prop}
+
+\begin{obs}
+  Las flechas \verb|\dto|, \verb|\pto| y \verb|\asto| abrevian los tres
+  modos de convergencia usuales.
+\end{obs}
+
+\begin{ejemplo}
+  En $\Z^2$ los cortes concéntricos tienen $O(k)$ aristas, así que la serie
+  armónica diverge y la caminata simple es recurrente.
+\end{ejemplo}
+
+\begin{ej}
+  Probar que $\Z^3$ es transitoria construyendo un flujo de energía finita.
+\end{ej}
+
+\section{Comentarios finales}
+
+Listas numeradas y con viñetas:
+\begin{enumerate}[(a)]
+  \item primer punto;
+  \item segundo punto.
+\end{enumerate}
+
+\paragraph{Un párrafo con título} Texto que sigue en la misma línea.
+
+\todo{completar esta sección}
+
+%  Bibliografía
+\begin{thebibliography}{99}
+  \bibitem{LP} R.~Lyons y Y.~Peres, \emph{Probability on Trees and
+    Networks}, Cambridge University Press, 2016.
+  \bibitem{LPW} D.~A.~Levin, Y.~Peres y E.~L.~Wilmer, \emph{Markov Chains
+    and Mixing Times}, 2.ª ed., American Mathematical Society, 2017.
+\end{thebibliography}
+
+\end{document}
