@@ -437,7 +437,7 @@ $$ \Prob_x[\tau_z < \tau_{a}] = \frac{v(a) - v(x)}{v(a) - v(z)}.$$
 Luego,
 $$ 
 \Prob_a[\tau_z < \tau_{a}^{+}] = \sum_{x \in V} P(a, x) \Prob_x[\tau_z < \tau_{a}] = 
-\sum_{x \sim a} \frac{c(a, x)}{c(x)} \frac{v(a) - v(x)}{v(a) - v(z)} = \frac{\sum_{x \sim a} i(x, a)}{c(x) (v(a) - v(z))}.
+\sum_{x \sim a} \frac{c(a, x)}{c(x)} \frac{v(a) - v(x)}{v(a) - v(z)} = \frac{\sum_{x \sim a} i(x, a)}{c(a) (v(a) - v(z))}.
 $$
 Donde la última igualdad vale por ley de Ohm. Este desarrollo que no parece tener un fin
 claro motiva la siguiente definición.
@@ -456,17 +456,30 @@ claro motiva la siguiente definición.
   en estos dos puntos la intensidad de corriente va a ser la misma.
 \end{obs}
 
-\begin{defi}[Green]
-  Dado un tiempo de parada $\tau$ definimos la \defn{función de Green} para un paseo
-  al azar como
-  $$G_\tau(a, x) = \E_a[\text{número de visitas antes de } \tau] = \E_a[\sum_{t\geq0} \ind{X_t = x, \tau > t}]$$
+\begin{obs}
+¿Cómo estudiamos redes infinitas? Aproximandonos por grafos finitos!
+\end{obs}
+
+\begin{defi}\label{def:exhaustion}
+  Sea $G$ una red infinita. Un \textit{agotamiento} de $G$ es una sucesión
+  $\langle G_n \rangle$ de subgrafos finitos con $G_n \subseteq G_{n+1}$ y
+  $G = \bigcup_n G_n$. Suponemos que cada $G_n$ es el subgrafo inducido por
+  $\mathsf{V}(G_n)$, y que cada arista de $G_n$ conserva la conductancia que
+  tiene en $G$. Sea $Z_n \coloneqq \mathsf{V}(G) \setminus \mathsf{V}(G_n)$. El
+  \textit{grafo cableado} $G_n^{\mathrm{W}}$ se obtiene a partir de $G$
+  identificando $Z_n$ en un único vértice $z_n$ y eliminando luego los lazos,
+  pero conservando las aristas múltiples.
 \end{defi}
 
-\begin{obs}
-  $G_z(a, a) = c(a) \mathscr{R}(a \leftrightarrow z)$ pues el número de visitas
-  a $a$ partiendo desde $a$ antes de llegar a $z$ es una geométrica de 
-  parámetro $\Prob_a[\tau_z < \tau_{a}^{+}].$ 
-\end{obs}
+\begin{defi}\label{def:effective}
+  Sea $a \in \mathsf{V}(G)$ y sea $\langle G_n \rangle$ un agotamiento de $G$.
+  La \textit{conductancia efectiva} de $a$ a $\infty$ en $G$ es
+  \[
+    \mathcal{C}(a \leftrightarrow \infty)
+    \coloneqq \lim_{n \to \infty}
+    \mathcal{C}(a \leftrightarrow z_n; G_n^{\mathrm{W}}).
+  \]
+\end{defi}
 
 \section{Simplificando redes}
 
@@ -578,83 +591,246 @@ Veamos que efectivamente nos ayuda a resolver problemas con un ejemplo.
     \lim_{M\to\infty} \Prob_\rho\{\tau_{\Gamma_M} < \tau_\rho^+\} > 0
     \iff \sum_{i=1}^{\infty} \frac{r_i}{\lvert\Gamma_i\rvert} < \infty.
   \]
-  En otras palabras, la caminata es transitoria exactamente cuando esa serie
+  En otras palabras, la caminata es transiente exactamente cuando esa serie
   converge.
 \end{ejemplo}
 
 \section{Energía}
+  En esta sección vamos a definir un concepto que nos va a ser de 
+  gran utilidad, la \defn{energía}. Para esto, primero vamos a introducir algunos conceptos
+  y notación.
+\subsection{Definiciones básicas y notación}
+  
+  En primer lugar, definimos $\ell^{2}(V)$ como el espacio de 
+  Hilbert de funciones a valores reales con el producto interno
+  $$(f, g) = \sum_{x \in V} f(x)g(x).$$
+  \begin{obs}
+  A menos que se aclare lo contrario, vamos a estar trabajando con grafos finitos.
+  \end{obs}
+  Como estamos interesandos en flujos sobre $E$, definimos $\ell_{-}^{2}(E)$ como 
+  el espacio de las funciones antisimétricas con el producto interno
+  $$(\theta, \theta^{'}) = \frac{1}{2} \sum_{e \in E} \theta(e) \theta^{'}(e)$$
+  Dado que el voltaje a traves de las aristas es lo que nos da la corriente, 
+  definimos el \defn{operador de coborde} $d \colon \ell^{2}(V) \to \ell^{2}_{-}(E)$ como
+  $$(dv)(e) = v(e^{-}) - v(e^{+}).$$ 
+  Este operador es lineal. De manera análoga, definimos el \defn{operador de frontera}
+  $d \colon \ell^{2}_{-}(E) \to \ell^{2}(V) $ como 
+  $$ (d^{*}\theta)(x) = \sum_{e^{-} = x} \theta(e).$$
+  Este operador también es lineal y nos da el flujo a través de un punto. La notación no
+  es casual y se debe a que son adjuntos, es decir 
+  $$(\theta, dv) = (d^{*}\theta, v).$$
 
-\begin{defi}[Energía]
-  Definimos la \defn{energía} de un flujo $\theta$ como
-  $$\mathcal{E}(\theta) = \sum_e \theta^{2}(e)r(e).$$
+  ¿Me sirve esta notación o solo estoy complicando las cosas? Un primer uso es reescribir
+  las leyes de redes. Sea $i$ una corriente. \\
+  
+  \hspace*{1em}\textbf{Ley de Ohm.} $dv = ir$ 
+
+  \hspace*{1em}\textbf{Ley de Nodos.} $d^{*}i(x) = 0$ si $x \notin A \cup Z$
+  
+  \subsection{Flujos}
+  
+  Vamos a estudiar brevemente algunas propiedades de los flujos para ver que tiene de
+  especial la corriente.
+  Aprovechemos nuestra nueva notación para recordar la definición de \defn{flujo}.
+  Dado $\theta \in \ell^{2}(E)$ decimos que es un flujo entre $A$ y $Z$ si $d^{*}\theta$ 
+  es cero fuera de $A$ y de $Z$. Además, si $\sum_{a \in A} d^{*}\theta(a) \geq 0$ decimos 
+  que es un flujo de $A$ a $Z$. Convenientemente, notamos
+  $$\text{Strength}(\theta) = \sum_{a \in A} d^{*}\theta(a).$$
+  Un flujo de fuerza 1 se llama \defn{flujo unitario.} 
+
+  \begin{lem}[Conservación del flujo]
+    Sea $G$ un grafo finito y $A, Z$ dos subconjuntos disjuntos de los vertices. Si $\theta$
+    es un flujo entre $A$ y $Z$, entonces
+    $$\sum_{a \in A} d^{*}\theta(a) = - \sum_{z \in Z} d^{*}\theta(z).$$
+  \end{lem}
+
+  \begin{proof}
+    $$\sum_{a \in A} d^{*}\theta(a) + \sum_{z \in Z} d^{*}\theta(z) = \sum_{x \in V} d^{*}\theta(x) 
+    = (d^{*}\theta, 1) = (\theta, d1) = 0.$$
+  \end{proof}
+
+\begin{lem}
+  Dado un grafo $G$ finito, $A, Z$ subconjuntos disjuntos de los vertices. Si $\theta$ es un flujo
+  de $A$ a $Z$ y $v$ es constante en $A$ y $Z$ con valores $\alpha, \beta$ respectivamente entonces
+  $$(\theta, dv) = \text{Strength}(\theta)(\alpha - \beta).$$
+\end{lem}
+
+\begin{proof}
+  $$(\theta, dv) = (d^{*}\theta, v) = \sum_{a\in A} d^{*}\theta(a) \alpha + \sum_{z\in Z}d^{*}\theta(z)\beta,$$
+usando el lema anterior tenemos el resultado.
+\end{proof}
+\subsection{Ahora sí, la energía}
+
+\begin{notacion}
+  Notamos $(f, g)_h = (f, gh) = (fh, g)$ y $\norm{f}_h = (f, f)_h$
+\end{notacion}
+
+\begin{defi}
+  Definimos la \defn{energía} de $\theta \in \ell^2(E)$ como
+  $$ \mathscr{E}(\theta) = \norm{\theta}^{2}_r $$
+  donde $r$ es la colección de resistencias de la red.
 \end{defi}
 
-\begin{teo}[Principio de Thomson]
-  Dado un grafo finito y conexo,
-  $$\mathcal{E}(\theta) = \inf \{ \mathcal{\theta} \colon \theta \text{ es un flujo unitario de } a \text{ a } z \}$$
-  donde flujo unitario hace referencia a intensidad de corriente igual a uno.
+\begin{obs}
+Sí $i$ es una corriente unitaria, $(i, i)_r = (i, dv) = v(a) - v(z) = \mathscr{R}(A \leftrightarrow Z).$
+\end{obs}
+
+Este producto interno no solo es importante por darnos la energía, sino que también nos 
+permite expresar las leyes de Kirchoff de la siguiente manera. Consideremos 
+$\chi^{e} = \ind{e} - \ind{-e}$ el flujo unitario a través de $e$. Tenemos 
+$$(\chi^{e}, \theta)_r = \theta(e)r(e)$$
+de esta manera, usando bilinealidad del producto interno
+$$\Big(\sum_{e^{-} = x} c(e)\chi^{e}, \theta\Big)_r = d^{*}\theta(x)$$
+
+\noindent Sea $i$ una corriente. \\
+
+\hspace*{1em}\textbf{Ley de Nodos.} Sí $x \notin A\cup Z$
+$$\Big(\sum_{e^{-} = x} c(e)\chi^{e}, i\Big)_r = 0.$$ 
+
+\hspace*{1em}\textbf{Ley de Ciclos.} Si $e_1, \dots, e_n$ es un ciclo orientado en $G$
+$$\Big(\sum_{k = 1}^{n} \chi_{e_k}, i\Big)_r = 0.$$
+
+Falta el último sprint de definiciones y volvemos a pensar en probabilidades. Llamemos 
+$\sum_{e^{-} = x} c(e)\chi^{e}$ la \defn{estrella} en $x$, y notemos al subespacio de $\ell^{2}(E)$
+generado por estas como $\star.$ Por otro lado, notamos $\lozenge$ al espacio generado por los \defn{ciclos}
+$\sum_{k = 1}^{n} \chi_{e_k}$.
+
+\begin{teo}[Ortogonalidad de ciclos y estrellas ]
+  Los subespacios $\star$ y $\lozenge$ son ortogonales. Más aún, están en suma directa y generan 
+  $\ell^{2}_{-}(E, r).$
 \end{teo}
 
-\section{Resultado principal} 
+\begin{proof}
+  Es fácil notar que ambos espacios son ortogonales. Veamos que si $\theta$ es ortogonal
+  a ambos, entonces es $0$. Cómo $\theta$ es ortogonal a los ciclos, tenemos que 
+  $\theta = \alpha dF$ para alguna función $F$ de los vertices $F$ y, cómo es ortogonal
+  a $\star$ tenemos que es armónica (el argumento que se usa para ver esto es el mismo
+  que uno usa para ver que ambas leyes de Kirchoff implican Ley de Ohm). Cómo $G$ es finito
+  el principio del máximo implica que $F$ es constante en cada componente de $G$, luego $\theta = 0.$
+  
+  Con esto en mente, si $i$ es una corriente, es ortogonal al espacio de ciclos entonces $\i \in \star.$
+  Ahora, si $\theta$ es un flujo tal que $d^{*}\theta = d^{*}i$, entonces $d^{*}(\theta - i) = 0$ y es ortogonal
+  al espacio de ciclos, por lo que $\theta - i \in \lozenge.$ Es decir, 
+  $$ \theta = i + (\theta - i)$$
+  es la descomposición ortogonal de $\theta$ en $\star \oplus \lozenge$. 
+\end{proof}
 
-\begin{teo}[Criterio de Nash-Williams]\label{teo:principal}
-  Si $\langle \Pi_n\rangle$ es una sucesión de cortes disjuntos que separan
-  $a$ de $\infty$, entonces
+\begin{coro}
+  La proyección ortogonal $P_{\star} \colon \ell^{2}_{-}(E) \to \star$ viene dada por
+  $$ i = P_{\star}\theta$$
+  y 
+  $$\norm{\theta}_{r}^{2} = \norm{i}_{r}^{2} + \norm{\theta - i}_{r}^{2}.$$
+
+\end{coro}
+
+Otra consecuencia importante, es la siguiente.
+
+\paragraph{Principio de Thomson} Sea $G$ una red finita, $A,Z$ subconjunto disjunto 
+  de los vertices. Si $\theta$ es un flujo de $A$ a $Z$ e $i$ es una corriente con 
+  $d^{*}i = d^{*}\theta$. Entonces, 
+  $$\mathscr{E}(\theta) > \mathscr{E}(i)$$
+  a menos que $\theta = i.$ Sí $i$ es un unitario, $\mathscr{E}(\theta) \geq \mathscr{R}(A \leftrightarrow Z).$
+
+\paragraph{Principio de monotonia de Rayleigh} Sea $G$ un grafo conexo, con dos posibles
+elecciones de conductancias $c, c'$ tales que $c \leq c'.$
+\begin{enumerate}
+  \item Si G es finito y $A, Z$ disjuntos, $\mathscr{C}_{c}(A \leftrightarrow Z) \leq
+  \mathscr{C}_{c'}(A \leftrightarrow Z).$
+  \item Si $G$ es infinito y $a$ es un vertice,
+  $\mathscr{C}_{c}(a \leftrightarrow \infty) \leq \mathscr{C}_{c'}(a \leftrightarrow \infty)$.
+  En particular, si $(G, c)$ es transiente, $(G, c')$ también.
+\end{enumerate}
+
+\begin{proof}
+La parte (ii) es inmediata a partir de la parte. Sabemos que 
+$\mathscr{C}(A \leftrightarrow Z) = 1/\mathscr{E}(i)$ para un flujo de 
+corriente unitario $i$ de $A$ a $Z$. Ahora,
+\[
+\mathscr{E}_{c}(i_{c}) \ge \mathscr{E}_{c'}(i_{c}) \ge \mathscr{E}_{c'}(i_{c'}),
+\]
+donde la primera desigualdad se sigue de la definición de energía y la segunda del principio de Thomson (tras identificar $Z$ con un conjunto unitario). Tomando recíprocos se obtiene el resultado.
+\end{proof}
+
+
+\section{Estados transientes y recurrentes} 
+
+\begin{teo}[Desigualdad Nash-Williams]\label{teo:principal}
+  Sea $G$ una red finita y $\langle \Pi_n\rangle_{n=1}^{N}$ cortes disjuntos que separan
+  $a$ de $z$, entonces
   \[
-    \mathscr{R}(a\leftrightarrow\infty) \;\ge\; \sum_n
+    \mathscr{R}(a\leftrightarrow z) \;\ge\; \sum_n
     \Bigl(\sum_{e\in\Pi_n} c(e)\Bigr)^{-1}.
   \]
 \end{teo}
 
 \begin{proof}
-  Por el principio de Thomson, $\mathscr{R}$ es el mínimo de la energía de
-  un flujo unitario. Aplicando Cauchy--Schwarz en cada corte,
+  Sea $\Pi$ un corte finito que separa $a$ de $z$. Decimos que un vértice $x$
+  está \textit{separado de $a$ por $\Pi$} si todo camino de $a$ a $x$ usa alguna
+  arista de $\Pi$. Sea $K$ el conjunto de vértices que no están separados de $a$
+  por $\Pi$, sea $Z$ el conjunto de extremos de aristas de $\Pi$ que sí están
+  separados de $a$ por $\Pi$, y sea $H \coloneqq G \!\upharpoonright\! (K \cup Z)$
+  la subred inducida por $K \cup Z$. Entonces $i$ induce un flujo unitario $i_H$
+  de $a$ a $Z$ en $H$, pues todas las aristas de $G$ que salen de un vértice de
+  $K$ pertenecen a $H$. Luego por lema,
   \[
-    1 \le \Bigl(\sum_{e\in\Pi_n}\abs{\theta(e)}\Bigr)^2
-    \le \Bigl(\sum_{e\in\Pi_n} r(e)\,\theta(e)^2\Bigr)
-        \Bigl(\sum_{e\in\Pi_n} c(e)\Bigr).
+    1 = -\sum_{x \in Z} d^{*}i_H(x)
+      = -\sum_{\substack{e \in H \\ e^{-} \in Z}} i(e).
   \]
-  Sumando sobre $n$ se obtiene la desigualdad.
+  Si ambos extremos de una arista $e$ pertenecen a $Z$, entonces $i(e)$ aparece
+  junto con $i(-e)$ en esta suma y se cancelan. Además, toda arista de $H$ con un
+  solo extremo en $Z$ pertenece a $\Pi$: si $e^{-} \in Z$, $e^{+} \in K$ y
+  $e \notin \Pi$, se llegaría a $e^{-}$ desde $a$ sin cruzar $\Pi$, lo que
+  contradice $e^{-} \in Z$. Por lo tanto
+  \[
+    1 \le \sum_{e \in \Pi} \lvert i(e) \rvert,
+  \]
+  y como $c(e)\, r(e) = 1$, por Cauchy--Schwarz
+  \[
+    1 \le \Big( \sum_{e \in \Pi} \lvert i(e) \rvert \Big)^2 
+      \le \Bigl( \sum_{e \in \Pi} c(e) \Bigr)
+          \Bigl( \sum_{e \in \Pi} i(e)^2\, r(e) \Bigr).
+  \]
+  Sumando sobre los cortes tenemos nuestro resultado.
+\end{proof}
+Para aplicar esto a redes infinitas, decimos que un conjunto $\Pi$ de aristas
+\textit{separa} $a$ \textit{de} $\infty$ si todo camino simple infinito que
+parte de $a$ debe incluir una arista de $\Pi$. También llamamos a $\Pi$ un
+\textit{corte}.
+
+\begin{teo}[Criterio de Nash-Williams]\label{thm:nash-williams-criterion}
+  Sea $G$ una red localmente finita y sea $\langle \Pi_n \rangle$ una sucesión
+  de cortes finitos, disjuntos dos a dos, cada uno de los cuales separa $a$ de
+  $\infty$. Entonces
+  \begin{equation}\label{eq:nash-williams-inf}
+    \mathscr{R}(a \leftrightarrow \infty)
+    \ge \sum_{n} \Bigl( \sum_{e \in \Pi_n} c(e) \Bigr)^{-1}.
+  \end{equation}
+  En particular, si el lado derecho es infinito, entonces $G$ es recurrente.
+\end{teo}
+
+\begin{proof}
+  Para $n \ge 1$, elegimos una subred finita $G_n$ que contenga a
+  $\bigcup_{k=1}^{n} \Pi_k$, e identificamos su conjunto complementario de
+  vértices en un único vértice $z_n$, como es usual, para formar la red finita
+  $G_n^{\mathrm{W}}$. Entonces
+  $\mathscr{R}(a \leftrightarrow \infty)
+  = \lim_{n \to \infty} \mathcal{R}(a \leftrightarrow z_n; G_n^{\mathrm{W}})$.
 \end{proof}
 
-\begin{coro}
-  Si la serie diverge, la caminata es recurrente.
-\end{coro}
+\section{Aplicaciones}
 
-\begin{lem}\label{lem:aux}
-  Sea $(X_n)$ una sucesión de variables $\iid$ con $\E\abs{X_1}<\infty$.
-  Entonces $\frac1n\sum_{k\le n}X_k \asto \E[X_1]$.
-\end{lem}
+\begin{teo}[Polya] 
+  El paseo al azar simple en $\Z^d$ con $d=1,2$ es recurrente.
+\end{teo}
 
-\begin{prop}
-  Si $X_n \pto X$, entonces $X_n \dto X$.
-\end{prop}
+\begin{proof}
+  Consideramos los cortes $\Pi_n$ como los cuadrados de lado $2n$ y centro $0$. Tenemos que
+  $\sum_{e \in \Pi_n} c(e) = 8n$. Luego, la serie del criterio de Nash-Williams diverge y la caminata es recurrente. 
+\end{proof}
 
-\begin{obs}
-  Las flechas \verb|\dto|, \verb|\pto| y \verb|\asto| abrevian los tres
-  modos de convergencia usuales.
-\end{obs}
-
-\begin{ejemplo}
-  En $\Z^2$ los cortes concéntricos tienen $O(k)$ aristas, así que la serie
-  armónica diverge y la caminata simple es recurrente.
-\end{ejemplo}
-
-\begin{ej}
-  Probar que $\Z^3$ es transitoria construyendo un flujo de energía finita.
-\end{ej}
-
-\section{Comentarios finales}
-
-Listas numeradas y con viñetas:
-\begin{enumerate}[(a)]
-  \item primer punto;
-  \item segundo punto.
-\end{enumerate}
-
-\paragraph{Un párrafo con título} Texto que sigue en la misma línea.
-
-\todo{completar esta sección}
+Queda ver el caso general de Polya, pero para eso necesitamos más maquinaria que escapa de
+la duración pretendida para esta monografía/charla. Lo que si podemos decir es que por monotonía
+basta ver el caso $d=3.$
 
 %  Bibliografía
 \begin{thebibliography}{99}
