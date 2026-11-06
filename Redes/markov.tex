@@ -213,9 +213,8 @@
 \maketitle
 
 \begin{abstract}
-    Veremos que puede pensarse a las cadenas de Markov reversibles como
-    redes eléctricas. Probaremos resultados clásicos de la teoría de Markov
-    apoyandonos en la intuición física ganada.
+    Vamos a ver que se puede pensar cierta clase de cadenas de Markov, en la que estan 
+    incluidos procesos conocidos como los paseos al azar sobre grafos, como redes eléctricas.
 \end{abstract}
 
 % \tableofcontents   % descomentar si el texto es largo
@@ -481,6 +480,11 @@ claro motiva la siguiente definición.
   \]
 \end{defi}
 
+\begin{obs}
+  El límite está bien definido, y el motivo es el \defn{principio de monotonía} que
+  veremos más adelante.
+\end{obs}
+
 \section{Simplificando redes}
 
 \paragraph{Resistencias en serie} Dos aristas con resistencias $r_1, r_2$
@@ -731,6 +735,11 @@ Otra consecuencia importante, es la siguiente.
   $$\mathscr{E}(\theta) > \mathscr{E}(i)$$
   a menos que $\theta = i.$ Sí $i$ es un unitario, $\mathscr{E}(\theta) \geq \mathscr{R}(A \leftrightarrow Z).$
 
+\begin{obs}
+  Este principio nos dice un montón, si encontramos un flujo de energía finita
+  entonce la resistencia es finita y la caminata es transiente.
+\end{obs}
+
 \paragraph{Principio de monotonia de Rayleigh} Sea $G$ un grafo conexo, con dos posibles
 elecciones de conductancias $c, c'$ tales que $c \leq c'.$
 \begin{enumerate}
@@ -818,18 +827,60 @@ parte de $a$ debe incluir una arista de $\Pi$. También llamamos a $\Pi$ un
 
 \section{Aplicaciones}
 
-\begin{teo}[Polya] 
+\begin{teo}[Polya, parte uno] 
   El paseo al azar simple en $\Z^d$ con $d=1,2$ es recurrente.
 \end{teo}
 
 \begin{proof}
-  Consideramos los cortes $\Pi_n$ como los cuadrados de lado $2n$ y centro $0$. Tenemos que
-  $\sum_{e \in \Pi_n} c(e) = 8n$. Luego, la serie del criterio de Nash-Williams diverge y la caminata es recurrente. 
+  Consideramos los cortes $\Pi_n$ como las aristas que unen el borde $[-n , n]^{2}$ con $[-(n+1), n+1]^2$
+  tenemos $4(2n+1)$ aristas con conductancia $1$. Luego, la serie del criterio de Nash-Williams diverge y la caminata es recurrente. 
 \end{proof}
 
-Queda ver el caso general de Polya, pero para eso necesitamos más maquinaria que escapa de
-la duración pretendida para esta monografía/charla. Lo que si podemos decir es que por monotonía
-basta ver el caso $d=3.$
+Queda ver el caso general de Polya, si bien no lo vimos, podemos extender casi todas nuestras ideas 
+incluido el principio de Thomson a redes infinitas, con esto vamos a probar el caso $d=3$ y
+por Rayleigh todos.
+
+\begin{teo}[Pólya, parte dos]\label{thm:polya-transient}
+  La caminata aleatoria simple sobre 
+  $\mathbb{Z}^d$ es transitoria para todo $d \ge 3$.
+\end{teo}
+
+\begin{proof}
+
+  Sea $L$ un rayo aleatorio uniforme que sale del origen $\mathbf{0}$ de
+  $\mathbb{R}^3$ hacia $\infty$, es decir, una semirrecta cuya intersección con
+  la esfera unitaria es uniforme. Sea $\mathcal{P}(L)$ un camino simple en
+  $\mathbb{Z}^3$ que va de $\mathbf{0}$ a $\infty$ y se mantiene a distancia
+  a lo sumo $4$ de $L$. Lo elegimos de manera medible, por ejemplo, haciéndolo
+  crecer recursivamente y agregando en cada paso el vértice más cercano a $L$.
+
+  Sea $\theta(e) \coloneqq \sum_{n \ge 0} \bigl( \mathbf{P}[e_n = e] -
+  \mathbf{P}[e_n = -e] \bigr)$, donde $e_n$ es la $n$-ésima arista de
+  $\mathcal{P}(L)$. Entonces $\theta$ es un flujo unitario de $\mathbf{0}$ a $\infty$, y
+  afirmamos que tiene energía finita. Existe una
+  constante $A$ tal que, si $e$ es una arista cuyo punto medio está a distancia
+  euclídea $R$ de $\mathbf{0}$, entonces
+  \[
+    \abs{\theta(e)} \leq \Prob[\text{Se usa la arista e}] = \mathbf{P}\bigl[e \in \mathcal{P}(L)\bigr] \le \frac{A}{R^2}.
+  \]
+  Además, los centros de las aristas están separados entre sí por una distancia
+  euclídea de al menos $1/\sqrt{2}$, así que existe una constante $B$ tal que
+  hay a lo sumo $B n^2$ centros de aristas cuya distancia al origen está entre
+  $n$ y $n+1$. De esto se sigue que la energía de $\theta$ es a lo sumo
+  \[
+    \sum_{e} \theta^{2}(e) = \sum_{n} \sum_{e \in [n, n+1)} \theta^{2}(e) \leq \sum_{n} A^2 B\, n^2\, n^{-4},
+  \]
+  que es finita.
+\end{proof}
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{imagenes/paseo.png}
+    \caption{Paseo al azar sobre $\Z^3$.}
+    \label{fig:paseo}
+\end{figure}
+
 
 %  Bibliografía
 \begin{thebibliography}{99}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.10.4)  6 NOV 2026 14:33
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.10.4)  6 NOV 2026 16:58
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1210,40 +1210,40 @@ LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
 LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
 (Font)              scaled to size 10.0pt on input line 215.
 LaTeX Font Info:    Trying to load font information for OT1+minntx on input lin
-e 219.
+e 218.
 
 (C:\Users\loloc\AppData\Local\Programs\MiKTeX\tex/latex/newtx\ot1minntx.fd
 File: ot1minntx.fd 2023/09/09 v1.1 font definition file for OT1/minntx
 )
 LaTeX Font Info:    Font shape `OT1/minntx/m/n' will be
-(Font)              scaled to size 10.95pt on input line 219.
+(Font)              scaled to size 10.95pt on input line 218.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `minntx' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `OT1/minntx/m/n' will be
-(Font)              scaled to size 8.0pt on input line 219.
+(Font)              scaled to size 8.0pt on input line 218.
 LaTeX Font Info:    Font shape `OT1/minntx/m/n' will be
-(Font)              scaled to size 6.1pt on input line 219.
+(Font)              scaled to size 6.1pt on input line 218.
 LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
-(Font)              scaled to size 10.95pt on input line 219.
+(Font)              scaled to size 10.95pt on input line 218.
 LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
-(Font)              scaled to size 8.0pt on input line 219.
+(Font)              scaled to size 8.0pt on input line 218.
 LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
-(Font)              scaled to size 6.1pt on input line 219.
+(Font)              scaled to size 6.1pt on input line 218.
 LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 10.95pt on input line 219.
+(Font)              scaled to size 10.95pt on input line 218.
 LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 8.0pt on input line 219.
+(Font)              scaled to size 8.0pt on input line 218.
 LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 6.1pt on input line 219.
+(Font)              scaled to size 6.1pt on input line 218.
 LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 10.95pt on input line 219.
+(Font)              scaled to size 10.95pt on input line 218.
 LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 8.0pt on input line 219.
+(Font)              scaled to size 8.0pt on input line 218.
 LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 6.1pt on input line 219.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 219
+(Font)              scaled to size 6.1pt on input line 218.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 218
 .
 
 (C:\Users\loloc\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
@@ -1252,7 +1252,7 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 (C:\Users\loloc\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 219
+LaTeX Font Info:    Trying to load font information for U+msb on input line 218
 .
 
 (C:\Users\loloc\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
@@ -1262,69 +1262,69 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    Trying to load font information for U+rsfs on input line 21
-9.
+8.
 
 (C:\Users\loloc\AppData\Local\Programs\MiKTeX\tex/latex/jknappen\ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
 LaTeX Font Info:    Trying to load font information for U+ntxmia on input line 
-219.
+218.
 
 (C:\Users\loloc\AppData\Local\Programs\MiKTeX\tex/latex/newtx\untxmia.fd
 File: untxmia.fd 2024/04/09 Fontinst v1.933 font definitions for U/ntxmia.
 )
 LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 10.95pt on input line 219.
+(Font)              scaled to size 10.95pt on input line 218.
 LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 8.0pt on input line 219.
+(Font)              scaled to size 8.0pt on input line 218.
 LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 6.1pt on input line 219.
+(Font)              scaled to size 6.1pt on input line 218.
 LaTeX Font Info:    Trying to load font information for U+ntxsym on input line 
-219.
+218.
 
 (C:\Users\loloc\AppData\Local\Programs\MiKTeX\tex/latex/newtx\untxsym.fd
 File: untxsym.fd 2023/08/16 Fontinst v1.933 font definitions for U/ntxsym.
 )
 LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
-(Font)              scaled to size 10.95pt on input line 219.
+(Font)              scaled to size 10.95pt on input line 218.
 LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
-(Font)              scaled to size 8.0pt on input line 219.
+(Font)              scaled to size 8.0pt on input line 218.
 LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
-(Font)              scaled to size 6.1pt on input line 219.
+(Font)              scaled to size 6.1pt on input line 218.
 LaTeX Font Info:    Trying to load font information for U+ntxsyc on input line 
-219.
+218.
 
 (C:\Users\loloc\AppData\Local\Programs\MiKTeX\tex/latex/newtx\untxsyc.fd
 File: untxsyc.fd 2012/04/12 Fontinst v1.933 font definitions for U/ntxsyc.
 )
 LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 10.95pt on input line 219.
+(Font)              scaled to size 10.95pt on input line 218.
 LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 8.0pt on input line 219.
+(Font)              scaled to size 8.0pt on input line 218.
 LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 6.1pt on input line 219.
+(Font)              scaled to size 6.1pt on input line 218.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 10.95pt on input line 219.
+(Font)              scaled to size 10.95pt on input line 218.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 8.0pt on input line 219.
+(Font)              scaled to size 8.0pt on input line 218.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 6.1pt on input line 219.
+(Font)              scaled to size 6.1pt on input line 218.
 LaTeX Font Info:    Trying to load font information for U+esint on input line 2
-19.
+18.
 
 (C:\Users\loloc\AppData\Local\Programs\MiKTeX\tex/latex/esint\uesint.fd
 File: uesint.fd 
 )
 LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
-(Font)              scaled to size 12.0pt on input line 223.
+(Font)              scaled to size 12.0pt on input line 222.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/it' will be
-(Font)              scaled to size 10.95pt on input line 228.
+(Font)              scaled to size 10.95pt on input line 227.
 LaTeX Font Info:    Font shape `T1/ntxtlf/b/it' will be
-(Font)              scaled to size 10.95pt on input line 235.
+(Font)              scaled to size 10.95pt on input line 234.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 8.0pt on input line 238.
+(Font)              scaled to size 8.0pt on input line 237.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 6.1pt on input line 238.
+(Font)              scaled to size 6.1pt on input line 237.
 
 [1{C:/Users/loloc/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/lo
 loc/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/newtx/ntx-ec-tlf.enc}
@@ -1332,157 +1332,162 @@ loc/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/newtx/ntx-ec-tlf.enc}
 {C:/Users/loloc/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/newtx/ntx-ot1-tlf
 .enc}]
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/it' will be
-(Font)              scaled to size 10.0pt on input line 321.
-LaTeX Info: Redefining \. on input line 321.
-LaTeX Info: Redefining \% on input line 321.
+(Font)              scaled to size 10.0pt on input line 320.
+LaTeX Info: Redefining \. on input line 320.
+LaTeX Info: Redefining \% on input line 320.
 
 [2]
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/it' will be
-(Font)              scaled to size 8.0pt on input line 354.
+(Font)              scaled to size 8.0pt on input line 353.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/it' will be
-(Font)              scaled to size 6.1pt on input line 354.
-LaTeX Info: Redefining \. on input line 380.
-LaTeX Info: Redefining \% on input line 380.
+(Font)              scaled to size 6.1pt on input line 353.
+LaTeX Info: Redefining \. on input line 379.
+LaTeX Info: Redefining \% on input line 379.
  [3]
 LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
-(Font)              scaled to size 10.95pt on input line 433.
+(Font)              scaled to size 10.95pt on input line 432.
 LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
-(Font)              scaled to size 8.0pt on input line 433.
+(Font)              scaled to size 8.0pt on input line 432.
 LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
-(Font)              scaled to size 6.1pt on input line 433.
-LaTeX Info: Redefining \. on input line 436.
-LaTeX Info: Redefining \% on input line 436.
+(Font)              scaled to size 6.1pt on input line 432.
+LaTeX Info: Redefining \. on input line 435.
+LaTeX Info: Redefining \% on input line 435.
  [4]
 LaTeX Font Info:    Trying to load font information for OT1+qhv on input line 4
-67.
+66.
 
 (C:\Users\loloc\AppData\Local\Programs\MiKTeX\tex/latex/tex-gyre\ot1qhv.fd
 File: ot1qhv.fd 2009/09/25 v1.2 font definition file for OT1/qhv
 )
 LaTeX Font Info:    Font shape `OT1/qhv/m/n' will be
-(Font)              scaled to size 10.29301pt on input line 467.
+(Font)              scaled to size 10.29301pt on input line 466.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `qhv' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `OT1/qhv/m/n' will be
-(Font)              scaled to size 7.52002pt on input line 467.
+(Font)              scaled to size 7.52002pt on input line 466.
 LaTeX Font Info:    Font shape `OT1/qhv/m/n' will be
-(Font)              scaled to size 5.73401pt on input line 467.
+(Font)              scaled to size 5.73401pt on input line 466.
 LaTeX Font Info:    Font shape `OT1/minntx/m/n' will be
-(Font)              scaled to size 10.0pt on input line 504.
+(Font)              scaled to size 10.0pt on input line 508.
 LaTeX Font Info:    Font shape `OT1/minntx/m/n' will be
-(Font)              scaled to size 7.3pt on input line 504.
+(Font)              scaled to size 7.3pt on input line 508.
 LaTeX Font Info:    Font shape `OT1/minntx/m/n' will be
-(Font)              scaled to size 5.5pt on input line 504.
+(Font)              scaled to size 5.5pt on input line 508.
 LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
-(Font)              scaled to size 10.0pt on input line 504.
+(Font)              scaled to size 10.0pt on input line 508.
 LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
-(Font)              scaled to size 7.3pt on input line 504.
+(Font)              scaled to size 7.3pt on input line 508.
 LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
-(Font)              scaled to size 5.5pt on input line 504.
+(Font)              scaled to size 5.5pt on input line 508.
 LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 10.0pt on input line 504.
+(Font)              scaled to size 10.0pt on input line 508.
 LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 7.3pt on input line 504.
+(Font)              scaled to size 7.3pt on input line 508.
 LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 5.5pt on input line 504.
+(Font)              scaled to size 5.5pt on input line 508.
 LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 10.0pt on input line 504.
+(Font)              scaled to size 10.0pt on input line 508.
 LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 7.3pt on input line 504.
+(Font)              scaled to size 7.3pt on input line 508.
 LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 5.5pt on input line 504.
+(Font)              scaled to size 5.5pt on input line 508.
 LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
-(Font)              scaled to size 10.0pt on input line 504.
+(Font)              scaled to size 10.0pt on input line 508.
 LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
-(Font)              scaled to size 7.3pt on input line 504.
+(Font)              scaled to size 7.3pt on input line 508.
 LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
-(Font)              scaled to size 5.5pt on input line 504.
+(Font)              scaled to size 5.5pt on input line 508.
 LaTeX Font Info:    Font shape `OT1/qhv/m/n' will be
-(Font)              scaled to size 9.40002pt on input line 504.
+(Font)              scaled to size 9.40002pt on input line 508.
 LaTeX Font Info:    Font shape `OT1/qhv/m/n' will be
-(Font)              scaled to size 6.86201pt on input line 504.
+(Font)              scaled to size 6.86201pt on input line 508.
 LaTeX Font Info:    Font shape `OT1/qhv/m/n' will be
-(Font)              scaled to size 5.17001pt on input line 504.
+(Font)              scaled to size 5.17001pt on input line 508.
 
 
 LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <5.5> not available
-(Font)              size <5> substituted on input line 504.
+(Font)              size <5> substituted on input line 508.
 
 LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 10.0pt on input line 504.
+(Font)              scaled to size 10.0pt on input line 508.
 LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 7.3pt on input line 504.
+(Font)              scaled to size 7.3pt on input line 508.
 LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 5.5pt on input line 504.
+(Font)              scaled to size 5.5pt on input line 508.
 LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
-(Font)              scaled to size 10.0pt on input line 504.
+(Font)              scaled to size 10.0pt on input line 508.
 LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
-(Font)              scaled to size 7.3pt on input line 504.
+(Font)              scaled to size 7.3pt on input line 508.
 LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
-(Font)              scaled to size 5.5pt on input line 504.
+(Font)              scaled to size 5.5pt on input line 508.
 LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 10.0pt on input line 504.
+(Font)              scaled to size 10.0pt on input line 508.
 LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 7.3pt on input line 504.
+(Font)              scaled to size 7.3pt on input line 508.
 LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 5.5pt on input line 504.
+(Font)              scaled to size 5.5pt on input line 508.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 10.0pt on input line 504.
+(Font)              scaled to size 10.0pt on input line 508.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 7.3pt on input line 504.
+(Font)              scaled to size 7.3pt on input line 508.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 5.5pt on input line 504.
-LaTeX Info: Redefining \. on input line 552.
-LaTeX Info: Redefining \% on input line 552.
+(Font)              scaled to size 5.5pt on input line 508.
+LaTeX Info: Redefining \. on input line 531.
+LaTeX Info: Redefining \% on input line 531.
 [5{C:/Users/loloc/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/tex-gyre/q-rm.e
 nc}]
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/sc' will be
-(Font)              scaled to size 10.95pt on input line 565.
+(Font)              scaled to size 10.95pt on input line 569.
 Package microtype Info: Character `029' is missing
 (microtype)             in font `T1/ntxtlf/m/sc/10.95'.
 (microtype)             Ignoring protrusion settings for this character.
-LaTeX Info: Redefining \. on input line 606.
-LaTeX Info: Redefining \% on input line 606.
+LaTeX Info: Redefining \. on input line 610.
+LaTeX Info: Redefining \% on input line 610.
  [6{C:/Users/loloc/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/newtx/ntx-ec-t
 lf-pc.enc}]
-Underfull \hbox (badness 10000) in paragraph at lines 623--625
+Underfull \hbox (badness 10000) in paragraph at lines 627--629
 
  []
 
-LaTeX Info: Redefining \. on input line 655.
-LaTeX Info: Redefining \% on input line 655.
+LaTeX Info: Redefining \. on input line 659.
+LaTeX Info: Redefining \% on input line 659.
 [7]
-Underfull \hbox (badness 10000) in paragraph at lines 685--686
+Underfull \hbox (badness 10000) in paragraph at lines 689--690
 
  []
 
-LaTeX Info: Redefining \. on input line 710.
-LaTeX Info: Redefining \% on input line 710.
+LaTeX Info: Redefining \. on input line 714.
+LaTeX Info: Redefining \% on input line 714.
 [8]
 
-LaTeX Warning: Command \i invalid in math mode on input line 711.
+LaTeX Warning: Command \i invalid in math mode on input line 715.
 
-LaTeX Info: Redefining \. on input line 775.
-LaTeX Info: Redefining \% on input line 775.
+LaTeX Info: Redefining \. on input line 772.
+LaTeX Info: Redefining \% on input line 772.
 [9]
-LaTeX Info: Redefining \. on input line 835.
-LaTeX Info: Redefining \% on input line 835.
+LaTeX Info: Redefining \. on input line 843.
+LaTeX Info: Redefining \% on input line 843.
  [10]
+<imagenes/paseo.png, id=164, 292.6935pt x 195.73125pt>
+File: imagenes/paseo.png Graphic file (type png)
+<use imagenes/paseo.png>
+Package pdftex.def Info: imagenes/paseo.png  used on input line 879.
+(pdftex.def)             Requested size: 207.70522pt x 138.89847pt.
 LaTeX Font Info:    Trying to load font information for TS1+ntxtlf on input lin
-e 839.
+e 890.
 
 (C:\Users\loloc\AppData\Local\Programs\MiKTeX\tex/latex/newtx\ts1ntxtlf.fd
 File: ts1ntxtlf.fd 2015/01/18 v1.0 fd file for TS1/ntxtlf
 )
 LaTeX Font Info:    Font shape `TS1/ntxtlf/m/n' will be
-(Font)              scaled to size 10.95pt on input line 839.
-LaTeX Info: Redefining \. on input line 842.
-LaTeX Info: Redefining \% on input line 842.
+(Font)              scaled to size 10.95pt on input line 890.
+LaTeX Info: Redefining \. on input line 893.
+LaTeX Info: Redefining \% on input line 893.
 
 [11{C:/Users/loloc/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/tex-gyre/q-ts1
-.enc}] (markov.aux
+.enc} <./imagenes/paseo.png>] (markov.aux
 LaTeX Info: Redefining \. on input line 11.
 LaTeX Info: Redefining \% on input line 11.
 )
@@ -1495,15 +1500,18 @@ L3 programming layer <2020/03/25>
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.5pt have occurred.
 
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package rerunfilecheck Info: File `markov.out' has not changed.
 (rerunfilecheck)             Checksum: 81FA1DE12E85329E4982DAD02FBCFF03;1971.
  ) 
 Here is how much of TeX's memory you used:
- 32891 strings out of 474486
- 610327 string characters out of 5743755
- 1945542 words of memory out of 5000000
- 54347 multiletter control sequences out of 15000+600000
- 683609 words of font info for 257 fonts, out of 8000000 for 9000
+ 32917 strings out of 474486
+ 610812 string characters out of 5743755
+ 1943542 words of memory out of 5000000
+ 54361 multiletter control sequences out of 15000+600000
+ 684024 words of font info for 261 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  98i,13n,101p,1005b,812s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/loloc/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/NewTXM
@@ -1521,9 +1529,9 @@ eX/fonts/type1/public/newtx/ztmb.pfb><C:/Users/loloc/AppData/Local/Programs/MiK
 TeX/fonts/type1/public/newtx/ztmbi.pfb><C:/Users/loloc/AppData/Local/Programs/M
 iKTeX/fonts/type1/public/newtx/ztmr.pfb><C:/Users/loloc/AppData/Local/Programs/
 MiKTeX/fonts/type1/public/newtx/ztmri.pfb>
-Output written on markov.pdf (11 pages, 313268 bytes).
+Output written on markov.pdf (11 pages, 340237 bytes).
 PDF statistics:
- 257 PDF objects out of 1000 (max. 8388607)
- 75 named destinations out of 1000 (max. 500000)
- 59501 words of extra memory for PDF output out of 61914 (max. 10000000)
+ 265 PDF objects out of 1000 (max. 8388607)
+ 79 named destinations out of 1000 (max. 500000)
+ 59506 words of extra memory for PDF output out of 61914 (max. 10000000)
 
