@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.10.4)  5 NOV 2026 20:15
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.10.4)  6 NOV 2026 14:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1495,21 +1495,15 @@ L3 programming layer <2020/03/25>
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.5pt have occurred.
 
-
-Package rerunfilecheck Warning: File `markov.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `markov.out':
-(rerunfilecheck)             Before: C023ADBAE388005C6CF327CD2C017BCD;2009
-(rerunfilecheck)             After:  81FA1DE12E85329E4982DAD02FBCFF03;1971.
+Package rerunfilecheck Info: File `markov.out' has not changed.
+(rerunfilecheck)             Checksum: 81FA1DE12E85329E4982DAD02FBCFF03;1971.
  ) 
 Here is how much of TeX's memory you used:
- 32897 strings out of 474486
- 610432 string characters out of 5743755
+ 32891 strings out of 474486
+ 610327 string characters out of 5743755
  1945542 words of memory out of 5000000
- 54349 multiletter control sequences out of 15000+600000
- 683793 words of font info for 259 fonts, out of 8000000 for 9000
+ 54347 multiletter control sequences out of 15000+600000
+ 683609 words of font info for 257 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  98i,13n,101p,1005b,812s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/loloc/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/NewTXM
@@ -1527,7 +1521,7 @@ eX/fonts/type1/public/newtx/ztmb.pfb><C:/Users/loloc/AppData/Local/Programs/MiK
 TeX/fonts/type1/public/newtx/ztmbi.pfb><C:/Users/loloc/AppData/Local/Programs/M
 iKTeX/fonts/type1/public/newtx/ztmr.pfb><C:/Users/loloc/AppData/Local/Programs/
 MiKTeX/fonts/type1/public/newtx/ztmri.pfb>
-Output written on markov.pdf (11 pages, 313472 bytes).
+Output written on markov.pdf (11 pages, 313268 bytes).
 PDF statistics:
  257 PDF objects out of 1000 (max. 8388607)
  75 named destinations out of 1000 (max. 500000)
