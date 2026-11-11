@@ -1,5 +1,1 @@
-# -- Algunas -- notas de clase de -- algunas -- materias.
-
-En este repo voy a ir subiendo notas de clase... o eso espero.
-
-
+Notas de clase y/o de temas que me interesan y quiero aprender.  
