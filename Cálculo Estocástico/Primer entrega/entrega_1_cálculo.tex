@@ -1,0 +1,180 @@
+\documentclass[11pt]{article}
+
+% ------------------------------------------------
+% Paquetes básicos
+% ------------------------------------------------
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{libertinus}
+\usepackage{libertinust1math}
+\usepackage[spanish]{babel}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{tocloft}
+\usepackage{amsmath, amssymb, amsthm} % Añadido para matemáticas y entornos
+\usepackage[most]{tcolorbox} % Para cajas con color alrededor de los ejercicios
+
+% ------------------------------------------------
+% Definición de entornos (Ejercicio y Solución)
+% ------------------------------------------------
+\definecolor{indigo}{RGB}{40,60,120}
+\definecolor{deepindigo}{RGB}{25,45,75}
+
+% Estilo para el ejercicio
+% ------------------------------------------------
+% Entornos tipo Teorema (Requiere \usepackage{amsthm})
+% ------------------------------------------------
+
+% Definimos el estilo para Ejercicios
+\newtheoremstyle{ejstyle}% nombre del estilo
+{1em}{1em}% espacio arriba y abajo
+{\normalfont}{}% fuente del cuerpo y sangría
+{\bfseries\color{deepindigo}}{.}% fuente del título y puntuación
+{.5em}{}% espacio después del título
+{}% especificación del título
+
+% Definimos el entorno Ejercicio usando el estilo anterior
+\theoremstyle{ejstyle}
+\newtheorem{ejercicio}{Ejercicio}
+
+% Definimos el entorno Solución (sin numerar)
+\newenvironment{solucion}
+{\begin{proof}[{\bfseries\color{deepindigo} Solución}]}
+	{\end{proof}}
+
+% ------------------------------------------------
+% (El resto de tus configuraciones de diseño se mantienen igual...)
+% ------------------------------------------------
+
+\title{\Huge Entrega 1: Teoría de Probabilidades}
+\author{Lorenzo Martinelli}
+
+\begin{document}
+	
+	\maketitle
+	
+	\abstract{Primer entrega de Cálculo Estocástico. Ejercicios 1, 9, 10, 12 y 14.}
+	
+	\begin{ejercicio}
+		Sea $\Omega$ un conjunto cualquiera y $\mathcal{A}$ una colección de subconjuntos de $\Omega$. Probar que existe una única menor $\sigma$-álgebra $\mathcal{U}$ de conjuntos de $\Omega$ que contiene a $\mathcal{A}$. A $\mathcal{U}$ se la denomina $\sigma$-álgebra generada por $\mathcal{A}$.
+	\end{ejercicio}
+	
+	\begin{solucion}
+		Vamos a construir esta sigma álgebra. Sea $\Sigma$ la familia de todas las $\sigma$-álgebras sobre $\Omega$ que contienen a $\mathcal{A}$, es decir
+		$$ \Sigma = \{ \mathcal{F} \subseteq \mathcal{P}(\Omega) : \mathcal{F} \text{ es } \sigma\text{-álgebra sobre } \Omega \text{ y } \mathcal{A} \subseteq \mathcal{F} \}.$$
+		Notemos en primer lugar que $\Sigma$ no es una familia vacía pues $\mathcal{P}(\Omega)$ es una $\sigma$-álgebra y contiene a $\mathcal{A}$. Por lo tanto, $\mathcal{P}(\Omega) \in \Sigma$. Definimos $\mathcal{U}$ como la intersección de todas las $\sigma$-álgebras que pertenecen a $\Sigma$,
+		$$ \mathcal{U} = \bigcap_{\mathcal{F} \in \Sigma} \mathcal{F}.$$
+		Veamos que es una $\sigma$-álgebra:
+			\begin{enumerate}
+				\item Como cada $\mathcal{F} \in \Sigma$ es $\sigma$-álgebra, $\emptyset \in \mathcal{F}$ para todo $\mathcal{F}$. Luego $\emptyset \in \mathcal{U}$.
+				\item Si $B \in \mathcal{U}$, entonces $B \in \mathcal{F}$ para todo $\mathcal{F} \in \Sigma$. Como cada $\mathcal{F}$ es $\sigma$-álgebra, el complemento $B^c \in \mathcal{F}$ para todo $\mathcal{F}$. Así, $B^c \in \mathcal{U}$.
+				\item Sea $\{B_n\}_{n=1}^\infty$ una sucesión de conjuntos en $\mathcal{U}$. Entonces para cada $n$ y cada $\mathcal{F} \in \Sigma$, se tiene que $B_n \in \mathcal{F}$. Como cada $\mathcal{F}$ es $\sigma$-álgebra, la unión numerable $\bigcup_{n=1}^\infty B_n \in \mathcal{F}$ para todo $\mathcal{F} \in \Sigma$. Por lo tanto, $\bigcup_{n=1}^\infty B_n \in \mathcal{U}$.
+			\end{enumerate}
+		Si $\mathcal{G}$ es \textit{cualquier} $\sigma$-álgebra que contenga a $\mathcal{A}$, entonces por definición de $\Sigma$, tenemos que $\mathcal{G} \in \Sigma$. Luego, $\mathcal{U} \subseteq \mathcal{G}$.
+
+	\end{solucion}
+	
+	\begin{ejercicio}
+		Sea $f: [0, 1] \to \mathbb{R}$ continua. Se definen los polinomios de Bernstein
+		$$
+		b_n(x) = \sum_{k=0}^{n} f\left(\frac{k}{n}\right) 	\binom{n}{k} x^k (1-x)^{n-k}.
+		$$
+		Probar que $b_n \to f$ uniformemente en $[0, 1]$.
+	\end{ejercicio}
+	
+	\begin{solucion}
+		
+		Dado $x \in [0, 1]$, consideremos la sucesión de variables aleatorias independientes $X_k$ tal que $\mathbb{P}(X_k = 1) = x$, $\mathbb{P}(X_k = 0) = 1 - x$ y notemos que
+		
+		$$ \mathbb{P}(\sum_{i}^{n} {X}_i = k) = \mathbb{P}(\overline{X}_n = \frac{k}{n}) = \binom{n}{k} x^k (1-x)^{n-k}.$$
+		
+		\noindent Luego, $b_n(x) = \mathbb{E}(f(\overline{X}_n))$. Utilizando este resultado podemos ver que
+		$$
+		|b_n(x) - f(x)| \leq \mathbb{E}(|f(\overline{X}_n) - f(x)|) = \mathbb{E}(|f(\overline{X}_n) - f(x)|\mathbf{1}_A) + \mathbb{E}(|f(\overline{X}_n) - f(x)|\mathbf{1}_{A^c})
+		$$
+		para cualquier evento $A \subset \Omega$. Esto nos da pie a buscar un evento, o una familia de eventos convenientes...
+		
+		Sea $\epsilon > 0$, como $f$ es continua, existe $\delta = \delta (\epsilon) $ tal que si $|\overline{X}_n - x| \leq \delta$ entonces $|f(\overline{X}_n) - f(x)| \leq \epsilon$. Si consideremos el evento $A_{\epsilon} = \{|\overline{X}_n - x| \leq \delta(\epsilon) \} $ tenemos que
+		$$
+		|b_n(x) - f(x)| \leq \epsilon + \mathbb{E}(|f(\overline{X}_n) - f(x)|\mathbf{1}_{A_{\epsilon}^{c}}),
+		$$
+		\noindent cómo $f$ es continua y estamos sobre un compacto tenemos que existe $M > 0$ tal que $\|f\|_{\infty} = M$. Mirando el segundo sumando  
+		$$
+		\mathbb{E}(|f(\overline{X}_n) - f(x)|\mathbf{1}_{A_{\epsilon}^{c}})
+		\leq 2\|f\|_{\infty} \mathbb{E}1_{A_{\epsilon}^{c}} = 2M \mathbb{P}(|\overline{X}_n - x| > \delta (\epsilon)). 
+		$$
+		Ahora, recordando Chebyshev podemos acotar esta probabilidad por
+		$$
+		2M\mathbb{P}(|\overline{X}_n - x| > \delta) \leq 2M\frac{\mathbb{V}(\overline{X}_n)}{\delta^2} = n 2M\frac{\mathbb{V}(X_1)}{n^2 \delta^2} = 2M\frac{x(1-x)}{n \delta^2} \leq \frac{M}{2n\delta^2},
+		$$
+		\noindent y esta cota no depende de quién es x. Combinando todo llegamos a que 
+		$$
+		|b_n(x) - f(x)| \leq \epsilon + \frac{2M}{4n\delta^2}
+		$$
+		tomando límite en $n$, tenemos que para todo $\epsilon > 0$ y para todo $x \in [0, 1]$ 
+		$$ |b_n(x) - f(x)| \leq \epsilon.$$
+		Luego, $b_n \to f$ uniformemente.
+	\end{solucion}
+
+	\begin{ejercicio}.
+		Sean $X$ e $Y$ variables aleatorias independientes con funciones de densidades $f_X$ y $f_Y$ respectivamente. Probar que la función de densidad de $Z = X + Y$ es
+		$$
+		f_Z(z) = (f_X * f_Y)(z) = \int_{-\infty}^{+\infty} f_X(z - y)f_Y(y) \, dy.
+		$$
+	\end{ejercicio}
+	
+	\begin{solucion}
+		Comencemos calculando $F_{X+Y}(z)$.
+	\begin{align*}
+		F_{X+Y}(z) &= P(X + Y \leq z) \\
+		&= \int_{-\infty}^{\infty} P(X + Y \leq z \mid Y = y) f_Y(y) \, dy \\
+		&= \int_{-\infty}^{\infty} P(X \leq z - y \mid Y = y) f_Y(y) \, dy \\
+		&= \int_{-\infty}^{\infty} P(X \leq z - y) f_Y(y) \, dy \\
+		&= \int_{-\infty}^{\infty} \int_{-\infty}^{z - y} f_X(x) f_Y(y) \, dxdy.\\
+	\end{align*}
+	Si consideramos el cambio de variable $t = x + y$, tenemos que $-\infty \leq t \leq z$, así
+	$$
+	F_{X+Y}(z) = \int_{-\infty}^{\infty} \int_{-\infty}^{z} f_X(t - y)f_Y(y) dtdy.
+	$$
+	Usando Fubini y derivando con respecto a $z$ tenemos que $f_{Z}(z)$ es la convolución de $f_{X}$ con $f_{Y}(y)$.
+	\end{solucion}
+		
+	\begin{ejercicio}
+		Probar que si $f: [0, 1] \to \mathbb{R}$ es continua, entonces
+		$$
+		\lim_{n \to \infty} \int_{0}^{1} \int_{0}^{1} \dots \int_{0}^{1} f\left( \frac{x_1 + \dots + x_n}{n} \right) dx_1 dx_2 \dots dx_n = f\left(\frac{1}{2}\right).
+		$$
+	\end{ejercicio}
+	
+	\begin{solucion}
+		Comencemos entendiendo quién es esta integral. Si consideramos la sucesión de variables aleatorias i.i.d $(X_k)_k \sim U[0, 1]$ podemos ver que
+		$$\mathbb{E}[f(\frac{\sum_{k=1}^{n} X_k}{n})] = \int_{0}^{1} \int_{0}^{1} \dots \int_{0}^{1} f\left( \frac{x_1 + \dots + x_n}{n} \right) dx_1 dx_2 \dots dx_n.$$
+		\noindent Por otro lado, la \emph{ley fuerte de los grandes números} nos dice que $\frac{\sum_{k=1}^{n} X_k}{n} \xrightarrow{c.s.} \frac{1}{2}$. Cómo $f$ es continua, $f(\frac{\sum_{k=1}^{n} X_k}{n}) \xrightarrow{c.s.} f(\frac{1}{2})$. Para finalizar, como $f$ es continua en un compacto tenemos que está acotada, así por el teorema de convergencia mayorada 
+		$$ 
+		\mathbb{E}[f(\frac{\sum_{k=1}^{n} X_k}{n})] \longrightarrow f(\frac{1}{2}).
+		$$
+	\end{solucion}
+	
+	\begin{ejercicio}
+		Sean $X, Y$ dos variables aleatorias con función de densidad conjunta $f_{XY}(x,y)$. Probar que
+		
+		$$ \mathbb{E}(X|Y) = \Phi(Y), \quad \text{con} \quad \Phi(y) = \int_{-\infty}^{\infty} x \frac{f_{XY}(x,y)}{f_Y(y)} \, dx. $$
+	\end{ejercicio}
+	
+	\begin{solucion}
+		Comencemos notando que $\Phi(y)$ es medible borel por Fubini, luego tenemos que $\Phi(Y)$ es $\mathcal{U}(Y)-$medible. Ahora, dado $A \in \mathcal{U}(Y)$ existe $B \in \mathcal{B}$ tal que $A = Y^{-1}(B)$ entonces
+		$$
+		\int_{A} X \, d\mathbb{P} = \mathbb{E}(X1_{A}) =  \int_{\mathbb{R}^{2}} 1_{B}(y) x f_{XY}(x,y) \, dx \, dy = \int_{-\infty}^{\infty} \int_{B} x f_{XY}(x, y) \, dy \, dx
+		$$
+		donde en la segunda igualdad usamos el ejercicio 8 y en la última Fubini. De la misma manera,
+		$$
+		\int_{A} \Phi(Y) d\mathbb{P} = \mathbb{E}(\Phi(Y)1_{A}) = \int_{B} \Phi(y) f_{Y}(y) \, dy = \int_{-\infty}^{\infty} \int_{B} x f_{XY}(x, y) \, dy dx
+ 		$$
+ 		en la última desigualdad usamos Fubini y la definición de $\Phi$. Tenemos así que $\Phi(Y)$ es $\mathcal{U}(Y)$ medible y que
+ 		$$
+ 		\int_{A} X d\mathbb{P} = \int_{A} \Phi(Y) d\mathbb{P} \quad \forall A \in \mathcal{U}(Y) 
+ 		$$
+ 		por lo que $\mathbb{E}(X | Y) = \Phi(Y)$.
+ 		
+	\end{solucion}
+\end{document}

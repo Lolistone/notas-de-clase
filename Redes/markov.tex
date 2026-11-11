@@ -1,0 +1,893 @@
+\documentclass[11pt,a4paper]{article}
+
+%  Idioma, codificación y página
+\usepackage[spanish]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[a4paper,margin=3.2cm,headheight=14pt,headsep=1cm]{geometry}
+
+%  Matemática y utilidades
+\usepackage{amssymb,amsmath,amsthm,amsfonts}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tikz-cd}
+\usepackage[shortlabels,inline]{enumitem}
+
+%  Tipografía: texto y matemática en Times (como Lyons--Peres)
+\IfFileExists{newtxtext.sty}{%
+  \usepackage{newtxtext}%
+  \usepackage{newtxmath}%
+}{%
+  \usepackage{mathptmx}%
+}
+\usepackage{esint}
+\usepackage{microtype}
+
+% Colores: gris para los números, verde oscuro para los enlaces
+\definecolor{LPgray}{gray}{0.55}
+\definecolor{LPgreen}{RGB}{6,92,10}
+
+% Fuente de los títulos: Times negrita, condensada horizontalmente
+\newcommand{\LPscale}{0.8}
+\newlength{\LPw}
+% ancho para las cajas condensadas = (5/4)(argumento), solo con enteros
+\newcommand{\LPsetwidth}[1]{\setlength{\LPw}{\dimexpr 5\dimexpr #1\relax/4\relax}}
+\newcommand{\LPhead}{\normalfont\bfseries}
+
+%  Atajos: conjuntos 
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\ds}{\displaystyle}
+
+%  Atajos: proba
+\newcommand{\Prob}{\textbf{P}}          
+\newcommand{\E}{\textbf{E}}             
+\newcommand{\ind}[1]{\mathbf{1}_{#1}}   
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Corr}{Corr}
+\newcommand{\dto}{\xrightarrow{\;d\;}}        % convergencia en distribución
+\newcommand{\pto}{\xrightarrow{\;\Prob\;}}    % convergencia en probabilidad
+\newcommand{\asto}{\xrightarrow{\;\mathrm{c.s.}\;}}  % casi segura
+\newcommand{\iid}{\text{i.i.d.}}
+
+%  Más
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\newcommand{\dd}{\,\mathrm{d}}                          % \int f \dd x
+\newcommand{\deriv}[2]{\frac{\mathrm{d}#1}{\mathrm{d}#2}}
+\newcommand{\pderiv}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\defeq}{\coloneqq}                           % :=
+\newcommand{\inv}{^{-1}}
+\newcommand{\cl}[1]{\overline{#1}}                       % clausura
+
+% Delimitadores que se ajustan solos (con asterisco crecen: \abs*{...})
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\set}{\lbrace}{\rbrace}
+\newcommand{\inner}[2]{\left\langle #1,\, #2\right\rangle}
+
+% Nota para uno mismo, bien visible
+\newcommand{\todo}[1]{{\color{red}[\textbf{TODO:} #1]}}
+
+% Término que se define: negrita cursiva, como en el libro
+\newcommand{\defn}[1]{\textbf{\emph{#1}}}
+
+%  Secciones: centradas, con el número en gris
+\usepackage{titlesec}
+\titleformat{\section}[block]{\centering\large\bfseries}%
+  {\textcolor{LPgray}{\thesection}\hspace{0.6em}}{0pt}{}
+\titleformat{name=\section,numberless}[block]{\centering\large\bfseries}{}{0pt}{}
+\titlespacing*{\section}{0pt}{3.2ex plus 1ex minus .5ex}{1.8ex plus .3ex}
+
+\titleformat{\subsection}[block]{\bfseries}%
+  {\textcolor{LPgray}{\thesubsection}\hspace{0.6em}}{0pt}{}
+\titlespacing*{\subsection}{0pt}{2.6ex plus 1ex minus .5ex}{1.2ex plus .2ex}
+
+\titleformat{\paragraph}[runin]{\bfseries\itshape}{}{0pt}{}[.]
+\titlespacing*{\paragraph}{0pt}{1.5ex plus .5ex}{0.6em}
+
+%  Encabezados y pies de página
+\usepackage{fancyhdr}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\hspace{0.6em}#1}}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[L]{\small\textit{\rightmark}}
+\fancyhead[R]{\small\textbf{\thepage}}
+\fancypagestyle{plain}{%
+  \fancyhf{}%
+  \renewcommand{\headrulewidth}{0pt}%
+  \fancyhead[R]{\small\textbf{\thepage}}%
+}
+
+%  Enlaces en verde y referencias cruzadas
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=LPgreen,citecolor=LPgreen,
+  urlcolor=LPgreen}
+% cleveref: \cref{etiqueta} escribe "Teorema 3.1", "Definición 2.1", etc.,
+% aunque los entornos compartan contador. Plural automático con varias etiquetas.
+\usepackage[nameinlink]{cleveref}
+\crefname{teo}{Teorema}{Teoremas}
+\crefname{lem}{Lema}{Lemas}
+\crefname{prop}{Proposición}{Proposiciones}
+\crefname{coro}{Corolario}{Corolarios}
+\crefname{conj}{Conjetura}{Conjeturas}
+\crefname{defi}{Definición}{Definiciones}
+\crefname{obs}{Observación}{Observaciones}
+\crefname{ejemplo}{Ejemplo}{Ejemplos}
+\crefname{notacion}{Notación}{Notaciones}
+\crefname{ej}{Ejercicio}{Ejercicios}
+\crefname{section}{Sección}{Secciones}
+\crefname{subsection}{Subsección}{Subsecciones}
+\crefname{equation}{ecuación}{ecuaciones}
+\crefname{figure}{Figura}{Figuras}
+\crefname{table}{Tabla}{Tablas}
+\Crefname{equation}{Ecuación}{Ecuaciones}
+
+%  Teoremas: nombre en negrita, enunciado en cursiva, fin de prueba ◀
+\newtheoremstyle{LPplain}%
+  {9pt}{9pt}{\itshape}{0pt}{\bfseries}{.}{0.5em}%
+  {\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}
+\newtheoremstyle{LPdef}%
+  {9pt}{9pt}{\normalfont}{0pt}{\bfseries}{.}{0.5em}%
+  {\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}
+\newtheoremstyle{LPrem}%
+  {9pt}{9pt}{\normalfont}{0pt}{\itshape}{.}{0.5em}%
+  {\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}
+
+\numberwithin{equation}{section}
+
+\theoremstyle{LPplain}
+\newtheorem{teo}{Teorema}[section]
+\newtheorem{lem}[teo]{Lema}
+\newtheorem{prop}[teo]{Proposición}
+\newtheorem{coro}[teo]{Corolario}
+\newtheorem{conj}[teo]{Conjetura}
+\newtheorem*{teo*}{Teorema}
+
+\theoremstyle{LPdef}
+\newtheorem{defi}[teo]{Definición}
+\newtheorem{ej}{Ejercicio}[section]
+\newtheorem*{ej*}{Ejercicio}
+
+\theoremstyle{LPrem}
+\newtheorem{obs}[teo]{Observación}
+\newtheorem{ejemplo}[teo]{Ejemplo}
+\newtheorem{notacion}[teo]{Notación}
+
+\renewcommand{\qedsymbol}{$\blacktriangleleft$}
+\renewcommand{\proofname}{Demostración}
+
+%  Título y resumen
+\makeatletter
+\renewcommand{\maketitle}{%
+  \thispagestyle{plain}%
+  \begin{center}
+    \textcolor{LPgray}{\rule{\textwidth}{0.4pt}}\par
+    \vspace{1.2em}
+    \LPsetwidth{\textwidth}%
+    \scalebox{\LPscale}[1]{\parbox[t]{\LPw}{\centering
+      \LPhead\fontsize{28}{31}\selectfont \@title\par}}\par
+    \vspace{1em}
+    {\large \@author\par}
+    \vspace{0.3em}
+    {\normalsize \@date\par}
+    \vspace{1em}
+    \textcolor{LPgray}{\rule{\textwidth}{0.4pt}}\par
+  \end{center}
+  \vspace{1em}}
+
+\renewenvironment{abstract}{%
+  \begin{center}\begin{minipage}{0.86\textwidth}
+  \small\noindent\textbf{\abstractname.}\ }{%
+  \end{minipage}\end{center}\vspace{0.5em}}
+\makeatother
+
+%  Datos del documento
+\title{Paseos al azar y redes eléctricas}
+\author{Lolistone
+}
+\date{\today}
+
+%  Documento
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+    Vamos a ver que se puede pensar cierta clase de cadenas de Markov, en la que estan 
+    incluidos procesos conocidos como los paseos al azar sobre grafos, como redes eléctricas.
+\end{abstract}
+
+% \tableofcontents   % descomentar si el texto es largo
+
+\section{¿Redes eléctricas, cadenas reversibles?}
+
+  Informalmente, una red eléctrica es un circuito de toda la vida, con
+  sus leyes y propiedades. Mientras que una cadena reversible es una que 
+  podemos mirar tanto de adelante hacia atrás como de atrás hacia adelante,
+  de ahí el \emph{reversible}. Sin haberlos definido formalmente, a simple 
+  vista no se ve ninguna conexión muy clara, sin embargo existe y nos será
+  muy útil para probar resultados acerca de estas cadenas. 
+
+\section{Preliminares}
+
+\begin{defi}[Cadena reversible]
+  Una cadena \defn{reversible} es una cadena de Markov que cumple 
+  \defn{balance detallado}, es decir, existe $\pi$ una medida tal que
+  \begin{equation}\label{eq:bd}
+   \pi(x)\Prob(x,y) = \pi(y)\Prob(y,x), \quad \forall x,y \in \mathcal{X}.
+  \end{equation}
+   donde $\Prob$ es la matriz de transición de la cadena y $\mathcal{X}$ el espacio
+  de estados.
+\end{defi}
+
+\begin{obs}
+  ¿Donde está lo de reversible? Bueno, notemos que la condición de balance detallado
+  nos dice que si $X_0 \sim \pi$,
+  $$\Prob(X_0 = x, X_1 = y) = \Prob(X_0 = y, X_1 = x), \quad \forall x,y \in \mathcal{X}.$$
+  Más aún, via inducción uno puede probar que 
+  $$(X_0, X_1, \dots, X_k) \sim (X_k, \cdots, X_1, X_0), \quad \forall k \in \N.$$
+  Esto nos dice que ver la película al derecho o al revés es lo mismo.
+\end{obs}
+
+\begin{obs}
+  \textbf{Ojo}, en ~\ref{eq:bd} $\pi$ puede no ser una distribución. 
+\end{obs}
+
+\begin{defi}[Red]\label{def:red}
+  Una \defn{red} es un grafo $G=(V,E)$ no orientado junto con
+  $ \{ C(e) \}_{e\in E}$ con $c \geq 0$ llamada \defn{conductancia}. Llamamos
+  \defn{resistencia} y notamos $\{r(e)\}_{e\in E}$ a su inversa, $r(e) = \frac{1}{c(e)}$.
+\end{defi}
+
+\begin{notacion}
+  Escribimos $(G, \{C(e)\}_{e\in E})$ para una red.
+\end{notacion}
+
+\begin{obs}
+  Si bien sobre $G$ no imponemos ninguna condición, los primeros resultados
+  que probemos sobre redes van asumir que este es finito.
+\end{obs}
+
+Ahora que ya sabemos que es cada cosa veamos que dada una cadena podemos 
+obtener una red y viceversa. Comencemos tomando una red $(G, \{C(e)\}_{e\in E})$
+y consideremos la matriz de transición $\Prob$ dada por 
+$$ \Prob(x, y) = \frac{c(x,y)}{c(x)}, \quad c(x) = \sum_{y \colon y \sim x} c(x, y)$$
+donde $y \sim x$ si $y$ es vecino de $x$. A este proceso también lo vamos a llamar
+\defn{paseo al azar pesado}. Consideremos ahora
+$$ \pi(x) = \frac{c(x)}{c_G}, \quad c_G = \sum_{x \in V} c(x).$$
+Es fácil chequear que esta condición cumple \emph{balance detallado} y por lo tanto
+tenemos una cadena reversible. Supongamos ahora que tenemos un cadena reversible en un
+espacio de estados finito, veamos que podemos representarla como un paseo pesado sobre 
+una red, definimos $G$ un grafo con vertices en $\mathcal{X}$, $x \sim y$ si $P(x, y) > 0$
+y 
+$$c(x, y) = \pi(x)\Prob(x, y), \quad \forall x,y \in \mathcal{X}.$$
+Con esta elección de pesos tenemos que $c(x) = \pi(x)$ y la matriz asociada es $P$.
+
+\begin{obs}
+  $\pi$ no necesariamente es distribución. Por ejemplo, en un paseo al azar simple podemos
+  tomar $\pi(x) = deg(x)$. En este caso, $c(x, y) = 1.$
+\end{obs}
+
+\section{Funciones armónicas y tiempos de llegada}
+
+Dados $A, Z$ subconjunto disjuntos del espacio de estados, es de nuestro interés por ejemplo
+ver la probabilidad llegar primero a $A$ que a $Z$ dado que comenzamos en un estado cualquiera $x$.
+Es decir, nos interesa estudiar
+$$F(x) = \Prob_x[\tau_A < \tau_Z].$$
+donde $\tau_A = \min\{t \geq 0 \colon X_t \in A\}$. También vamos a considerar 
+$\tau_{A}^{+} = \min\{t > 0 \colon X_t \in A\}$ que difiere con el primer tiempo de parada cuando
+el proceso comienza en $A$. Veamos que tenemos,
+\begin{align*}
+  F(x) &= \sum_{y \sim x} \Prob_x[\text{el primer paso es } y]\,
+          \Prob_x[\tau_A < \tau_Z \mid \text{el primer paso es } y] \\
+       &= \sum_{y \sim x} P(x,y)\, \Prob_y[\tau_A < \tau_Z] \\
+       &= \sum_{y \sim x} P(x,y)\, F(y).
+\end{align*}
+Si la cadena es reversible esto es 
+$$ \frac{1}{\pi(x)} \sum_{y \sim x} c(x, y) F(y),$$
+y si consideramos un paseo al azar simple obtenemos
+$$ \frac{1}{d(x)} \sum_{y \sim x} F(y).$$
+Esta última expresión parece una versión discreta de nuestra noción 
+de función armónica de toda la vida, esto motiva la siguiente definición.
+
+\begin{defi}[Armónica]
+Una función $h \colon \mathcal{X} \to \R$ es \defn{armónica} en $x$ si
+$$  h(x) = \sum_{y} P(x,y)\,h(y). $$
+\end{defi}
+
+Al igual que con la noción usual vale un \defn{principio del máximo}.
+
+\begin{prop}[Principio del máximo]
+  Sea $W$ un conjunto de estados contable de un espacio de estados $\mathcal{X}$.
+  Si $h : \mathcal{X} \to \R$ es armónica y su supremo sobre $\mathcal{X}$ se alcanza en algún
+  $x_0 \in W$, entonces es constante en todos los estados accesibles desde $W$.
+\end{prop}
+
+\begin{proof}
+  Sea $K \defeq \{x \in \mathcal{X} \colon h(x) = \sup_{\mathcal{X}}{h} \}$. 
+  Tomemos $x \in K \cap W$ si $P(x, y) > 0$ tenemos que $y \in K$ pues si $h(y) < h(x)$ 
+  \begin{align*}
+    h(x) &= \sum_{z \in \mathcal{X}} P(x, z) h(z) \\ 
+         &= h(y) P(x,y) + \sum_{z \in \mathcal{X} \setminus \{y\}} P(x, z) h(z) \\
+         &< h(x) P(x,y) + \sum_{z \in \mathcal{X} \setminus \{y\}} P(x, z) h(x) = h(x).
+  \end{align*}
+  Lo cual es absurdo. Notemos que en el último paso usamos $h(z) \leq h(x)$ y la suposición. 
+\end{proof}
+
+\begin{prop}[Principio de unicidad]
+  Sea $W$ un subconjunto finito de estado de $\mathcal{X}$ un espacio contable. Supongamos
+  que se puede llegar a todo elemento de $\mathcal{X}$ desde $W$. Si $h, g : \mathcal{X} \to \R$
+  son armónicas en $W$ y coinciden entonces son iguales.
+\end{prop}
+
+\begin{proof} Consideremos $f = h - g$. Cómo $W$ es finito y fuera de este vale $0$
+$f$ alcanza máximo en $\mathcal{X}$, si $x \notin W$ entonces $f \leq 0$, y si $x \in W$
+por el principio del máximo $f = 0$ en todos lados. Luego, $f \leq 0$. Por simetría, 
+mirando $-f$ tenemos que $f \geq 0$ y por lo tanto es identicamente nula. 
+\end{proof}
+
+Ahora probemos un resultado que nos va a ser muy útil a futuro.
+
+\begin{prop}[Principio de existencia]\label{prop:extension}
+  Sea $(X_t)_t$ una cadena de Markov irreducible, $W \subset \mathcal{X}$ con $\mathcal{X}$ contable 
+  y $\mathcal{X} \setminus W$ finito y $h_{W} \colon W \to \R$. La función $h(x) = \E_x h_W(X_{\tau_W})$ es la única
+  extensión armónica de $h_W$ a $\mathcal{X}\setminus W$.  
+\end{prop}
+
+\begin{proof}
+  Por el principio del máximo y el de unicidad basta ver que $h$ es armónica. Es fácil chequear 
+  que coinciden en $B$ veamos que ocurre en el complemento. Sea $x \notin B$,
+  \begin{align*}
+    \E_x h_B(X_{\tau_B}) &= \sum_{y \in X} P(x, y) \E_x[h_B(X_{\tau_B}) \mid X_1 = y] \\
+                         &= \sum_{y \in X} P(x, y) \E_y h_B(X_{\tau_B}). 
+  \end{align*}
+  Luego, $h$ es armónica.
+\end{proof}
+
+\section{Circuitos}
+
+De ahora en adelante vamos a distinguir dos conjuntos de nodos disjuntos que notaremos 
+$A, Z$ y llamaremos \defn{entrada} y \defn{salida} respectivamente. Usualmente ambos serán solo un punto.
+
+\begin{defi}[Voltaje]
+  Dados $A, Z \subset \mathcal{X}$ disjuntos llamamos \defn{voltaje} a (la única) función de los vertices
+  armónica en $(A \cup Z)^{c}$.
+\end{defi}
+
+\begin{obs}
+  Es única dado que sabemos cuanto vale en $A, Z$.
+\end{obs}
+
+\begin{defi}[Corriente]
+  Dado un voltaje $v$, definimos la $\defn{corriente}$ i
+  como
+  $$ i(x, y) = (v(x) - v(y))c(x, y).$$
+\end{defi}
+
+\begin{obs}
+Notemos que la corriente es antisimétrica, es decir, $i(x, y) = -i(y, x)$
+y, si $x \notin A\cup Z$
+\begin{align*}
+  \sum_{y \sim x} i(x, y) &= v(x) \sum_{y\sim x} c(x, y) + \sum_{y \sim x} v(y) c(x, y) \\
+                          &= v(x) c(x) + c(x) \sum_{y \sim x} v(y) p(x, y) \\
+                          &= 0. 
+\end{align*}
+Donde la ultima igualdad vale por ser $v$ armónica. Esto nos dice que el "flujo" neto 
+en un punto es $0$, en analogía con el cálculo tradicional esta suma se suele notar 
+como $\text{div }\theta(x).$
+\end{obs}
+
+\begin{defi}[Intesidad]
+  Dado $a$ un punto de entrada o fuente, llamamos \defn{intensidad de corriente} 
+  a la corriente que sale desde $a$, es decir,
+  a la magnitud $\sum_{x \sim a} i(a, x)$  
+\end{defi}
+
+\begin{defi}[Flujo]
+  Dados $A, Z$ conjuntos llamamos \defn{flujo} entre $A$ y $Z$ a una función $\theta : \mathcal{X} \times \mathcal{X} \to \R$ 
+  tal que $\theta(x,y) = -\theta(y, x)$ para todo $x, y \in \mathcal{X}$ y 
+  $\sum_{y \sim x} \theta(x , y) = 0$ para todo $x \notin A\cup Z$.
+\end{defi}
+
+A esta definiciones y las propiedades que vamos a mencionar a continuación se las 
+llaman leyes en el contexto de la física.
+
+\paragraph{Ley de Ohm} Si $x \sim y$ entonces 
+$$i(x, y) r(x, y) = v(x) - v(y).$$
+
+\paragraph{Ley de nodos de Kirchoff} La corriente $i$ es un flujo entre 
+$A$ y $Z$.
+
+\paragraph{Ley de ciclos de Kirchoff} Si $x_1 \sim x_2 \sim \dots \sim x_n = x_1$ entonces 
+$$\sum_{k=0}^{n-1} i(x_k, x_{k+1})r(x_k, x_{k+1}) = 0.$$
+
+\section{Probabilidad de escape y resistencia}
+
+Volvamos a pensar en probabilidades, supongamos que tenemos $a, z \in \mathcal{X}$ un espacio
+de estados con $a \neq 0$, pdoríamos preguntarnos cual es la probabilidad dado que comenzamos
+en $a$ de llegar a $z$ antes de volver, esto es $\Prob_a[\tau_z < \tau_{a}^{+}]$. Comencemos 
+pensando el problema partiendo de un estado $x$ cualquiera, vale que 
+$$\E_x 1_{\{z\}}(X_{\tau_{\{a,z\}}}) = \Prob_x[\tau_z < \tau_{a}]$$
+por el principio de existencia tenemos que esta es la única extensión armónica de 
+$\ind{{\{a,z\}}}$. Cómo la función
+$$ x \mapsto \frac{v(a) - v(x)}{v(a) - v(z)} $$
+es armónica y vale lo mismo en los bordes tenemos que
+$$ \Prob_x[\tau_z < \tau_{a}] = \frac{v(a) - v(x)}{v(a) - v(z)}.$$
+Luego,
+$$ 
+\Prob_a[\tau_z < \tau_{a}^{+}] = \sum_{x \in V} P(a, x) \Prob_x[\tau_z < \tau_{a}] = 
+\sum_{x \sim a} \frac{c(a, x)}{c(x)} \frac{v(a) - v(x)}{v(a) - v(z)} = \frac{\sum_{x \sim a} i(x, a)}{c(a) (v(a) - v(z))}.
+$$
+Donde la última igualdad vale por ley de Ohm. Este desarrollo que no parece tener un fin
+claro motiva la siguiente definición.
+
+\begin{defi}[Resistencia y conductancia efectiva]
+  Definimos la \defn{resistencia efectiva} entre $a$ y $z$ como
+  $$ \mathscr{R}(a \leftrightarrow z) = \frac{v(a) - v(z)}{\sum_{x \sim a} i(x, a)}.$$
+  Además, definimos la \defn{conductancia efectiva} cómo su inverso multiplicativo y notamos
+  $\mathscr{C}(a \leftrightarrow z).$
+\end{defi}
+
+\begin{obs}
+  ¿De donde viene el nombre resistencia efectiva? Dada una red, si la reemplazamos
+  por una con solo dos vertices, $a$ y $z$, unidos por una arista con resistencia 
+  $\mathscr{R}(a \leftrightarrow z)$ si ahora aplicamos el mismo voltaje que a la original
+  en estos dos puntos la intensidad de corriente va a ser la misma.
+\end{obs}
+
+\begin{obs}
+¿Cómo estudiamos redes infinitas? Aproximandonos por grafos finitos!
+\end{obs}
+
+\begin{defi}\label{def:exhaustion}
+  Sea $G$ una red infinita. Un \textit{agotamiento} de $G$ es una sucesión
+  $\langle G_n \rangle$ de subgrafos finitos con $G_n \subseteq G_{n+1}$ y
+  $G = \bigcup_n G_n$. Suponemos que cada $G_n$ es el subgrafo inducido por
+  $\mathsf{V}(G_n)$, y que cada arista de $G_n$ conserva la conductancia que
+  tiene en $G$. Sea $Z_n \coloneqq \mathsf{V}(G) \setminus \mathsf{V}(G_n)$. El
+  \textit{grafo cableado} $G_n^{\mathrm{W}}$ se obtiene a partir de $G$
+  identificando $Z_n$ en un único vértice $z_n$ y eliminando luego los lazos,
+  pero conservando las aristas múltiples.
+\end{defi}
+
+\begin{defi}\label{def:effective}
+  Sea $a \in \mathsf{V}(G)$ y sea $\langle G_n \rangle$ un agotamiento de $G$.
+  La \textit{conductancia efectiva} de $a$ a $\infty$ en $G$ es
+  \[
+    \mathcal{C}(a \leftrightarrow \infty)
+    \coloneqq \lim_{n \to \infty}
+    \mathcal{C}(a \leftrightarrow z_n; G_n^{\mathrm{W}}).
+  \]
+\end{defi}
+
+\begin{obs}
+  El límite está bien definido, y el motivo es el \defn{principio de monotonía} que
+  veremos más adelante.
+\end{obs}
+
+\section{Simplificando redes}
+
+\paragraph{Resistencias en serie} Dos aristas con resistencias $r_1, r_2$
+en serie son equivalente a una única con resistencia $r_1 + r_2$. Más precisamente,
+si $w \in V \setminus {A \cup Z}$ es un nodo de grado dos con vecinos $u_1, u_2$ y 
+reemplazamos las aristas $(u_1, w), (w, u_2)$ por $(u_1, u_2)$ con resistencia
+$r(u_1, w) + r(w, u_2)$, entonces los potenciales y corriente en $G\setminus\{w\}$
+permanecen iguales y la corriente entre $u_1$ y $u_2$ es $i(u_1, w)$. 
+
+\begin{figure}[ht]
+  \centering
+  \begin{tikzpicture}[
+      line width=0.3pt,                      % trazo fino
+      every node/.style={font=\small},
+      pt/.style={circle,fill,inner sep=1.1pt}]
+    % serruchito de resistencia: 3 picos y 3 valles (ancho total 1.2)
+    \def\zz{-- ++(0.1,0.15) -- ++(0.2,-0.3) -- ++(0.2,0.3) -- ++(0.2,-0.3)
+            -- ++(0.2,0.3) -- ++(0.2,-0.3) -- ++(0.1,0.15)}
+
+    % --- Red original: u1 --- w --- u2 ---
+    \node[pt,label=above:{$u_1$}] (u1) at (0,0) {};
+    \node[pt,label=above:{$w$}]   (w)  at (2.82,0) {};
+    \node[pt,label=above:{$u_2$}] (u2) at (5.64,0) {};
+    \draw (u1) -- ++(0.81,0) \zz -- (w);
+    \draw (w)  -- ++(0.81,0) \zz -- (u2);
+    \node at (1.41,-0.5) {$r(u_1,w)$};
+    \node at (4.23,-0.5) {$r(w,u_2)$};
+    % el resto de la red sale de u1 y de u2
+    \draw (u1) -- ++(-0.5,0.3);  \draw (u1) -- ++(-0.5,-0.3);
+    \draw (u2) -- ++(0.5,0.3);   \draw (u2) -- ++(0.5,-0.3);
+  \end{tikzpicture}
+  \label{fig:serie}
+\end{figure}
+
+\begin{proof}
+  La demostración consiste en ver que en la nueva red  $G \setminus \{w\}$ la corriente 
+  y el voltaje siguen siendo igualess, esto lo hacemos chequeando la ley de Ohm y Kirchoff.
+\end{proof}
+
+\paragraph{Resistencias en paralelo} Dos aristas con conductancia $c_1, c_2$ que unen los mismos
+vertices son equivalentes a una única con conductancia $c_1 + c_2$. Luego, 
+todos los voltajes y corrientes se mantienen igual en $G \setminus \{e_1, e_2\}$
+y la corriente $i(e) = i(e_1) + i(e_2)$. Esto vale para infinitas aristas en paralelo.
+
+\begin{figure}[ht]
+  \centering
+  \begin{tikzpicture}[
+      line width=0.3pt,                      % trazo fino
+      every node/.style={font=\small},
+      pt/.style={circle,fill,inner sep=1.1pt}]
+    % serruchito de resistencia: 3 picos y 3 valles (ancho total 1.2)
+    \def\zz{-- ++(0.1,0.15) -- ++(0.2,-0.3) -- ++(0.2,0.3) -- ++(0.2,-0.3)
+            -- ++(0.2,0.3) -- ++(0.2,-0.3) -- ++(0.1,0.15)}
+
+    % --- Red original: dos aristas en paralelo ---
+    \node[pt,label={[xshift=-0.45cm]left:{$w_1$}}]  (w1) at (0,0) {};
+    \node[pt,label={[xshift=0.45cm]right:{$w_2$}}] (w2) at (5,0) {};
+    \draw (w1) to[out=90,in=180] (0.9,0.9) -- (1.9,0.9) \zz -- (4.1,0.9)
+          to[out=0,in=90] (w2);
+    \draw (w1) to[out=-90,in=180] (0.9,-0.9) -- (1.9,-0.9) \zz -- (4.1,-0.9)
+          to[out=0,in=-90] (w2);
+    \node at (2.5,1.3)  {$e_1$};
+    \node at (2.5,-1.3) {$e_2$};
+    % el resto de la red sale de w1 y de w2
+    \draw (w1) -- ++(-0.5,0.3);  \draw (w1) -- ++(-0.5,-0.3);
+    \draw (w2) -- ++(0.5,0.3);   \draw (w2) -- ++(0.5,-0.3);
+  \end{tikzpicture}
+  \label{fig:paralelo}
+\end{figure}
+
+\begin{proof}
+  Chequear Ohm y Kirchoff.
+\end{proof}
+
+Veamos que efectivamente nos ayuda a resolver problemas con un ejemplo.
+
+\begin{ejemplo}\label{ej:arbol-simetrico}
+  Sea $\Gamma$ un árbol con raíz $\rho$ y sea $\Gamma_n$ su \defn{nivel $n$},
+  es decir, el conjunto de vértices a distancia $n$ de $\rho$. Pedimos dos
+  simetrías:
+  \begin{enumerate}[(i)]
+    \item todos los vértices de un mismo nivel tienen el mismo grado
+          (\defn{árbol esféricamente simétrico});
+    \item todas las aristas que unen el nivel $i-1$ con el nivel $i$ tienen la
+          misma resistencia, que llamamos $r_i$, para $i \ge 1$.
+  \end{enumerate}
+  Por simetría, el voltaje es constante en cada nivel, así que pegar en un solo
+  vértice todos los vértices de un nivel no altera las corrientes ni la
+  resistencia efectiva. Después de pegar, entre el nivel $i-1$ y el nivel $i$
+  quedan $\lvert\Gamma_i\rvert$ aristas en paralelo (una por cada vértice del
+  nivel $i$), todas de resistencia $r_i$; en conjunto equivalen a una
+  resistencia $r_i/\lvert\Gamma_i\rvert$. Estos tramos quedan en serie, y las
+  resistencias en serie se suman:
+  \begin{equation}\label{eq:reff-arbol}
+    \mathscr{R}(\rho \leftrightarrow \Gamma_M)
+      = \sum_{i=1}^{M} \frac{r_i}{\lvert\Gamma_i\rvert}.
+  \end{equation}
+  Como la conductancia total en $\rho$ es $c(\rho) = \lvert\Gamma_1\rvert / r_1$,
+  la fórmula de la probabilidad de escape, $\Prob_\rho\{\tau_{\Gamma_M} < \tau_\rho^+\}
+  = 1/\bigl(c(\rho)\,\mathscr{R}(\rho \leftrightarrow \Gamma_M)\bigr)$, da
+  \begin{equation}\label{eq:escape-arbol}
+    \Prob_\rho\{\tau_{\Gamma_M} < \tau_\rho^+\}
+      = \frac{r_1/\lvert\Gamma_1\rvert}{\displaystyle\sum_{i=1}^{M} r_i/\lvert\Gamma_i\rvert}.
+  \end{equation}
+  Haciendo $M \to \infty$, el límite es positivo si y solo si la serie del
+  denominador converge:
+  \[
+    \lim_{M\to\infty} \Prob_\rho\{\tau_{\Gamma_M} < \tau_\rho^+\} > 0
+    \iff \sum_{i=1}^{\infty} \frac{r_i}{\lvert\Gamma_i\rvert} < \infty.
+  \]
+  En otras palabras, la caminata es transiente exactamente cuando esa serie
+  converge.
+\end{ejemplo}
+
+\section{Energía}
+  En esta sección vamos a definir un concepto que nos va a ser de 
+  gran utilidad, la \defn{energía}. Para esto, primero vamos a introducir algunos conceptos
+  y notación.
+\subsection{Definiciones básicas y notación}
+  
+  En primer lugar, definimos $\ell^{2}(V)$ como el espacio de 
+  Hilbert de funciones a valores reales con el producto interno
+  $$(f, g) = \sum_{x \in V} f(x)g(x).$$
+  \begin{obs}
+  A menos que se aclare lo contrario, vamos a estar trabajando con grafos finitos.
+  \end{obs}
+  Como estamos interesandos en flujos sobre $E$, definimos $\ell_{-}^{2}(E)$ como 
+  el espacio de las funciones antisimétricas con el producto interno
+  $$(\theta, \theta^{'}) = \frac{1}{2} \sum_{e \in E} \theta(e) \theta^{'}(e)$$
+  Dado que el voltaje a traves de las aristas es lo que nos da la corriente, 
+  definimos el \defn{operador de coborde} $d \colon \ell^{2}(V) \to \ell^{2}_{-}(E)$ como
+  $$(dv)(e) = v(e^{-}) - v(e^{+}).$$ 
+  Este operador es lineal. De manera análoga, definimos el \defn{operador de frontera}
+  $d \colon \ell^{2}_{-}(E) \to \ell^{2}(V) $ como 
+  $$ (d^{*}\theta)(x) = \sum_{e^{-} = x} \theta(e).$$
+  Este operador también es lineal y nos da el flujo a través de un punto. La notación no
+  es casual y se debe a que son adjuntos, es decir 
+  $$(\theta, dv) = (d^{*}\theta, v).$$
+
+  ¿Me sirve esta notación o solo estoy complicando las cosas? Un primer uso es reescribir
+  las leyes de redes. Sea $i$ una corriente. \\
+  
+  \hspace*{1em}\textbf{Ley de Ohm.} $dv = ir$ 
+
+  \hspace*{1em}\textbf{Ley de Nodos.} $d^{*}i(x) = 0$ si $x \notin A \cup Z$
+  
+  \subsection{Flujos}
+  
+  Vamos a estudiar brevemente algunas propiedades de los flujos para ver que tiene de
+  especial la corriente.
+  Aprovechemos nuestra nueva notación para recordar la definición de \defn{flujo}.
+  Dado $\theta \in \ell^{2}(E)$ decimos que es un flujo entre $A$ y $Z$ si $d^{*}\theta$ 
+  es cero fuera de $A$ y de $Z$. Además, si $\sum_{a \in A} d^{*}\theta(a) \geq 0$ decimos 
+  que es un flujo de $A$ a $Z$. Convenientemente, notamos
+  $$\text{Strength}(\theta) = \sum_{a \in A} d^{*}\theta(a).$$
+  Un flujo de fuerza 1 se llama \defn{flujo unitario.} 
+
+  \begin{lem}[Conservación del flujo]
+    Sea $G$ un grafo finito y $A, Z$ dos subconjuntos disjuntos de los vertices. Si $\theta$
+    es un flujo entre $A$ y $Z$, entonces
+    $$\sum_{a \in A} d^{*}\theta(a) = - \sum_{z \in Z} d^{*}\theta(z).$$
+  \end{lem}
+
+  \begin{proof}
+    $$\sum_{a \in A} d^{*}\theta(a) + \sum_{z \in Z} d^{*}\theta(z) = \sum_{x \in V} d^{*}\theta(x) 
+    = (d^{*}\theta, 1) = (\theta, d1) = 0.$$
+  \end{proof}
+
+\begin{lem}
+  Dado un grafo $G$ finito, $A, Z$ subconjuntos disjuntos de los vertices. Si $\theta$ es un flujo
+  de $A$ a $Z$ y $v$ es constante en $A$ y $Z$ con valores $\alpha, \beta$ respectivamente entonces
+  $$(\theta, dv) = \text{Strength}(\theta)(\alpha - \beta).$$
+\end{lem}
+
+\begin{proof}
+  $$(\theta, dv) = (d^{*}\theta, v) = \sum_{a\in A} d^{*}\theta(a) \alpha + \sum_{z\in Z}d^{*}\theta(z)\beta,$$
+usando el lema anterior tenemos el resultado.
+\end{proof}
+\subsection{Ahora sí, la energía}
+
+\begin{notacion}
+  Notamos $(f, g)_h = (f, gh) = (fh, g)$ y $\norm{f}_h = (f, f)_h$
+\end{notacion}
+
+\begin{defi}
+  Definimos la \defn{energía} de $\theta \in \ell^2(E)$ como
+  $$ \mathscr{E}(\theta) = \norm{\theta}^{2}_r $$
+  donde $r$ es la colección de resistencias de la red.
+\end{defi}
+
+\begin{obs}
+Sí $i$ es una corriente unitaria, $(i, i)_r = (i, dv) = v(a) - v(z) = \mathscr{R}(A \leftrightarrow Z).$
+\end{obs}
+
+Este producto interno no solo es importante por darnos la energía, sino que también nos 
+permite expresar las leyes de Kirchoff de la siguiente manera. Consideremos 
+$\chi^{e} = \ind{e} - \ind{-e}$ el flujo unitario a través de $e$. Tenemos 
+$$(\chi^{e}, \theta)_r = \theta(e)r(e)$$
+de esta manera, usando bilinealidad del producto interno
+$$\Big(\sum_{e^{-} = x} c(e)\chi^{e}, \theta\Big)_r = d^{*}\theta(x)$$
+
+\noindent Sea $i$ una corriente. \\
+
+\hspace*{1em}\textbf{Ley de Nodos.} Sí $x \notin A\cup Z$
+$$\Big(\sum_{e^{-} = x} c(e)\chi^{e}, i\Big)_r = 0.$$ 
+
+\hspace*{1em}\textbf{Ley de Ciclos.} Si $e_1, \dots, e_n$ es un ciclo orientado en $G$
+$$\Big(\sum_{k = 1}^{n} \chi_{e_k}, i\Big)_r = 0.$$
+
+Falta el último sprint de definiciones y volvemos a pensar en probabilidades. Llamemos 
+$\sum_{e^{-} = x} c(e)\chi^{e}$ la \defn{estrella} en $x$, y notemos al subespacio de $\ell^{2}(E)$
+generado por estas como $\star.$ Por otro lado, notamos $\lozenge$ al espacio generado por los \defn{ciclos}
+$\sum_{k = 1}^{n} \chi_{e_k}$.
+
+\begin{teo}[Ortogonalidad de ciclos y estrellas ]
+  Los subespacios $\star$ y $\lozenge$ son ortogonales. Más aún, están en suma directa y generan 
+  $\ell^{2}_{-}(E, r).$
+\end{teo}
+
+\begin{proof}
+  Es fácil notar que ambos espacios son ortogonales. Veamos que si $\theta$ es ortogonal
+  a ambos, entonces es $0$. Cómo $\theta$ es ortogonal a los ciclos, tenemos que 
+  $\theta = \alpha dF$ para alguna función $F$ de los vertices $F$ y, cómo es ortogonal
+  a $\star$ tenemos que es armónica (el argumento que se usa para ver esto es el mismo
+  que uno usa para ver que ambas leyes de Kirchoff implican Ley de Ohm). Cómo $G$ es finito
+  el principio del máximo implica que $F$ es constante en cada componente de $G$, luego $\theta = 0.$
+  
+  Con esto en mente, si $i$ es una corriente, es ortogonal al espacio de ciclos entonces $\i \in \star.$
+  Ahora, si $\theta$ es un flujo tal que $d^{*}\theta = d^{*}i$, entonces $d^{*}(\theta - i) = 0$ y es ortogonal
+  al espacio de ciclos, por lo que $\theta - i \in \lozenge.$ Es decir, 
+  $$ \theta = i + (\theta - i)$$
+  es la descomposición ortogonal de $\theta$ en $\star \oplus \lozenge$. 
+\end{proof}
+
+\begin{coro}
+  La proyección ortogonal $P_{\star} \colon \ell^{2}_{-}(E) \to \star$ viene dada por
+  $$ i = P_{\star}\theta$$
+  y 
+  $$\norm{\theta}_{r}^{2} = \norm{i}_{r}^{2} + \norm{\theta - i}_{r}^{2}.$$
+
+\end{coro}
+
+Otra consecuencia importante, es la siguiente.
+
+\paragraph{Principio de Thomson} Sea $G$ una red finita, $A,Z$ subconjunto disjunto 
+  de los vertices. Si $\theta$ es un flujo de $A$ a $Z$ e $i$ es una corriente con 
+  $d^{*}i = d^{*}\theta$. Entonces, 
+  $$\mathscr{E}(\theta) > \mathscr{E}(i)$$
+  a menos que $\theta = i.$ Sí $i$ es un unitario, $\mathscr{E}(\theta) \geq \mathscr{R}(A \leftrightarrow Z).$
+
+\begin{obs}
+  Este principio nos dice un montón, si encontramos un flujo de energía finita
+  entonce la resistencia es finita y la caminata es transiente.
+\end{obs}
+
+\paragraph{Principio de monotonia de Rayleigh} Sea $G$ un grafo conexo, con dos posibles
+elecciones de conductancias $c, c'$ tales que $c \leq c'.$
+\begin{enumerate}
+  \item Si G es finito y $A, Z$ disjuntos, $\mathscr{C}_{c}(A \leftrightarrow Z) \leq
+  \mathscr{C}_{c'}(A \leftrightarrow Z).$
+  \item Si $G$ es infinito y $a$ es un vertice,
+  $\mathscr{C}_{c}(a \leftrightarrow \infty) \leq \mathscr{C}_{c'}(a \leftrightarrow \infty)$.
+  En particular, si $(G, c)$ es transiente, $(G, c')$ también.
+\end{enumerate}
+
+\begin{proof}
+La parte (ii) es inmediata a partir de la parte. Sabemos que 
+$\mathscr{C}(A \leftrightarrow Z) = 1/\mathscr{E}(i)$ para un flujo de 
+corriente unitario $i$ de $A$ a $Z$. Ahora,
+\[
+\mathscr{E}_{c}(i_{c}) \ge \mathscr{E}_{c'}(i_{c}) \ge \mathscr{E}_{c'}(i_{c'}),
+\]
+donde la primera desigualdad se sigue de la definición de energía y la segunda del principio de Thomson (tras identificar $Z$ con un conjunto unitario). Tomando recíprocos se obtiene el resultado.
+\end{proof}
+
+
+\section{Estados transientes y recurrentes} 
+
+\begin{teo}[Desigualdad Nash-Williams]\label{teo:principal}
+  Sea $G$ una red finita y $\langle \Pi_n\rangle_{n=1}^{N}$ cortes disjuntos que separan
+  $a$ de $z$, entonces
+  \[
+    \mathscr{R}(a\leftrightarrow z) \;\ge\; \sum_n
+    \Bigl(\sum_{e\in\Pi_n} c(e)\Bigr)^{-1}.
+  \]
+\end{teo}
+
+\begin{proof}
+  Sea $\Pi$ un corte finito que separa $a$ de $z$. Decimos que un vértice $x$
+  está \textit{separado de $a$ por $\Pi$} si todo camino de $a$ a $x$ usa alguna
+  arista de $\Pi$. Sea $K$ el conjunto de vértices que no están separados de $a$
+  por $\Pi$, sea $Z$ el conjunto de extremos de aristas de $\Pi$ que sí están
+  separados de $a$ por $\Pi$, y sea $H \coloneqq G \!\upharpoonright\! (K \cup Z)$
+  la subred inducida por $K \cup Z$. Entonces $i$ induce un flujo unitario $i_H$
+  de $a$ a $Z$ en $H$, pues todas las aristas de $G$ que salen de un vértice de
+  $K$ pertenecen a $H$. Luego por lema,
+  \[
+    1 = -\sum_{x \in Z} d^{*}i_H(x)
+      = -\sum_{\substack{e \in H \\ e^{-} \in Z}} i(e).
+  \]
+  Si ambos extremos de una arista $e$ pertenecen a $Z$, entonces $i(e)$ aparece
+  junto con $i(-e)$ en esta suma y se cancelan. Además, toda arista de $H$ con un
+  solo extremo en $Z$ pertenece a $\Pi$: si $e^{-} \in Z$, $e^{+} \in K$ y
+  $e \notin \Pi$, se llegaría a $e^{-}$ desde $a$ sin cruzar $\Pi$, lo que
+  contradice $e^{-} \in Z$. Por lo tanto
+  \[
+    1 \le \sum_{e \in \Pi} \lvert i(e) \rvert,
+  \]
+  y como $c(e)\, r(e) = 1$, por Cauchy--Schwarz
+  \[
+    1 \le \Big( \sum_{e \in \Pi} \lvert i(e) \rvert \Big)^2 
+      \le \Bigl( \sum_{e \in \Pi} c(e) \Bigr)
+          \Bigl( \sum_{e \in \Pi} i(e)^2\, r(e) \Bigr).
+  \]
+  Sumando sobre los cortes tenemos nuestro resultado.
+\end{proof}
+Para aplicar esto a redes infinitas, decimos que un conjunto $\Pi$ de aristas
+\textit{separa} $a$ \textit{de} $\infty$ si todo camino simple infinito que
+parte de $a$ debe incluir una arista de $\Pi$. También llamamos a $\Pi$ un
+\textit{corte}.
+
+\begin{teo}[Criterio de Nash-Williams]\label{thm:nash-williams-criterion}
+  Sea $G$ una red localmente finita y sea $\langle \Pi_n \rangle$ una sucesión
+  de cortes finitos, disjuntos dos a dos, cada uno de los cuales separa $a$ de
+  $\infty$. Entonces
+  \begin{equation}\label{eq:nash-williams-inf}
+    \mathscr{R}(a \leftrightarrow \infty)
+    \ge \sum_{n} \Bigl( \sum_{e \in \Pi_n} c(e) \Bigr)^{-1}.
+  \end{equation}
+  En particular, si el lado derecho es infinito, entonces $G$ es recurrente.
+\end{teo}
+
+\begin{proof}
+  Para $n \ge 1$, elegimos una subred finita $G_n$ que contenga a
+  $\bigcup_{k=1}^{n} \Pi_k$, e identificamos su complemento en un único vértice $z_n$ para formar la red finita
+  $G_n^{\mathrm{W}}$. Entonces
+  $\mathscr{R}(a \leftrightarrow \infty)
+  = \lim_{n \to \infty} \mathcal{R}(a \leftrightarrow z_n; G_n^{\mathrm{W}})$.
+\end{proof}
+
+\section{Aplicaciones}
+
+\begin{teo}[Polya, parte uno] 
+  El paseo al azar simple en $\Z^d$ con $d=1,2$ es recurrente.
+\end{teo}
+
+\begin{proof}
+  Consideramos los cortes $\Pi_n$ como las aristas que unen el borde $[-n , n]^{2}$ con $[-(n+1), n+1]^2$
+  tenemos $4(2n+1)$ aristas con conductancia $1$. Luego, la serie del criterio de Nash-Williams diverge y la caminata es recurrente. 
+\end{proof}
+
+Queda ver el caso general de Polya, si bien no lo vimos, podemos extender casi todas nuestras ideas 
+incluido el principio de Thomson a redes infinitas, con esto vamos a probar el caso $d=3$ y
+por Rayleigh todos.
+
+\begin{teo}[Pólya, parte dos]\label{thm:polya-transient}
+  La caminata aleatoria simple sobre 
+  $\mathbb{Z}^d$ es transitoria para todo $d \ge 3$.
+\end{teo}
+
+\begin{proof}
+
+  Sea $L$ un rayo aleatorio uniforme que sale del origen $\mathbf{0}$ de
+  $\mathbb{R}^3$ hacia $\infty$, es decir, una semirrecta cuya intersección con
+  la esfera unitaria es uniforme. Sea $\mathcal{P}(L)$ un camino simple en
+  $\mathbb{Z}^3$ que va de $\mathbf{0}$ a $\infty$ y se mantiene a distancia
+  a lo sumo $4$ de $L$. Lo elegimos de manera medible, por ejemplo, haciéndolo
+  crecer recursivamente y agregando en cada paso el vértice más cercano a $L$.
+
+  Sea $\theta(e) \coloneqq \sum_{n \ge 0} \bigl( \mathbf{P}[e_n = e] -
+  \mathbf{P}[e_n = -e] \bigr)$, donde $e_n$ es la $n$-ésima arista de
+  $\mathcal{P}(L)$. Entonces $\theta$ es un flujo unitario de $\mathbf{0}$ a $\infty$, y
+  afirmamos que tiene energía finita. Existe una
+  constante $A$ tal que, si $e$ es una arista cuyo punto medio está a distancia
+  euclídea $R$ de $\mathbf{0}$, entonces
+  \[
+    \abs{\theta(e)} \leq \Prob[\text{Se usa la arista e}] = \mathbf{P}\bigl[e \in \mathcal{P}(L)\bigr] \le \frac{A}{R^2}.
+  \]
+  Además, los centros de las aristas están separados entre sí por una distancia
+  euclídea de al menos $1/\sqrt{2}$, así que existe una constante $B$ tal que
+  hay a lo sumo $B n^2$ centros de aristas cuya distancia al origen está entre
+  $n$ y $n+1$. De esto se sigue que la energía de $\theta$ es a lo sumo
+  \[
+    \sum_{e} \theta^{2}(e) = \sum_{n} \sum_{e \in [n, n+1)} \theta^{2}(e) \leq \sum_{n} A^2 B\, n^2\, n^{-4},
+  \]
+  que es finita.
+\end{proof}
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{imagenes/paseo.png}
+    \caption{Paseo al azar sobre $\Z^3$.}
+    \label{fig:paseo}
+\end{figure}
+
+
+%  Bibliografía
+\begin{thebibliography}{99}
+  \bibitem{LP} R.~Lyons y Y.~Peres, \emph{Probability on Trees and
+    Networks}, Cambridge University Press, 2016.
+  \bibitem{LPW} D.~A.~Levin, Y.~Peres y E.~L.~Wilmer, \emph{Markov Chains
+    and Mixing Times}, 2.ª ed., American Mathematical Society, 2017.
+\end{thebibliography}
+
+\end{document}

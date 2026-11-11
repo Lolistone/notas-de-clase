@@ -1,0 +1,253 @@
+\documentclass[
+%fontsize=10pt, % Base font size
+%twoside=false, % If true, use different layouts for even and odd pages (in particular, if twoside=true, the margin column will be always on the outside)
+%secnumdepth=2, % How deep to number headings. Defaults to 2 (subsections)
+%abstract=true, % Uncomment to print the title of the abstract
+]{kaohandt}
+
+% Choose the language
+\usepackage[spanish]{babel} % Load characters and hyphenation
+\usepackage[spanish=spanish]{csquotes}	% Spanish quotes
+
+\usepackage{tikz}
+
+% Load packages for testing
+\usepackage{blindtext}
+%\usepackage{showframe} % Uncomment to show boxes around the text area, margin, header and footer
+%\usepackage{showlabels} % Uncomment to output the content of \label commands to the document where they are used
+
+\graphicspath{{images/}{./}} % Paths where images are looked for
+
+% Load mathematical packages for theorems and related environments.
+\usepackage{kaotheorems}
+
+% Load the bibliography package
+\usepackage{kaobiblio}
+\addbibresource{report-template.bib} % Bibliography file
+
+% Load the package for hyperreferences
+\usepackage{kaorefs}
+
+
+% Some shortcuts
+
+% Real numbers, Natural numbers, etc.
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+
+% (Conditional) expected value
+\newcommand{\mean}[2][]{%
+	\ifthenelse{\isempty{#1}}%
+	{\mathbb{E}\!\left[#2\right]}%
+	{\mathbb{E}\!\left[#2\,\middle|\,\mathcal{F}_{#1}\right]}%
+}
+
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+	
+	%----------------------------------------------------------------------------------------
+	%	REPORT INFORMATION
+	%----------------------------------------------------------------------------------------
+	
+	\title[]{Fórmula de Jensen}
+	
+	\author[LM]{Lorenzo Martinelli\thanks{Universidad de Buenos Aires} }
+	
+	\date{\today}
+	
+	%----------------------------------------------------------------------------------------
+	%	TITLE AND ABSTRACT
+	%----------------------------------------------------------------------------------------
+	
+	\maketitle
+	
+	\margintoc
+	
+	\begin{abstract}
+		\noindent
+		La idea de esta breve nota es, por un lado enunciar y probar la fórmula de Jensen y por otro, mostrar algunas aplicaciones al crecimiento de los ceros de una función entera.
+	\end{abstract}
+	
+	%{\noindent\textbf{Keywords:} \LaTeX, Kao, handout, article, report}
+	
+	\medskip
+	
+	%----------------------------------------------------------------------------------------
+	%	MAIN BODY
+	%----------------------------------------------------------------------------------------
+	
+	\section{Introducción}
+	
+	El objeto de estudio en esta nota serán las funciones holormorfas en todos el plano también llamadas enteras. En particular, la pregunta que nos guiará es la siguiente.
+	
+	¿Cómo crecen en el infinito estas funciones? Acá aparece un hecho fundamental, mientras más \emph{grande} es una función mayor puede ser su cantidad de ceros. Esto de alguna manera ya los sabemos para los polinomios donde la cantidad de ceros de un polinomio $P$ de grado $d$ es precisamente $d$ que es además, el orden (polinomial) de crecimiento de este.\sidenote[][*-6]{Consecuencia del teorema fundamental del álgebra.}
+
+	\section{Fórmula de Jensen}
+	
+	Antes de enunciarla formalmente, vamos a recordar el teorema de Cauchy (¡¿Cuál de todos?!) y dos corolarios que van a ser de suma utilidad. 
+	
+	\begin{theorem}[Fórmula integral de Cauchy]
+		Sea $f : \Omega \to \C$ con $\Omega$ abierto y que contiene la clausura de un disco $D_R(z_0)$. Luego, 
+		$$f(z) = \frac{1}{2\pi i} \int_{\partial D_R(z_0)} \frac{f(\xi)}{\xi - z}d\xi$$
+	\end{theorem}
+	
+	\begin{proof}
+		Fijado $z \in D_R(z_0)$ consideremos $\Gamma_{\varepsilon, \delta}$ \sidenote[][*-6]{ Consideramos $C$ al borde del disco de la hipótesis
+		\begin{center}
+			\includegraphics[width=6cm]{/imagenes/curva.png}\\
+		\end{center}
+		}. Donde $\varepsilon$ es el radio del agujero centrado en $z$ y $\delta$ el ancho del pasillo que escapa. Ahora, tenemos que
+		$$\int_{\Gamma} \frac{f(\xi)}{\xi - z}d\xi = 0$$
+		pues en el interior de $\Gamma$, notando $F(\xi) = \frac{f(\xi)}{\xi - z}$ es holomorfa. Por otro lado, como $F$ es continua tenemos que cuando $\delta$ tiende a 0 las integrales de ambos lados del pasillo se cancelan, por lo que nos queda \sidenote[][*-2]{El menos viene de orientar en sentido anithorario el agujero.}		
+		$$ \int_{C} F(\xi)d\xi - \int_{C_\varepsilon} F(\xi)d\xi = 0.$$
+		Veamos ahora que ocurre con el segundo termino,
+		$$\int_{C_\varepsilon} F(\xi)d\xi = \int_{C_\varepsilon} \frac{f(\xi) - f(z)}{\xi - z} + \frac{f(z)}{\xi - z}d\xi,$$
+		cómo $f$ es holomorfa el termino de la izquierda esta acotado y, cuando tomamos límite con $\varepsilon$ tendiendo a $0$ tenemos que este se va a 0. Por otro lado, podemos calcular explicitamente el segundo termino,
+		$$ \int_{C_\varepsilon} \frac{f(z)}{\xi - z}d\xi =  \int_{0}^{2\pi} \frac{f(z) i \varepsilon e^{i \theta}}{\varepsilon e^{i\theta}}d\theta = 2\pi if(z)$$
+		volviendo a lo que nos habia quedado antes, tenemos el resultado.  
+		
+	\end{proof}
+	
+	\begin{corollary}[Valor medio]
+		Dada $f : D_R(z_0) \to \C$ holomorfa entonces
+		$$f(z_0) = \frac{1}{2\pi} \int_{0}^{2\pi} f(z_0 + re^{i\theta})d\theta, \quad \text{con } \, 0 < r < R.$$ 
+	\end{corollary}
+	
+	\begin{corollary}
+		Dada $f : D_R(z_0) \to \C$ holomorfa, si $u = Re(f)$ entonces
+		$$u(z_0) = \frac{1}{2\pi} \int_{0}^{2\pi} u(z_0 + re^{i\theta})d\theta, \quad \text{con } \, 0 < r < R.$$ 
+	\end{corollary}
+	
+	\begin{proof}
+		Basta tomar parte real al resultado del primer corolario.
+	\end{proof}
+	
+	Con esto en mente, enunciemos la fórmula de Jensen y probemosla.
+	
+	\marginnote{
+	\begin{center}
+		\includegraphics[width=4cm]{/imagenes/jensen.jpg}
+		\captionof{figure}{Johan Jensen (8 de mayo de 1859).}
+	\end{center}}
+	
+	\begin{theorem}[Fórmula de Jensen]
+		Sea $f : \Omega \to \C$ holomorfa con $\Omega$ abierto, que contiene la clausura de un disco $D_R(0)$, $f(0) \neq 0$ y $f$ no se anula en el borde del disco. Si $z_1, ..., z_N$ son los ceros de $f$ en el interior del disco entonces
+		$$\log|f(0)| = \sum_{i=1}^{N}{\log{\frac{|z_k|}{R}}} + \frac{1}{2\pi}\int_{0}^{2\pi} \log|f(Re^{i\theta})|d\theta.$$
+	\end{theorem}
+	
+	\begin{proof}
+		La prueba se divide en varios pasos.
+		\begin{enumerate}
+			\item Comencemos notando que si $f_1, f_2$ satisfacen las hipótesis del teorema entonces $f_1f_2$ también las satisface. Más aún satisface la fórmula pues el logaritmo separa sumas en productos y la unión de los ceros de $f_1, f_2$ son los ceros de $f_1f_2.$
+			
+			\item Sabemos que podemos escribir $f(z) = (z-z_1)\dots(z-z_N)g(z)$ con $g$ holomorfa y no nula en la clausura de $D_R$. Luego, basta ver el resultado para funciones como $g$ y de la forma $z - w$ con $w \in D_R.$
+			
+			\item Sea $g$ holomorfa que no se anula, queremos ver que
+			$$\log{|g(0)|} = \frac{1}{2\pi} \int_{0}^{2\pi} \log{|g(Re^{i\theta})|}d\theta $$
+			cómo $g$ no se anula, podemos definir en un disco un póco más grande $h$ holomorfa de manera que $e^{h(z)} = g(z).$\sidenote{Queda pendiente probarlo para cuando terminemos la demostración, pero esencialmente se deduce de poder definir una rama del logaritmo.} Ahora, $|g(z)| = |e^{h(z)}| = e^{Re(h(z))}.$ Luego, $\log{|g(z)|} = Re(h(z))$ y usando el corolario que vimos antes tenemos el resultado. 
+			
+			\item Nos queda ver el resultado para $f(z) = z - w$ con $w \in D_R.$ Tenemos que ver que
+			$$\log{|w|} = \log{|f(0)|} = \log{\frac{|w|}{R}} + \frac{1}{2\pi} \int_{0}^{2\pi} \log{|Re^{i\theta} - w|}d\theta.$$ 
+			Pero esto es,
+			$$\log{|w|} = \log{|w|} - \log{R} + \frac{1}{2\pi} \int_{0}^{2\pi} \log{|Re^{i\theta} - w|}d\theta,$$
+			mirando el segundo termino,
+			$$ \frac{1}{2\pi} \int_{0}^{2\pi} \log{|Re^{i\theta} - w|}d\theta = \log{|R|} + \int_{0}^{2\pi} \log{|e^{i\theta} - \frac{w}{R}|}d\theta.$$
+			Luego, basta probar que
+			$$\int_{0}^{2\pi} \log{|e^{i\theta} - a|}d\theta = 0, \quad \text{con } |a| < 1$$
+			Que es equivalente, via cambio de variables $\theta = -\theta$ a
+			$$\int_{0}^{2\pi} \log{|1 - ae^{i\theta}|}d\theta = 0.$$
+			De la misma manera que antes, llamando $F(z) = 1 - az$, existe $G(z)$ tal que $F(z) = e^{G(z)}$ y, entonces $\log|F(0)| = Re(G(z))$, luego por la fórmula de valor medio tenemos el resultado.
+		\end{enumerate}
+		
+	\end{proof}
+	
+	Antes de continuar vamos a enunciar y probar un pequeñp resultado que usamos en la demostración,
+	
+	\begin{proposition}
+		Sea $f: \Omega \to \C$ holomorfa, con $\Omega$ simplemente conexo. Si $f$ nunca se anula en su domino entonces existe $g(z)$ de manera tal que $e^{g(z)} = f(z).$ 
+	\end{proposition}
+	
+	\begin{remark}
+		Notemos que antes $\Omega$ no era simplemente conexo pero el disco sí.
+	\end{remark}
+	
+	\begin{proof}
+		Fijado $z_0 \in \Omega$ consideremos $c_0$ de manera tal que $e^{c_0} = f(z_0)$. Así, podemos definir
+		$$ g(z) = \int_{\gamma} \frac{f'(z)}{f(z)}dz + c_0$$
+		con $\gamma$ curva de $z_0$ a $z$. Notemos que está bien definida pues $\Omega$ es simplemente conexo y $f$ es holomorfa. Ahora, derivando $f(z)e^{-g(z)}$ tenemos que es $0$ y luego,
+		$f(z) = Ke^{g(z)}.$ Evaluando en $z_0$ tenemos que $K = 1$.
+	\end{proof}
+	
+	\subsection{Aplicaciones}
+	
+	Si notamos $n(r)$ a la cantidad de ceros en el disco de centro $0$ y radio $r$ podemos ver, con ayuda de un lema, que
+	$$\int_{0}^{R}n(r)\frac{dr}{r} = \frac{1}{2\pi} \int_{0}^{2\pi} \log{|f(Re^{i\theta})|}d\theta - \log{|f(0)|},$$
+	es decir, la relación entre los ceros en el disco y el crecimiento del radio esta controlado por el promedio logarítmico de $f$.
+	
+	\begin{lemma}
+		Si $z_1, \dots,z_N$ son los ceros de $f$ dentro de $D_R$ entonces
+		$$\int_{0}^{R}n(r)\frac{dr}{r} = \sum_{k=1}^{N} \log{\frac{R}{|z_k|}}.$$
+	\end{lemma}
+	
+	\begin{proof}
+		Primero notemos que
+		$$\sum_{k=1}^{N} \log{\frac{R}{|z_k|}} = \sum_{k=1}^{N} \int_{|z_k|}^{R}n(r)\frac{dr}{r}.$$
+		Si definimos ahora $n_k(r)$ la indicador del conjunto $[|z_k|, +\infty)$ podemos ver que $\sum_{k=1}^{N} n_k(r) = n(r).$ En consecuencia, podemos ver que
+		$$\sum_{k=1}^{N}\int_{|z_k|}^{R} \frac{dr}{r} = \sum_{k=1}^{N}\int_{0}^{R} n_k(r)\frac{dr}{r} = \int_{0}^{R} \sum_{k=1}^{N} n_k(r)\frac{dr}{r} = \int_{0}^{R} n(r)\frac{dr}{r}.$$
+	\end{proof}
+	
+	\subsubsection{Funciones de orden finito}
+		
+	Sea $f$ una función entera. Si existe $\rho > 0$ y constantes $A, B > 0$ tales que 
+	$$ |f(z)| \leq Ae^{B|z|^\rho}$$
+	decimos que $f$ tiene orden menor o igual a $\rho.$ Por otro lado, definimos el orden de $f$ como 
+	$$\rho_f = \inf{\rho}.$$
+	
+	\begin{theorem}
+		Si $f$ es entera con orden menor o igual a $\rho$. Luego,
+		\begin{enumerate}
+			\item Existen $C > 0$ y $r$ suficientemente grande tal que $n(r) \leq Cr^{\rho}.$
+			\item Si $z_1, z_2 \dots$ son los ceros de $f$, con $z_k \neq 0$ entonces para $s > \rho$ vale que 
+			$$ \sum_{k\geq1} \frac{1}{|z_k|^{s}} < \infty.$$
+		\end{enumerate}
+	\end{theorem}  
+	
+	\begin{proof}
+		
+		Probemos entonces ambos items en orden.
+		
+		\begin{enumerate}
+			\item Comencemos notando que alcanza probar el resultado para $f(0) \neq 0$ pues podemos considerar $\frac{f(z)}{z^{l}}$ si $l$ es la multiplicidad de $0$ como raíz, los ceros de esta función difieren solo en $l$ de los de $f$. Si $f(0) \neq 0,$ podemos usar el lema de antes y tenemos
+			$$\int_{0}^{R} n(x)\frac{dx}{x} = \frac{1}{2\pi} \int_{0}^{2\pi} \log{|f(Re^{i\theta})|}d\theta - \log{|f(0)|}$$
+			Eligiendo $R = 2r$,
+			$$\int_{r}^{2r} n(x)\frac{dx}{x} \leq \frac{1}{2\pi} \int_{0}^{2\pi} \log{|f(2re^{i\theta})|}d\theta - \log{|f(0)|}.$$
+			Además como $n$ es creciente, 
+			$$ \log{2}n(r) = \int_{r}^{2r} n(r) \frac{dx}{x} \leq \int_{r}^{2r} n(x)\frac{dx}{x}.$$
+			Solo nos queda usar que $f$ tiene orden menor o igual a $\rho$,
+			$$\frac{1}{2\pi} \int_{0}^{2\pi} \log{|f(2re^{i\theta})|}d\theta \leq \frac{1}{2\pi} \int_{0}^{2\pi} \log{Ae^{i(2r)^{\rho}}}d\theta = C'r^{\rho}.$$
+			
+			\item Notemos que solo pueden existir finitas raices con módulo menor a 1 pues sino, por identidad, f sería nula. Luego,
+			\[
+			\begin{aligned}
+			\sum_{|z_k|\geq1} \frac{1}{|z_k|^{s}} &= \sum_{j\geq 0} \sum_{2^{j} \leq |z_k| \leq 2^{j+1}} |z_k|^{-s} \\
+			&\leq \sum_{j\geq 0} n(2^{j+1})2^{-js} \\
+			&\leq \sum_{j\geq 0} C2^{(j+1)\rho}2^{-js} \\
+			&= \sum_{j\geq 0} C'2^{j(\rho - s)} < \infty
+			\end{aligned} 
+			\]
+			Donde el último termino es finito pues $s > \rho.$
+		\end{enumerate}
+	\end{proof}
+	
+	Para terminar, veamos un ejemplo que muestra que la condición de $s > \rho$ no puede ser mejorada.
+	
+	\begin{example}
+		Consideremos $f(z) = \sin{z\pi}$, tenemos en este caso que sus raices son de la forma $z_k = k$. Además, podemos ver que $|f(z)| \leq e^{|z|\pi}$, es decir, que tiene orden menor igual a 1. Precisamente, $\sum_{k\geq1} \frac{1}{k^s}$ es finito si y sólo si $s > 1.$ 
+	\end{example}
+\end{document}

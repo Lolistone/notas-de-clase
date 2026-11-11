@@ -1,0 +1,195 @@
+\documentclass[11pt]{article}
+% ------------------------------------------------
+% Paquetes básicos
+% ------------------------------------------------
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{libertinus}
+\usepackage{libertinust1math}
+\usepackage[spanish]{babel}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{tocloft}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage[most]{tcolorbox}
+\usepackage{xifthen}
+% ------------------------------------------------
+% Colores
+% ------------------------------------------------
+\definecolor{indigo}{RGB}{40,60,120}
+\definecolor{deepindigo}{RGB}{25,45,75}
+% ------------------------------------------------
+% Entornos
+% ------------------------------------------------
+\newtheoremstyle{ejstyle}
+{1em}{1em}
+{\normalfont}{}
+{\bfseries\color{deepindigo}}{.}
+{.5em}{}
+{}
+\theoremstyle{ejstyle}
+\newtheorem{ejercicio}{Ejercicio}
+
+\newenvironment{solucion}
+{\begin{proof}[{\bfseries\color{deepindigo} Solución}]}
+	{\end{proof}}
+
+\newenvironment{obs}
+{\par\smallskip\noindent{\bfseries\color{deepindigo} Observación.}\enspace\ignorespaces}
+{\par\smallskip}
+% ------------------------------------------------
+% Comandos matemáticos
+% ------------------------------------------------
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+
+\newcommand{\mean}[2][]{%
+	\ifthenelse{\isempty{#1}}%
+	{\mathbb{E}\!\left[#2\right]}%
+	{\mathbb{E}\!\left[#2\,\middle|\,\mathcal{F}_{#1}\right]}%
+}
+% ------------------------------------------------
+\title{\Huge Entrega 3: Movimiento Browniano}
+\author{Lorenzo Martinelli}
+% ------------------------------------------------
+\begin{document}
+	
+	\maketitle
+	
+	\begin{abstract}
+		Tercer entrega de Cálculo Estocástico. Ejercicios 1, 3, 4, 7 y 9.
+	\end{abstract}
+	
+
+	\begin{ejercicio}
+		Sea $W(\cdot)$ un movimiento Browniano unidimensional. Mostrar que es una
+		martingala.
+	\end{ejercicio}
+	
+	\begin{solucion}
+		Queremos ver que $\mean[s]{W(t)} = W(s)$ para todo $s \leq t$.
+		\[
+		\mean[s]{W(t)} = \mean[s]{W(s)} + \mean[s]{W(t)-W(s)}
+		= W(s) + \mean{W(t)-W(s)} = W(s),
+		\]
+		donde usamos que $W(s)$ es $\mathcal{F}_s$-medible y que el incremento
+		$W(t)-W(s)$ es independiente de $\mathcal{F}_s$ con $\mean{W(t)-W(s)}=0$.
+	\end{solucion}
+	
+	\begin{ejercicio}
+		Probar que si $W(\cdot)$ es un movimiento Browniano $n$-dimensional, entonces
+		también lo son:
+		\begin{enumerate}
+			\item[\textit{a)}] $\mathbf{W}(t+s) - \mathbf{W}(s)$ para todo $s \geq 0$.
+			\item[\textit{b)}] $c\,\mathbf{W}(t/c^2)$ para todo $c > 0$
+			\quad (``rescale Browniano'').
+		\end{enumerate}
+	\end{ejercicio}
+	
+	\begin{solucion}
+		Sea $X(t) = \mathbf{W}(t+s) - \mathbf{W}(s)$ con $s \geq 0$ fijo. Nuestra filtración va a ser $\mathcal{G}_t = \mathcal{F}_{t+s}.$
+		\begin{enumerate}
+			\item $X(0) = \mathbf{W}(s) - \mathbf{W}(s) = 0.$
+			\item Para $r < t$,
+			\[
+			X(t) - X(r) = \mathbf{W}(t +s) - \mathbf{W}(t+s),
+			\]
+			que sabemos que es independiente de $\mathcal{F}_{r+s} = \mathcal{G}_s.$
+			
+			\item $X(t) - X(r) = \mathbf{W}(t+s) - \mathbf{W}(r+s)
+			\sim \mathcal{N}\!\left(0,\,(t-r)I\right).$
+			
+			\item $t \mapsto \mathbf{W}(t+s)$ es continuo por
+			serlo $\mathbf{W}(t)$.
+		\end{enumerate}
+		
+		Veamos la otra. Sea $Y(t) = c\,\mathbf{W}(t/c^2)$, con $c > 0$ fijo. Con $\mathcal{G}_t = \mathcal{F}_{t/c^2}.$
+		\begin{enumerate}
+			\item $Y(0) = c\,\mathbf{W}(0) = \mathbf{0}.$
+			\item Para $s < t$,
+			\[
+			Y(t) - Y(s) = c\bigl[\mathbf{W}(t/c^2) - \mathbf{W}(s/c^2)\bigr],
+			\]
+			independiente de $\mathcal{F}_{s/c^2} = \mathcal{G}_{s}$.
+			
+			\item Basta ver que 
+			$$
+			c\bigl[\mathbf{W}(t/c^2) - \mathbf{W}(s/c^2)\bigr] \sim c\,\mathcal{N}\!\left(0,\,\tfrac{t-s}{c^2}\,I\right)
+					\sim \mathcal{N}\!\left(0,\,(t-s)I\right).
+			$$
+			
+			\item Es continua pues $\mathbf{W}(t)$ lo es.
+		\end{enumerate}
+	\end{solucion}
+	
+
+	\begin{ejercicio}
+		Sea $W(\cdot)$ un movimiento Browniano unidimensional. Mostrar que
+		\[
+		\lim_{k \to \infty} \frac{W(k)}{k} = 0 \qquad \text{casi seguramente.}
+		\]
+		\textit{Sugerencia:} Fijar $\varepsilon > 0$, definir el evento
+		$A_k := \{|\frac{W(k)}{k}| \geq \varepsilon\}$ y aplicar Borel-Cantelli.
+	\end{ejercicio}
+	
+	\begin{solucion}
+		Fijamos $\varepsilon > 0$ y definimos $A_k$ como en la sugerencia.
+		Como 
+		$$ 
+		\P(|\frac{W_k}{k}| \leq \varepsilon) = \P(|\frac{W_k}{\sqrt{k}}| \leq \varepsilon \sqrt{k}) = 2 \P(\frac{W_k}{\sqrt{k}} \leq \varepsilon \sqrt{k})
+		$$
+		Nos gustaría ver que esta probabilidad está acotada por una sucesión cuya serie converge pues Borel Cantelli nos daría el resultado. Notemos que $\frac{W_k}{\sqrt{k}} \sim \mathcal{N}(0,1)$. Luego, nuestra probabilidad está acotada por 
+		$$
+		\frac{1}{\sqrt{2\pi}}\int_{\sqrt{k}\varepsilon}^{\infty} \exp\{-\frac{x^2}{2}\}dx \leq \frac{1}{\sqrt{2\pi}}\int_{\sqrt{k}\varepsilon}^{\infty} \exp\{-\frac{\varepsilon\sqrt{k}x}{2}\}dx = \frac{2}{\sqrt{2\pi k}} \exp\{-\frac{\varepsilon k}{2}\}   
+		$$
+		Luego, cómo la serie de esta ultima expresión converge estamos.
+	\end{solucion}
+	
+	\begin{ejercicio}
+		Sea $X(t) := \int_0^t W(s)\,ds$, donde $W(\cdot)$ es un movimiento Browniano.
+		Probar que
+		\[
+		\E\!\left[X^2(t)\right] = \frac{t^3}{3} \qquad \forall\, t > 0.
+		\]
+	\end{ejercicio}
+	
+	\begin{solucion}
+		Por Fubini,
+		\[
+		\E\!\left[X^2(t)\right]
+		= \E\!\left[\int_0^t W(s)\,ds \int_0^t W(u)\,du\right]
+		= \int_0^t\!\int_0^t \E[W(s)W(u)]\,ds\,du.
+		\]
+		Cómo $\E[W(s)W(t)] = \min(s,t)$
+		\[
+		\E\!\left[X^2(t)\right]
+		= \int_0^t\!\int_0^t \min(s,u)\,ds\,du
+		= 2\int_0^t\!\int_0^u s\,ds\,du
+		= 2\int_0^t \frac{u^2}{2}\,du
+		= \int_0^t u^2\,du
+		= \frac{t^3}{3}.
+		\]
+	\end{solucion}
+	
+	\begin{ejercicio}
+		Sea $U(t) := e^{-t}W(e^{2t})$, donde $W(\cdot)$ es un movimiento Browniano
+		unidimensional. Mostrar que
+		\[
+		\E[U(t)U(s)] = e^{-|t-s|} \qquad \text{para todo } -\infty < s,t < \infty.
+		\]
+	\end{ejercicio}
+	
+	\begin{solucion}
+		Usando otra vez que $\E[W(s)W(t)] = \min(s,t)$,
+		\[
+		\E[U(t)U(s)]
+		= e^{-t}e^{-s}\,\E\!\left[W(e^{2t})W(e^{2s})\right]
+		= e^{-(t+s)}\min(e^{2t}, e^{2s}) = e^{-|t-s|}.
+		\]
+	\end{solucion}
+	
+\end{document}
